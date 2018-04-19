@@ -12,7 +12,7 @@ class App: public GlutApp {
     // Maintain app state here
     float mx;
     float my;
-	Game* game = new Game();
+    Game* game = new Game();
 
 public:
     // Constructor, to initialize state
@@ -23,17 +23,17 @@ public:
     void keyPress(unsigned char key);
     void keyUp(unsigned char key);
     void mouseDown(float x, float y);
-	void mouseUp(float x, float y);
+    void mouseUp(float x, float y);
     void mouseDrag(float x, float y);
     void idle();
 
 
 
-	//void resize(int w, int h);
+    //void resize(int w, int h);
 
-	Rect * rect;
-	TextureRect * expl;
-	Button<TextureRect>* mushroomThatExplodesWhenYouClickOnIt;
+    Rect * rect;
+    TextureRect * expl;
+    Button<TextureRect>* mushroomThatExplodesWhenYouClickOnIt;
     //TexRect* background;
 };
 

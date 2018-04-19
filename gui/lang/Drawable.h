@@ -10,8 +10,8 @@
 
 class Drawable {
 public:
-	virtual void draw() = 0;
-	virtual ~Drawable() = 0;
+    virtual void draw() = 0;
+    virtual ~Drawable() = 0;
 };
 
 inline Drawable::~Drawable() {}

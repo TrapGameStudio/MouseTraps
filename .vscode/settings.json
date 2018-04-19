@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "system_error": "cpp",
+        "xfunctional": "cpp",
+        "xtr1common": "cpp"
+    }
+}

@@ -3,7 +3,7 @@
 #include <memory>
 class ScenePrototype {
 public:
-	virtual std::unique_ptr<Scene> instantiate() = 0;
-	virtual ~ScenePrototype() {}
+    virtual std::unique_ptr<Scene> instantiate() = 0;
+    virtual ~ScenePrototype() {}
 };
 

@@ -39,10 +39,10 @@ void GlutApp::windowToScene ( float& x, float &y )
     // Converting window coordinates [0..width] x [0..height] to [-1..1] x [-1..1]
     x = (2.0f*(x/float(width))) - 1.0f;
     y = 1.0f - (2.0f*(y/float(height)));
-	// Take care of issue in Windows where y coordinate is a little off
-	#if defined WIN32
-	y -= 0.03;
-	#endif
+    // Take care of issue in Windows where y coordinate is a little off
+    #if defined WIN32
+    y -= 0.03;
+    #endif
 }
 
 void GlutApp::draw(){
@@ -69,19 +69,19 @@ void GlutApp::resize ( int w, int h ) {
     width = w;
     height = h;
 
-	int topLeftX = 0;
-	int topLeftY = 0;
-	int bottomRightX = w;
-	int bottomRightY = h;
+    int topLeftX = 0;
+    int topLeftY = 0;
+    int bottomRightX = w;
+    int bottomRightY = h;
 
 
-	if (w < h) {
-		topLeftY = (h - w) / 2;
-		bottomRightY =  w;
-	} else if (w > h) {
-		topLeftX = (w - h) / 2;
-		bottomRightX = h;
-	}
+    if (w < h) {
+        topLeftY = (h - w) / 2;
+        bottomRightY =  w;
+    } else if (w > h) {
+        topLeftX = (w - h) / 2;
+        bottomRightX = h;
+    }
 
     // Tell OpenGL to use the whole window
     glViewport( topLeftX, topLeftY, bottomRightX, bottomRightX);

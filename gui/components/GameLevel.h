@@ -2,7 +2,7 @@
 #include "gui/components/Scene.h"
 class GameLevel {
 public:
-	GameLevel();
-	~GameLevel();
+    GameLevel();
+    ~GameLevel();
 };
 

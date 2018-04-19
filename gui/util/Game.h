@@ -8,26 +8,26 @@
 #include <map>
 class Game {
 private:
-	std::deque<std::unique_ptr<Scene>> currentScenes;
-	std::map<unsigned int, std::unique_ptr<ScenePrototype>> gameLevels;
+    std::deque<std::unique_ptr<Scene>> currentScenes;
+    std::map<unsigned int, std::unique_ptr<ScenePrototype>> gameLevels;
 public:
-	static const int GridColumn;
-	static const int GridRow;
-	static void gridCoordinatesToWindowCoordinates(float& x, float& y);
-	static void gridCoordinatesToWindowCoordinates(Point* p);
-	static void gridCoordinatesToWindowCoordinates(Vector* v);
+    static const int GridColumn;
+    static const int GridRow;
+    static void gridCoordinatesToWindowCoordinates(float& x, float& y);
+    static void gridCoordinatesToWindowCoordinates(Point* p);
+    static void gridCoordinatesToWindowCoordinates(Vector* v);
 
-	void mouseDown(float x, float y);
-	void mouseUp(float x, float y);
-	void keyUp(unsigned char key);
-	void keyPress(unsigned char key);
+    void mouseDown(float x, float y);
+    void mouseUp(float x, float y);
+    void keyUp(unsigned char key);
+    void keyPress(unsigned char key);
 
-	void redraw();
+    void redraw();
 
-	void updateFrame();
+    void updateFrame();
 
 
-	Game();
-	~Game();
+    Game();
+    ~Game();
 };
 

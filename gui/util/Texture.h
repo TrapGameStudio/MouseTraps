@@ -10,11 +10,11 @@
 #include "RgbImage.h"
 #include <string>
 class Texture {
-	std::string filename;
-	GLuint texture_id;
+    std::string filename;
+    GLuint texture_id;
 public:
-	Texture(const char* filename);
-	GLuint getTextureID();
-	~Texture();
+    Texture(const char* filename);
+    GLuint getTextureID();
+    ~Texture();
 };
 
