@@ -13,6 +13,7 @@ GlutApp::GlutApp(const char* label, int x, int y, int w, int h) {
     glutCreateWindow(label);
 
     // Setup some OpenGL options
+    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glEnable (GL_DEPTH_TEST);
     glEnable (GL_POINT_SMOOTH);
     glEnable (GL_LINE_SMOOTH);
@@ -29,7 +30,7 @@ GlutApp::GlutApp(const char* label, int x, int y, int w, int h) {
     glutKeyboardUpFunc(keyUpCB);
     glutSpecialFunc(specialCB);
     glutSpecialUpFunc(specialUpCB);
-    glutIdleFunc(idleCB);
+    //glutIdleFunc(idleCB);
     glutReshapeFunc(reshapeCB);
     glutPassiveMotionFunc(passiveCB);
 }

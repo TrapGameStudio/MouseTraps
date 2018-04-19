@@ -4,9 +4,9 @@
 
 void TextureRect::updateTextureInfo() {
     if (textureColumn > 0 && textureRow > 0) {
-        textureTileSize->setTo(1.0f / textureColumn, 1.0f / textureRow);
+        textureTileSize->setTo(-1.0f / textureColumn, -1.0f / textureRow);
         currentTextureCoordinate->setTo(
-            currentTextureColumn * textureTileSize->getX(),
+            1- (currentTextureColumn * textureTileSize->getX()),
              1 - (currentTextureRow * textureTileSize->getY()));
     }
 }
@@ -77,6 +77,7 @@ TextureRect * TextureRect::setFrames(unsigned int textureColumn, unsigned int te
 }
 
 void TextureRect::draw() {
+    glPushMatrix();
     if (!textureID) {
         textureID = TextureManager::getTextureID(textureFileName.c_str());
 
@@ -86,23 +87,27 @@ void TextureRect::draw() {
         glEnable(GL_TEXTURE_2D);
         glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     }
+
+
+    glDepthMask(GL_FALSE);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(
         color->getR(),
         color->getG(),
         color->getB(),
         color->getA()
     );
-
     glBegin(GL_QUADS);
     glTexCoord2f(currentTextureCoordinate->getX(),
                  currentTextureCoordinate->getY());
     glVertex2f(topLeft->getX(), topLeft->getY());
 
-    glTexCoord2f(currentTextureCoordinate->getX() + textureTileSize->getX(),
+    glTexCoord2f(currentTextureCoordinate->getX() - textureTileSize->getX(),
                  currentTextureCoordinate->getY());
     glVertex2f(topLeft->getX() + absoluteSize->getX(), topLeft->getY());
 
-    glTexCoord2f(currentTextureCoordinate->getX() + textureTileSize->getX(),
+    glTexCoord2f(currentTextureCoordinate->getX() - textureTileSize->getX(),
                  currentTextureCoordinate->getY() - textureTileSize->getY());
     glVertex2f(topLeft->getX() + absoluteSize->getX(), topLeft->getY() - absoluteSize->getY());
 
@@ -110,8 +115,10 @@ void TextureRect::draw() {
                  currentTextureCoordinate->getY() - textureTileSize->getY());
     glVertex2f(topLeft->getX(), topLeft->getY() - absoluteSize->getY());
     glEnd();
-
+    glDisable(GL_BLEND);
+    glDepthMask(GL_TRUE);
     glDisable(GL_TEXTURE_2D);
+    glPopMatrix();
 }
 
 void TextureRect::advance() {

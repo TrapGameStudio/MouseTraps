@@ -25,7 +25,7 @@ public:
     void mouseDown(float x, float y);
     void mouseUp(float x, float y);
     void mouseDrag(float x, float y);
-    void idle();
+    //void idle();
 
 
 

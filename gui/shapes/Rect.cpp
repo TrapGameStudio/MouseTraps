@@ -59,21 +59,25 @@ Rect::Rect(Vector* size, Anchor anchor, Point* anchorLocation, Color* color) {
 }
 
 void Rect::draw() {
-	glPushMatrix();
-	glDisable(GL_TEXTURE_2D);
-	glColor4f(
-		color->getR(),
-		color->getG(),
-		color->getB(),
-		color->getA()
-	);
-	glBegin(GL_QUADS);
-	glVertex2f(topLeft->getX(), topLeft->getY());
-	glVertex2f(topLeft->getX() + absoluteSize->getX(), topLeft->getY());
-	glVertex2f(topLeft->getX() + absoluteSize->getX(), topLeft->getY() - absoluteSize->getY());
-	glVertex2f(topLeft->getX(), topLeft->getY() - absoluteSize->getY());
-	glEnd();
-	glPopMatrix();
+    glPushMatrix();
+    glDepthMask(GL_FALSE);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glColor4f(
+        color->getR(),
+        color->getG(),
+        color->getB(),
+        color->getA()
+    );
+    glBegin(GL_QUADS);
+    glVertex2f(topLeft->getX(), topLeft->getY());
+    glVertex2f(topLeft->getX() + absoluteSize->getX(), topLeft->getY());
+    glVertex2f(topLeft->getX() + absoluteSize->getX(), topLeft->getY() - absoluteSize->getY());
+    glVertex2f(topLeft->getX(), topLeft->getY() - absoluteSize->getY());
+    glEnd();
+    glDisable(GL_BLEND);
+    glDepthMask(GL_TRUE);
+    glPopMatrix();
 }
 
 void Rect::move(float dx, float dy) {

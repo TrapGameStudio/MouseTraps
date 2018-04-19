@@ -8,7 +8,7 @@ void explode(int value){
     singleton->expl->advance();
     singleton->mushroomThatExplodesWhenYouClickOnIt->getShape()->advance();
     singleton->redraw();
-    glutTimerFunc(32, explode, value);
+    glutTimerFunc(40, explode, value);
 }
 
 
@@ -20,42 +20,40 @@ App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w,
     my = 0.0;
 
     // Preloading texture for faster render
-    TextureManager::getTextureID("Graphics/Animations/fireball.bmp");
-    TextureManager::getTextureID("Graphics/Images/mushroom.bmp");
+    TextureManager::getTextureID("Graphics/Animations/ClawSpecial2.png");
+    TextureManager::getTextureID("Graphics/Images/CatInTheBox.png");
 
     mushroomThatExplodesWhenYouClickOnIt = Button<TextureRect>::builder()
         .ofShape(
                 TextureRect::builder()
-                    .ofSize(0.5f, 0.5f)
+                    .ofSize(0.5f,0.5f)
                     .onAnchor(Anchor::Center)
-                    .ofTexture("Graphics/Images/mushroom.bmp")
+                    .ofTexture("Graphics/Images/CatInTheBox.png")
                     .build()
                 )
         .onMouseDown([this]() {
         mushroomThatExplodesWhenYouClickOnIt->getShape()
-                ->setTexture("Graphics/Animations/fireball.bmp")
-                ->setFrames(6, 6)
+                ->setTexture("Graphics/Animations/ClawSpecial2.png")
+                ->setFrames(5, 3)
                 ->setTextureType(TextureType::Animation)
                 ->updateTextureInfo();
         })
         .build();
 
     rect = Rect::builder()
-            .ofSize(0.01f, 0.01f)
+            .ofSize(0.6f, 0.6f)
             .atLocation(0.8f, 0.8f)
-            .ofColor(Color::yellow())
+            .ofColor(Color::of(0.0f, 0.6f, 0.8f, 0.5f))
             .onAnchor(Anchor::Center)
             .build();
 
 
 
     expl = TextureRect::builder()
-            //.ofSize(0.5f, 0.5f)
-            //.ofShade(Color::white())
-            //.onAnchor(Anchor::Center)
-            //.ofTexture("Graphics/Animations/explode.bmp")
-            //.ofTextureType(TextureType::LoopedAnimation)
-            //.ofFrames(5, 5)
+            .ofSize(2.0f, 2.0f)
+            .ofShade(Color::white())
+            .onAnchor(Anchor::Center)
+            .ofTexture("Graphics/Images/Castle1.png")
             .build();
 
     //rect->zoom(2.0f);
@@ -77,8 +75,8 @@ void App::draw() {
 
     // Set Color
     glColor3d(1.0, 1.0, 1.0);
-    mushroomThatExplodesWhenYouClickOnIt->draw();
     expl->draw();
+    mushroomThatExplodesWhenYouClickOnIt->draw();
     rect->draw();
 
     //background->draw();
@@ -121,9 +119,9 @@ void App::mouseDrag(float x, float y){
     redraw();
 }
 
-void App::idle(){
-
-}
+//void App::idle(){
+//
+//}
 
 void App::keyUp(unsigned char key) {
 
