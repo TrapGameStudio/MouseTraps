@@ -34,9 +34,11 @@ void Scene::pushAnimatedShapesToBack(TextureRect * shape) {
     allAnimatedShapes.push_back(shape);
 }
 
-void Scene::clickClickables() {
+void Scene::clickClickables(float x, float y) {
     for (Clickable* c : allClickables) {
-        c->clickMouseDown();
+        if (c->contains(x, y)) {
+            c->clickMouseDown();
+        }
     }
 }
 

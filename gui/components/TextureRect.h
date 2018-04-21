@@ -34,7 +34,7 @@ public:
     void setTextureType(TextureType textureType);
     void setTextureColumn(unsigned int textureColumn);
     void setTextureRow(unsigned int textureRow);
-    void setFrames(unsigned int textureColumn, unsigned int textureRow);
+    void setColumnRow(unsigned int textureColumn, unsigned int textureRow);
     void updateTextureInfo();
     void draw();
     void advance();

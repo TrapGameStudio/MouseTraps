@@ -30,7 +30,7 @@ public:
     void pushAnimatedShapesToFront(TextureRect* shape);
     void pushAnimatedShapesToBack(TextureRect* shape);
     // TODO: change to mouse down mouse up latter.
-    void clickClickables();
+    void clickClickables(float x, float y);
     void tick();
     void addTimers(unsigned int duration, std::function<void(void)> execution, bool repeating = false);
     virtual ~Scene() {};

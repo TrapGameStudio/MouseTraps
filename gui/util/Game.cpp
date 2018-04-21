@@ -11,7 +11,7 @@ void Game::gridCoordinatesToWindowCoordinates(Vector * v) {}
 
 void Game::mouseDown(float x, float y) {
     for (unsigned int i = 0; i < currentScenes.size(); i++) {
-        currentScenes[i]->clickClickables();
+        currentScenes[i]->clickClickables(x, y);
     }
 }
 

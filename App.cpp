@@ -4,10 +4,10 @@ static App* singleton;
 
 
 
-void explode(int value){
+void refreshDisplay(int value){
     singleton->game->updateFrame();
     singleton->redraw();
-    glutTimerFunc(20, explode, value);
+    glutTimerFunc(20, refreshDisplay, value);
 }
 
 
@@ -18,53 +18,7 @@ App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w,
     mx = 0.0;
     my = 0.0;
 
-    //catbox = Button<TextureRect>::builder()
-    //    .ofShape(
-    //            TextureRect::builder()
-    //                .ofSize(0.5f,0.5f)
-    //                .onAnchor(Anchor::Center)
-    //                .ofTexture("Graphics/Images/mushroom.png")
-    //                .build()
-    //            )
-    //    .onMouseDown([this]() {
-    //        catbox->getShape()
-    //            ->setTexture("Graphics/Animations/fireball.png");
-    //        catbox->getShape()
-    //            ->setFrames(6, 6);
-    //        catbox->getShape()
-    //            ->setTextureType(TextureType::Animation);
-    //        catbox->getShape()
-    //                ->updateTextureInfo();
-    //    })
-    //    .build();
-
-    //rect = Rect::builder()
-    //        .ofSize(0.6f, 0.6f)
-    //        .atLocation(0.8f, 0.8f)
-    //        .ofColor(Color::of(0.0f, 0.6f, 0.8f, 0.5f))
-    //        .onAnchor(Anchor::Center)
-    //        .build();
-
-    //text = TextureRect::builder()
-    //        .ofSize(0.33f * 0.2f, 0.70f * 0.2f)
-    //        .atLocation(-0.8f, 0.8f)
-    //        .ofTexture("Graphics/fonts/Consolas.png")
-    //        .ofTextureType(TextureType::LoopedAnimation)
-    //        .ofColumnRow(16, 14)
-    //        .ofShade(Color::white())
-    //        .onAnchor(Anchor::Center)
-    //        .build();
-
-    //background = TextureRect::builder()
-    //        .ofSize(2.0f, 2.0f)
-    //        .ofShade(Color::white())
-    //        .onAnchor(Anchor::Center)
-    //        .ofTexture("Graphics/Images/Castle1.png")
-    //        .build();
-
-    //rect->zoom(2.0f);
-
-    explode(1);
+    refreshDisplay(1);
 }
 
 void App::draw() {
@@ -81,12 +35,8 @@ void App::draw() {
 
     // Set Color
     glColor3d(1.0, 1.0, 1.0);
-    //background->draw();
-    //catbox->draw();
-    //rect->draw();
-    //text->draw();
+
     game->redraw();
-    //background->draw();
 
     glDisable(GL_TEXTURE_2D);
 
@@ -104,9 +54,6 @@ void App::mouseDown(float x, float y){
     my = y;
 
     game->mouseDown(x, y);
-
-    // Redraw the scene
-    redraw();
 }
 
 void App::mouseUp(float x, float y) {
@@ -115,18 +62,12 @@ void App::mouseUp(float x, float y) {
     my = y;
 
     game->mouseUp(x, y);
-
-    // Redraw the scene
-    redraw();
 }
 
 void App::mouseDrag(float x, float y){
     // Update app state
     mx = x;
     my = y;
-
-    // Redraw the scene
-    redraw();
 }
 
 //void App::idle(){

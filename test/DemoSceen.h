@@ -4,7 +4,7 @@
 class DemoSceen :
     public Scene {
 private:
-    Button<TextureRect>* mushroom;
+    //Button<TextureRect>* mushroom;
 public:
     void keyPress(unsigned char key);
     void keyUp(unsigned char key);

@@ -65,7 +65,7 @@ void TextureRect::setTextureRow(unsigned int textureRow) {
     this->textureRow = textureRow;
 }
 
-void TextureRect::setFrames(unsigned int textureColumn, unsigned int textureRow) {
+void TextureRect::setColumnRow(unsigned int textureColumn, unsigned int textureRow) {
     this->textureColumn = textureColumn;
     this->textureRow = textureRow;
 }
@@ -74,8 +74,8 @@ void TextureRect::draw() {
     glPushMatrix();
     if (!textureID) {
         textureID = TextureManager::getTextureID(textureFileName.c_str());
-
     }
+
     if (textureID) {
         glBindTexture(GL_TEXTURE_2D, textureID);
         glEnable(GL_TEXTURE_2D);
@@ -201,7 +201,7 @@ TextureRect::Builder & TextureRect::Builder::ofTextureRow(unsigned int textureRo
 }
 
 TextureRect::Builder & TextureRect::Builder::ofColumnRow(unsigned int textureColumn, unsigned int textureRow) {
-    building->setFrames(textureColumn, textureRow);
+    building->setColumnRow(textureColumn, textureRow);
     return *this;
 }
 
