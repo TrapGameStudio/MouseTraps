@@ -3,7 +3,7 @@
 std::unordered_map<std::string, GLuint> TextureManager::textures;
 
 GLuint TextureManager::addTexture(const char * filename) {
-    GLuint texture_id;
+    GLuint texture_id = 0;
     std::vector<GLubyte> image; //the raw pixels
     unsigned width, height;
 
@@ -26,6 +26,21 @@ GLuint TextureManager::addTexture(const char * filename) {
         gluBuild2DMipmaps(GL_TEXTURE_2D, 4, width, height,
                           GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
         glDisable(GL_TEXTURE_2D);
-        return texture_id;
     }
+    return texture_id;
+}
+
+GLuint TextureManager::getTextureID(const char * filename, bool checkOnly) {
+    GLuint id = 0;
+    std::string filenameStr = filename;
+    if (textures.find(filenameStr) == textures.end()) {
+        if (!checkOnly) {
+            id = addTexture(filename);
+        }
+        if (!id) {
+            return 0;
+        }
+        textures[filenameStr] = id;
+    }
+    return textures[filenameStr];
 }

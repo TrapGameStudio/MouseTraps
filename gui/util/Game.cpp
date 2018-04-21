@@ -9,7 +9,11 @@ void Game::gridCoordinatesToWindowCoordinates(Point * p) {}
 
 void Game::gridCoordinatesToWindowCoordinates(Vector * v) {}
 
-void Game::mouseDown(float x, float y) {}
+void Game::mouseDown(float x, float y) {
+    for (unsigned int i = 0; i < currentScenes.size(); i++) {
+        currentScenes[i]->clickClickables();
+    }
+}
 
 void Game::mouseUp(float x, float y) {}
 
@@ -17,10 +21,21 @@ void Game::keyUp(unsigned char key) {}
 
 void Game::keyPress(unsigned char key) {}
 
-void Game::redraw() {}
+void Game::redraw() {
+    for (unsigned int i = 0; i < currentScenes.size(); i++) {
+        currentScenes[i]->draw();
+    }
+}
 
-void Game::updateFrame() {}
+void Game::updateFrame() {
+    for (unsigned int i = 0; i < currentScenes.size(); i++) {
+        currentScenes[i]->tick();
+        currentScenes[i]->draw();
+    }
+}
 
-Game::Game() {}
+Game::Game() {
+    currentScenes.push_back(std::make_unique<DemoSceen>());
+}
 
 Game::~Game() {}

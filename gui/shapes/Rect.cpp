@@ -1,4 +1,5 @@
 #include "Rect.h"
+#include "..\components\TextBlock.h"
 
 void Rect::updateAbsoluteRepresentation() {
 	absoluteSize->setTo(size);
@@ -103,10 +104,9 @@ Rect::Builder Rect::builder() {
 	return Rect::Builder();
 }
 
-Rect* Rect::zoom(float magnitude) {
+void Rect::zoom(float magnitude) {
 	scalingFactor->multiply(magnitude);
 	updateAbsoluteRepresentation();
-	return this;
 }
 
 void Rect::scale(float x, float y) {
@@ -114,17 +114,15 @@ void Rect::scale(float x, float y) {
 	updateAbsoluteRepresentation();
 }
 
-Rect* Rect::setSize(Vector * size) {
+void Rect::setSize(Vector * size) {
 	this->size->setTo(size);
 	updateAbsoluteRepresentation();
-	return this;
 }
 
-Rect* Rect::setSize(float x, float y) {
+void Rect::setSize(float x, float y) {
 	size->setX(x);
 	size->setY(y);
 	updateAbsoluteRepresentation();
-	return this;
 }
 
 
@@ -132,27 +130,24 @@ Vector * const Rect::getSize() const {
 	return this->size;
 }
 
-Rect * Rect::setAnchorLocation(float x, float y) {
+void Rect::setAnchorLocation(float x, float y) {
 	size->setX(x);
 	size->setY(y);
 	updateAbsoluteRepresentation();
-	return this;
 }
 
-Rect* Rect::setAnchorLocation(Point * anchorLocation) {
+void Rect::setAnchorLocation(Point * anchorLocation) {
 	this->anchorLocation->setTo(anchorLocation);
 	updateAbsoluteRepresentation();
-	return this;
 }
 
 Point* const Rect::getAnchorLocation() const {
 	return this->anchorLocation;
 }
 
-Rect* Rect::setAnchor(Anchor anchor) {
+void Rect::setAnchor(Anchor anchor) {
 	this->anchor = anchor;
 	updateAbsoluteRepresentation();
-	return this;
 }
 
 Anchor Rect::getAnchor() const {
@@ -163,9 +158,8 @@ Point * const Rect::getTopLeft() const {
 	return topLeft;
 }
 
-Rect* Rect::setColor(Color * color) {
+void Rect::setColor(Color * color) {
 	this->color->setTo(color);
-	return this;
 }
 
 Color* const Rect::getColor() const {

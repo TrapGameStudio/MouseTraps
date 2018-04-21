@@ -24,30 +24,26 @@ float Vector::getX() const {
     return x;
 }
 
-Vector * Vector::setX(float x) {
+void Vector::setX(float x) {
     this->x = x;
-    return this;
 }
 
 float Vector::getY() const {
     return y;
 }
 
-Vector * Vector::setY(float y) {
+void Vector::setY(float y) {
     this->y = y;
-    return this;
 }
 
-Vector * Vector::setTo(const Vector * v) {
+void Vector::setTo(const Vector * v) {
     x = v->x;
     y = v->y;
-    return this;
 }
 
-Vector * Vector::setTo(float x, float y) {
+void Vector::setTo(float x, float y) {
     this->x = x;
     this->y = y;
-    return this;
 }
 
 Vector * Vector::of(float x, float y) {

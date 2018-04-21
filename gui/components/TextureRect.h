@@ -29,12 +29,12 @@ public:
     class Builder;
     ~TextureRect();
     static TextureRect::Builder builder();
-    TextureRect* setColor(Color* color);
-    TextureRect* setTexture(const char* textureFileName);
-    TextureRect* setTextureType(TextureType textureType);
-    TextureRect* setTextureColumn(unsigned int textureColumn);
-    TextureRect* setTextureRow(unsigned int textureRow);
-    TextureRect* setFrames(unsigned int textureColumn, unsigned int textureRow);
+    void setColor(Color* color);
+    void setTexture(const char* textureFileName);
+    void setTextureType(TextureType textureType);
+    void setTextureColumn(unsigned int textureColumn);
+    void setTextureRow(unsigned int textureRow);
+    void setFrames(unsigned int textureColumn, unsigned int textureRow);
     void updateTextureInfo();
     void draw();
     void advance();
@@ -54,7 +54,8 @@ public:
     TextureRect::Builder& ofTextureType(TextureType textureType);
     TextureRect::Builder& ofTextureColumn(unsigned int textureColumn);
     TextureRect::Builder& ofTextureRow(unsigned int textureRow);
-    TextureRect::Builder& ofFrames(unsigned int textureColumn, unsigned int textureRow);
+    TextureRect::Builder& ofColumnRow(unsigned int textureColumn, unsigned int textureRow);
+    TextureRect::Builder& atFrame(unsigned int frame);
     TextureRect * build();
     ~Builder();
 };

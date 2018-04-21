@@ -29,18 +29,18 @@ public:
 		Anchor anchor,
 		Point* anchorLocation,
 		Color* color);
-	Rect* zoom(float magnitude);
+	void zoom(float magnitude);
 	void scale(float x, float y);
-	Rect* setSize(Vector* size);
-	Rect* setSize(float x, float y);
+	void setSize(Vector* size);
+	void setSize(float x, float y);
 	Vector* const getSize() const;
-	Rect* setAnchorLocation(float x, float y);
-	Rect* setAnchorLocation(Point* anchorLocation);
+	void setAnchorLocation(float x, float y);
+	void setAnchorLocation(Point* anchorLocation);
 	Point* const getAnchorLocation() const;
-	Rect* setAnchor(Anchor anchor);
+	void setAnchor(Anchor anchor);
 	Anchor getAnchor() const;
 	Point* const getTopLeft() const;
-	Rect* setColor(Color* color);
+	void setColor(Color* color);
 	Color* const getColor() const;
 	void draw();
 	void move(float dx, float dy);

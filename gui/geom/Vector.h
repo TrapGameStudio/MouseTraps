@@ -13,11 +13,11 @@ public:
     float getMagnitude() const;
     float getMagnitudeSquare() const;
     float getX() const;
-    Vector* setX(float x);
+    void setX(float x);
     float getY() const;
-    Vector* setY(float y);
-    Vector* setTo(const Vector* v);
-    Vector* setTo(float x, float y);
+    void setY(float y);
+    void setTo(const Vector* v);
+    void setTo(float x, float y);
     static Vector* of(float x, float y);
     Vector * ofZeroToPoint(Point * p);
     static Vector* add(const Vector* v1, const Vector* v2);

@@ -12,7 +12,7 @@ class App: public GlutApp {
     // Maintain app state here
     float mx;
     float my;
-    Game* game = new Game();
+
 
 public:
     // Constructor, to initialize state
@@ -27,13 +27,14 @@ public:
     void mouseDrag(float x, float y);
     //void idle();
 
-
+    Game* game = new Game();
 
     //void resize(int w, int h);
 
-    Rect * rect;
-    TextureRect * expl;
-    Button<TextureRect>* mushroomThatExplodesWhenYouClickOnIt;
+    //Rect * rect;
+    //TextureRect * background;
+    //TextureRect * text;
+    //Button<TextureRect>* catbox;
     //TexRect* background;
 };
 

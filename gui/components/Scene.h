@@ -1,5 +1,7 @@
 #pragma once
 #include "gui/lang/Drawable.h"
+#include "gui/lang/Clickable.h"
+#include "gui/components/TextureRect.h"
 #include <deque>
 #include <functional>
 #include <memory>
@@ -7,10 +9,29 @@ class Scene {
 protected:
     class Timer;
 private:
-    std::deque<std::unique_ptr<Scene::Timer>> timers;
+    // TODO: use map to check duplicates
+    std::deque<Drawable*> allShapes;
+    std::deque<Clickable*> allClickables;
+    // TODO: make specialized list for animated objects.
+    std::deque<TextureRect*> allAnimatedShapes;
+    std::deque<Scene::Timer* > timers;
 public:
     Scene();
-    virtual void draw() = 0;
+    virtual void keyPress(unsigned char key) = 0;
+    virtual void keyUp(unsigned char key) = 0;
+    virtual void mouseDown(float x, float y) = 0;
+    virtual void mouseUp(float x, float y) = 0;
+    virtual void draw();
+    void pushShapeToFront(Drawable* shape);
+    void pushShapeToBack(Drawable* shape);
+    // TODO: auto push to all shapes
+    void pushClickableToFront(Clickable* clickable);
+    void pushClickableToBack(Clickable* clickable);
+    void pushAnimatedShapesToFront(TextureRect* shape);
+    void pushAnimatedShapesToBack(TextureRect* shape);
+    // TODO: change to mouse down mouse up latter.
+    void clickClickables();
+    void tick();
     void addTimers(unsigned int duration, std::function<void(void)> execution, bool repeating = false);
     virtual ~Scene() {};
 };

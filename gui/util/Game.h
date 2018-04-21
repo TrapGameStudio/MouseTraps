@@ -3,11 +3,13 @@
 #include "gui/geom/Point.h"
 #include "gui/components/Scene.h"
 #include "gui/util/ScenePrototype.h"
+#include "test/DemoSceen.h"
 #include <memory>
 #include <deque>
 #include <map>
 class Game {
 private:
+    // TODO: use map
     std::deque<std::unique_ptr<Scene>> currentScenes;
     std::map<unsigned int, std::unique_ptr<ScenePrototype>> gameLevels;
 public:

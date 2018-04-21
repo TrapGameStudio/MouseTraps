@@ -15,7 +15,9 @@ void ComplexShape::move(float dx, float dy) {}
 void ComplexShape::scale(float x, float y) {}
 
 
-ComplexShape::~ComplexShape() {}
+ComplexShape::~ComplexShape() {
+    delete referencePoint;
+}
 
 ComplexShape::Builder ComplexShape::builder() {
     return ComplexShape::Builder();

@@ -43,37 +43,31 @@ TextureRect::Builder TextureRect::builder() {
     return TextureRect::Builder();
 }
 
-TextureRect * TextureRect::setColor(Color * color) {
+void TextureRect::setColor(Color * color) {
     Rect::setColor(color);
-    return this;
 }
 
-TextureRect * TextureRect::setTexture(const char* textureFileName) {
+void TextureRect::setTexture(const char* textureFileName) {
     this->textureFileName = textureFileName;
     textureID = 0;	// Force the program to get a new textureID
     updateTextureInfo();
-    return this;
 }
 
-TextureRect * TextureRect::setTextureType(TextureType textureType) {
+void TextureRect::setTextureType(TextureType textureType) {
     this->textureType = textureType;
-    return this;
 }
 
-TextureRect * TextureRect::setTextureColumn(unsigned int textureColumn) {
+void TextureRect::setTextureColumn(unsigned int textureColumn) {
     this->textureColumn = textureColumn;
-    return this;
 }
 
-TextureRect * TextureRect::setTextureRow(unsigned int textureRow) {
+void TextureRect::setTextureRow(unsigned int textureRow) {
     this->textureRow = textureRow;
-    return this;
 }
 
-TextureRect * TextureRect::setFrames(unsigned int textureColumn, unsigned int textureRow) {
+void TextureRect::setFrames(unsigned int textureColumn, unsigned int textureRow) {
     this->textureColumn = textureColumn;
     this->textureRow = textureRow;
-    return this;
 }
 
 void TextureRect::draw() {
@@ -117,6 +111,8 @@ void TextureRect::draw() {
     glEnd();
     glDisable(GL_BLEND);
     glDepthMask(GL_TRUE);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glDisable(GL_TEXTURE_2D);
     glPopMatrix();
 }
@@ -204,8 +200,14 @@ TextureRect::Builder & TextureRect::Builder::ofTextureRow(unsigned int textureRo
     return *this;
 }
 
-TextureRect::Builder & TextureRect::Builder::ofFrames(unsigned int textureColumn, unsigned int textureRow) {
+TextureRect::Builder & TextureRect::Builder::ofColumnRow(unsigned int textureColumn, unsigned int textureRow) {
     building->setFrames(textureColumn, textureRow);
+    return *this;
+}
+
+TextureRect::Builder & TextureRect::Builder::atFrame(unsigned int frame) {
+    building->currentTextureColumn = frame % building->textureColumn;
+    building->currentTextureRow = frame / building->textureColumn;
     return *this;
 }
 
