@@ -1,8 +1,8 @@
 #pragma once
 #include <cmath>
 #include <memory>
-#include "gui/geom/Point.h"
-#include "lang/Comparable.h"
+#include "Point.h"
+#include "../../lang/Comparable.h"
 class Vector :
     public Comparable<Vector> {
 private:

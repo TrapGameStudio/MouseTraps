@@ -1,7 +1,7 @@
 #pragma once
-#include "gui/lang/Drawable.h"
-#include "gui/geom/Point.h"
-#include "lang/Comparable.h"
+#include "../lang/Drawable.h"
+#include "../geom/Point.h"
+#include "../lang/Comparable.h"
 /// <summary>
 /// A 2D Line.
 /// </summary>

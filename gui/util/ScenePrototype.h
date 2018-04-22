@@ -1,5 +1,5 @@
 #pragma once
-#include "gui/components/Scene.h"
+#include "../components/Scene.h"
 #include <memory>
 class ScenePrototype {
 public:

@@ -1,6 +1,6 @@
 #pragma once
-#include "gui/components/Scene.h"
-#include "gui/components/Button.h"
+#include "../gui/components/Scene.h"
+#include "../gui/components/Button.h"
 class DemoSceen :
     public Scene {
 private:

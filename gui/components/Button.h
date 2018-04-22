@@ -1,7 +1,7 @@
 #pragma once
-#include "gui/lang/Clickable.h"
-#include "gui/lang/Drawable.h"
-#include "gui/components/TextureRect.h"
+#include "../lang/Clickable.h"
+#include "../lang/Drawable.h"
+#include "TextureRect.h"
 #include <functional>
 template <typename T>
 class Button :
@@ -36,12 +36,12 @@ public:
     bool contains(float x, float y) const;
     ~Button();
 
-    static typename Button<T>::Builder Button<T>::builder();
+    static typename Button<T>::Builder builder();
 };
 
 template <typename T>
 class Button<T>::Builder {
-    typename Button<T>* building = new Button<T>();
+    Button<T>* building = new Button<T>();
 public:
     typename Button<T>::Builder& ofShape(T * buttonShape);
     typename Button<T>::Builder& onEnter(std::function<void(void)> onEnterFunction);

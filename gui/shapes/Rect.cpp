@@ -1,5 +1,4 @@
 #include "Rect.h"
-#include "..\components\TextBlock.h"
 
 void Rect::updateAbsoluteRepresentation() {
 	absoluteSize->setTo(size);

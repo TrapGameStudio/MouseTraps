@@ -1,5 +1,5 @@
 #pragma once
-#include "gui/components/Scene.h"
+#include "Scene.h"
 class GameLevel {
 public:
     GameLevel();

@@ -7,7 +7,7 @@
 #include <GL/freeglut.h>
 #endif
 
-#include "lib/lodepng.h"
+#include "../../lib/lodepng.h"
 #include <unordered_map>
 #include <iostream>
 #include <string>

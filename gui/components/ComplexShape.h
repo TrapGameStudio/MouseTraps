@@ -1,7 +1,7 @@
 #pragma once
-#include "gui/lang/Drawable.h"
-#include "gui/geom/Point.h"
-#include "gui/util/Anchor.h"
+#include "../lang/Drawable.h"
+#include "../geom/Point.h"
+#include "../util/Anchor.h"
 #include <deque>
 #include <initializer_list>
 class ComplexShape :

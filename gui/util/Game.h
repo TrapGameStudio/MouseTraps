@@ -1,9 +1,9 @@
 #pragma once
-#include "gui/geom/Vector.h"
-#include "gui/geom/Point.h"
-#include "gui/components/Scene.h"
-#include "gui/util/ScenePrototype.h"
-#include "test/DemoSceen.h"
+#include "../geom/Vector.h"
+#include "../geom/Point.h"
+#include "../components/Scene.h"
+#include "../util/ScenePrototype.h"
+#include "../test/DemoSceen.h"
 #include <memory>
 #include <deque>
 #include <map>

@@ -1,11 +1,10 @@
 #pragma once
-#include "gui/lang/Drawable.h"
-#include "gui/lang/Movable.h"
-#include "gui/geom/Point.h"
-#include "lang/Comparable.h"
-#include "gui/util/Anchor.h"
-#include "gui/util/Color.h"
-#include "gui/geom/Vector.h"
+#include "../lang/Drawable.h"
+#include "../lang/Movable.h"
+#include "../geom/Point.h"
+#include "../util/Anchor.h"
+#include "../util/Color.h"
+#include "../geom/Vector.h"
 #include <memory>
 #include <stdio.h>
 class Rect :

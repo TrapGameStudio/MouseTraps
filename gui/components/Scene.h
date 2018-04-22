@@ -1,7 +1,7 @@
 #pragma once
-#include "gui/lang/Drawable.h"
-#include "gui/lang/Clickable.h"
-#include "gui/components/TextureRect.h"
+#include "../lang/Drawable.h"
+#include "../lang/Clickable.h"
+#include "../components/TextureRect.h"
 #include <deque>
 #include <functional>
 #include <memory>

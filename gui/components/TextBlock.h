@@ -1,6 +1,6 @@
 #pragma once
-#include "gui/components/TextureRect.h"
-#include "gui/lang/Drawable.h"
+#include "TextureRect.h"
+#include "../lang/Drawable.h"
 #include <deque>
 #include <string>
 class TextBlock :

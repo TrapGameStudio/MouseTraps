@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
-#include "gui/shapes/Rect.h"
-#include "gui/util/TextureManager.h"
-#include "gui/lang/TextureType.h"
+#include "../shapes/Rect.h"
+#include "../util/TextureManager.h"
+#include "../lang/TextureType.h"
 class TextureRect :
     public Rect {
 private:
