@@ -57,8 +57,8 @@ void Scene::tick() {
     }
 }
 
-void Scene::addTimers(unsigned int duration, std::function<void(void)> execution, bool repeating) {
-    timers.push_back(new Scene::Timer(duration, execution, repeating));
+void Scene::addTimers(unsigned int duration, std::function<void(void)> executable, bool repeating) {
+    timers.push_back(new Scene::Timer(duration, executable, repeating));
 }
 
 
@@ -66,7 +66,7 @@ void Scene::Timer::reset() {
     remainingTicks = duration;
 }
 
-Scene::Timer::Timer(unsigned int duration, std::function<void(void)> execution, bool repeating) {
+Scene::Timer::Timer(unsigned int duration, std::function<void(void)> executable, bool repeating) {
     if (duration) {
         this->remainingTicks = duration;
         this->execution = execution;

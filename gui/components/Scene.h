@@ -32,7 +32,7 @@ public:
     // TODO: change to mouse down mouse up latter.
     void clickClickables(float x, float y);
     void tick();
-    void addTimers(unsigned int duration, std::function<void(void)> execution, bool repeating = false);
+    void addTimers(unsigned int duration, std::function<void(void)> executable, bool repeating = false);
     virtual ~Scene() {};
 };
 
@@ -45,7 +45,7 @@ private:
     std::function<void(void)> execution;
     void reset();
 public:
-    Timer(unsigned int duration, std::function<void(void)> execution, bool repeating = false);
+    Timer(unsigned int duration, std::function<void(void)> executable, bool repeating = false);
     void tick();
     bool isExpired();
 };
