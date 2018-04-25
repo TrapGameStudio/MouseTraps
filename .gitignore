@@ -36,3 +36,10 @@ visualc15
 
 # OS Meta
 .DS_Store
+
+# xCode Stuff
+*.pbxproj
+*.xcworkspacedata
+*.plist
+*.xcuserstate
+*.xcscheme
