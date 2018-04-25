@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\App.cpp" />
+    <ClCompile Include="..\app_main.cpp" />
+    <ClCompile Include="..\GlutApp.cpp" />
+    <ClCompile Include="..\gui\geom\Point.cpp" />
+    <ClCompile Include="..\gui\shapes\Line.cpp" />
+    <ClCompile Include="..\gui\util\Color.cpp" />
+    <ClCompile Include="..\gui\geom\Vector.cpp" />
+    <ClCompile Include="..\gui\shapes\Rect.cpp" />
+    <ClCompile Include="..\gui\components\Button.cpp" />
+    <ClCompile Include="..\gui\components\ComplexShape.cpp" />
+    <ClCompile Include="..\gui\components\Scene.cpp" />
+    <ClCompile Include="..\gui\components\TextureRect.cpp" />
+    <ClCompile Include="..\gui\util\TextureManager.cpp" />
+    <ClCompile Include="..\gui\util\Game.cpp" />
+    <ClCompile Include="..\util\Generator.cpp" />
+    <ClCompile Include="..\gui\components\GameLevel.cpp" />
+    <ClCompile Include="..\lib\lodepng.cpp" />
+    <ClCompile Include="..\gui\components\TextBlock.cpp" />
+    <ClCompile Include="..\test\DemoSceen.cpp" />
+    <ClCompile Include="..\gui\components\Tile.cpp" />
+    <ClCompile Include="..\game\levels\DemoLevel.cpp" />
+    <ClCompile Include="..\gui\util\TilesetManager.cpp" />
+    <ClCompile Include="..\gui\components\Tileset.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\App.h" />
+    <ClInclude Include="..\GlutApp.h" />
+    <ClInclude Include="..\gui\geom\Point.h" />
+    <ClInclude Include="..\gui\lang\Drawable.h" />
+    <ClInclude Include="..\gui\shapes\Line.h" />
+    <ClInclude Include="..\lang\Comparable.h" />
+    <ClInclude Include="..\gui\util\Anchor.h" />
+    <ClInclude Include="..\gui\util\Color.h" />
+    <ClInclude Include="..\gui\geom\Vector.h" />
+    <ClInclude Include="..\gui\shapes\Rect.h" />
+    <ClInclude Include="..\gui\lang\Clickable.h" />
+    <ClInclude Include="..\gui\components\Button.h" />
+    <ClInclude Include="..\gui\components\ComplexShape.h" />
+    <ClInclude Include="..\gui\lang\Movable.h" />
+    <ClInclude Include="..\gui\components\Scene.h" />
+    <ClInclude Include="..\gui\lang\TextureType.h" />
+    <ClInclude Include="..\gui\components\TextureRect.h" />
+    <ClInclude Include="..\gui\util\TextureManager.h" />
+    <ClInclude Include="..\gui\util\ScenePrototype.h" />
+    <ClInclude Include="..\gui\util\Game.h" />
+    <ClInclude Include="..\util\Generator.h" />
+    <ClInclude Include="..\gui\components\GameLevel.h" />
+    <ClInclude Include="..\lib\lodepng.h" />
+    <ClInclude Include="..\gui\components\TextBlock.h" />
+    <ClInclude Include="..\test\DemoSceen.h" />
+    <ClInclude Include="..\gui\components\Tile.h" />
+    <ClInclude Include="..\game\levels\DemoLevel.h" />
+    <ClInclude Include="..\gui\util\TilesetManager.h" />
+    <ClInclude Include="..\gui\components\Tileset.h" />
+    <ClInclude Include="..\gui\lang\TilesetType.h" />
+  </ItemGroup>
+</Project>

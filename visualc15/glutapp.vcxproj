@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BE3DDA17-F918-42E2-B822-4C8A6EF632C9}</ProjectGuid>
+    <RootNamespace>glutapp</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <ProjectName>MouseTraps</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">obj\$(ProjectName)_$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">obj\$(ProjectName)_$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">obj\$(ProjectName)_$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">obj\$(ProjectName)_$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <TypeLibraryName>.\Debug/SimpleDraw.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../;../freeglut;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>../freeglut/freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <TypeLibraryName>.\Release/SimpleDraw.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>../;../freeglut;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>../freeglut/freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\App.cpp" />
+    <ClCompile Include="..\app_main.cpp" />
+    <ClCompile Include="..\game\levels\DemoLevel.cpp" />
+    <ClCompile Include="..\GlutApp.cpp" />
+    <ClCompile Include="..\gui\components\Button.cpp" />
+    <ClCompile Include="..\gui\components\ComplexShape.cpp" />
+    <ClCompile Include="..\gui\components\GameLevel.cpp" />
+    <ClCompile Include="..\gui\components\Scene.cpp" />
+    <ClCompile Include="..\gui\components\TextBlock.cpp" />
+    <ClCompile Include="..\gui\components\TextureRect.cpp" />
+    <ClCompile Include="..\gui\components\Tile.cpp" />
+    <ClCompile Include="..\gui\components\Tileset.cpp" />
+    <ClCompile Include="..\gui\geom\Point.cpp" />
+    <ClCompile Include="..\gui\geom\Vector.cpp" />
+    <ClCompile Include="..\gui\shapes\Line.cpp" />
+    <ClCompile Include="..\gui\shapes\Rect.cpp" />
+    <ClCompile Include="..\gui\util\Color.cpp" />
+    <ClCompile Include="..\gui\util\Game.cpp" />
+    <ClCompile Include="..\gui\util\TextureManager.cpp" />
+    <ClCompile Include="..\gui\util\TilesetManager.cpp" />
+    <ClCompile Include="..\lib\lodepng.cpp" />
+    <ClCompile Include="..\test\DemoSceen.cpp" />
+    <ClCompile Include="..\util\Generator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\App.h" />
+    <ClInclude Include="..\game\levels\DemoLevel.h" />
+    <ClInclude Include="..\GlutApp.h" />
+    <ClInclude Include="..\gui\components\Button.h" />
+    <ClInclude Include="..\gui\components\ComplexShape.h" />
+    <ClInclude Include="..\gui\components\GameLevel.h" />
+    <ClInclude Include="..\gui\components\Scene.h" />
+    <ClInclude Include="..\gui\components\TextBlock.h" />
+    <ClInclude Include="..\gui\components\TextureRect.h" />
+    <ClInclude Include="..\gui\components\Tile.h" />
+    <ClInclude Include="..\gui\components\Tileset.h" />
+    <ClInclude Include="..\gui\geom\Point.h" />
+    <ClInclude Include="..\gui\geom\Vector.h" />
+    <ClInclude Include="..\gui\lang\Clickable.h" />
+    <ClInclude Include="..\gui\lang\Drawable.h" />
+    <ClInclude Include="..\gui\lang\Movable.h" />
+    <ClInclude Include="..\gui\lang\TextureType.h" />
+    <ClInclude Include="..\gui\lang\TilesetType.h" />
+    <ClInclude Include="..\gui\shapes\Line.h" />
+    <ClInclude Include="..\gui\shapes\Rect.h" />
+    <ClInclude Include="..\gui\util\Anchor.h" />
+    <ClInclude Include="..\gui\util\Color.h" />
+    <ClInclude Include="..\gui\util\Game.h" />
+    <ClInclude Include="..\gui\util\ScenePrototype.h" />
+    <ClInclude Include="..\gui\util\TextureManager.h" />
+    <ClInclude Include="..\gui\util\TilesetManager.h" />
+    <ClInclude Include="..\lang\Comparable.h" />
+    <ClInclude Include="..\lib\lodepng.h" />
+    <ClInclude Include="..\test\DemoSceen.h" />
+    <ClInclude Include="..\util\Generator.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
