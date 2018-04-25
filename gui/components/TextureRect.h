@@ -35,6 +35,7 @@ public:
     void setTextureColumn(unsigned int textureColumn);
     void setTextureRow(unsigned int textureRow);
     void setColumnRow(unsigned int textureColumn, unsigned int textureRow);
+    void setCurrentColumnRow(unsigned int textureColumn, unsigned int textureRow);
     void updateTextureInfo();
     void draw();
     void advance();
@@ -55,6 +56,7 @@ public:
     TextureRect::Builder& ofTextureColumn(unsigned int textureColumn);
     TextureRect::Builder& ofTextureRow(unsigned int textureRow);
     TextureRect::Builder& ofColumnRow(unsigned int textureColumn, unsigned int textureRow);
+    TextureRect::Builder& ofCurrentColumnRow(unsigned int textureColumn, unsigned int textureRow);
     TextureRect::Builder& atFrame(unsigned int frame);
     TextureRect * build();
     ~Builder();

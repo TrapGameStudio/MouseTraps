@@ -18,6 +18,10 @@ void Scene::pushShapeToBack(Drawable * shape) {
     allShapes.push_back(shape);
 }
 
+void Scene::emptyShapes() {
+    allShapes.clear();
+}
+
 void Scene::pushClickableToFront(Clickable * clickable) {
     allClickables.push_front(clickable);
 }

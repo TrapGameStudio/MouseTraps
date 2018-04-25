@@ -4,6 +4,7 @@
 #include "../components/Scene.h"
 #include "../util/ScenePrototype.h"
 #include "../test/DemoSceen.h"
+#include "../game/levels/DemoLevel.h"
 #include <memory>
 #include <deque>
 #include <map>

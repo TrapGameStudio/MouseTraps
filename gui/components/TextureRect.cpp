@@ -70,6 +70,11 @@ void TextureRect::setColumnRow(unsigned int textureColumn, unsigned int textureR
     this->textureRow = textureRow;
 }
 
+void TextureRect::setCurrentColumnRow(unsigned int textureColumn, unsigned int textureRow) {
+    currentTextureColumn = textureColumn % this->textureColumn;
+    currentTextureRow = textureRow % this->textureRow;
+}
+
 void TextureRect::draw() {
     glPushMatrix();
     if (!textureID) {
@@ -202,6 +207,11 @@ TextureRect::Builder & TextureRect::Builder::ofTextureRow(unsigned int textureRo
 
 TextureRect::Builder & TextureRect::Builder::ofColumnRow(unsigned int textureColumn, unsigned int textureRow) {
     building->setColumnRow(textureColumn, textureRow);
+    return *this;
+}
+
+TextureRect::Builder & TextureRect::Builder::ofCurrentColumnRow(unsigned int textureColumn, unsigned int textureRow) {
+    building->setCurrentColumnRow(textureColumn, textureRow);
     return *this;
 }
 

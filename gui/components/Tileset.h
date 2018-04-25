@@ -13,6 +13,8 @@ public:
     Tileset() {};
     Tileset(std::string tilesetFileName, unsigned int column, unsigned int row, TilesetType tilesetType);
     Tile* getTile(unsigned int x, unsigned int y);
+    unsigned int getColumn() const;
+    unsigned int getRow() const;
     ~Tileset();
 };
 

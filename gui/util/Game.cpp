@@ -35,7 +35,7 @@ void Game::updateFrame() {
 }
 
 Game::Game() {
-    currentScenes.push_back(std::make_unique<DemoSceen>());
+    currentScenes.push_back(std::make_unique<DemoLevel>());
 }
 
 Game::~Game() {}

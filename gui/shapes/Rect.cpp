@@ -130,8 +130,8 @@ Vector * const Rect::getSize() const {
 }
 
 void Rect::setAnchorLocation(float x, float y) {
-	size->setX(x);
-	size->setY(y);
+	anchorLocation->setX(x);
+    anchorLocation->setY(y);
 	updateAbsoluteRepresentation();
 }
 

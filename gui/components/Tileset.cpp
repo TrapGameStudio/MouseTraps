@@ -10,5 +10,13 @@ Tile * Tileset::getTile(unsigned int x, unsigned int y) {
     return new Tile(tilesetFileName, x, y);
 }
 
+unsigned int Tileset::getColumn() const {
+    return column;
+}
+
+unsigned int Tileset::getRow() const {
+    return row;
+}
+
 
 Tileset::~Tileset() {}

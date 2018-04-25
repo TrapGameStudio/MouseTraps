@@ -15,3 +15,24 @@ Tile * TilesetManager::getTile(std::string fileName, unsigned int x, unsigned in
     return allTilesets[fileName].getTile(x, y);
     // TODO: return empty tile for not found
 }
+
+unsigned int TilesetManager::getTilesetColumn(std::string name) {
+    return allTilesets[name].getColumn();
+}
+
+unsigned int TilesetManager::getTilesetRow(std::string name) {
+    return allTilesets[name].getRow();
+}
+
+TextureRect * TilesetManager::getTextureRect(Tile & tile) {
+    TextureRect* newTextureRect = TextureRect::builder()
+        .ofTexture(("Graphics/Tilesets/" + tile.getTilesetName()).c_str())
+        .ofColumnRow(getTilesetColumn(tile.getTilesetName()), getTilesetRow(tile.getTilesetName()))
+        .ofCurrentColumnRow(tile.getTileX(), tile.getTileY())
+        .ofSize(2.0f / 30, 2.0f / 30)  // TODO: make configurable
+        .ofTextureType(TextureType::TileSet)
+        .ofShade(Color::white())
+        .build();
+    return newTextureRect;
+}
+
