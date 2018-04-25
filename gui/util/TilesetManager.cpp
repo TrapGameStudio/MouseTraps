@@ -29,7 +29,7 @@ TextureRect * TilesetManager::getTextureRect(Tile & tile) {
         .ofTexture(("Graphics/Tilesets/" + tile.getTilesetName()).c_str())
         .ofColumnRow(getTilesetColumn(tile.getTilesetName()), getTilesetRow(tile.getTilesetName()))
         .ofCurrentColumnRow(tile.getTileX(), tile.getTileY())
-        .ofSize(2.0f / 30, 2.0f / 30)  // TODO: make configurable
+        .ofSize(2.0f / 25, 2.0f / 25)  // TODO: make configurable
         .ofTextureType(TextureType::TileSet)
         .ofShade(Color::white())
         .build();

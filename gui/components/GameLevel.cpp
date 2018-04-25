@@ -69,7 +69,7 @@ void GameLevel::MapLayer::draw() {
         currentX = 0;
         for (const char& c : t) {
             TextureRect* tr = TilesetManager::getTextureRect(tileMap[c]);
-            tr->setAnchorLocation(currentX * (2.0f / 30) - 1.0f, currentY * (-2.0f / 30) + 1.0f);
+            tr->setAnchorLocation(currentX * (2.0f / 25) - 1.0f, currentY * (-2.0f / 25) + 1.0f);
             gameLevel->pushShapeToBack(tr);
             currentX++;
         }

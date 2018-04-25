@@ -34,7 +34,7 @@ private:
     unsigned int column = 0;
     unsigned int row = 0;
 public:
-    GameLevel::MapLayer(GameLevel* gameLevel);
+    MapLayer(GameLevel* gameLevel);
     void mapAddRow(std::string);
     void addCharTileMapping(char, Tile);
     unsigned int getColumn();

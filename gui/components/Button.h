@@ -48,6 +48,6 @@ public:
     typename Button<T>::Builder& onLeave(std::function<void(void)> onLeaveFunction);
     typename Button<T>::Builder& onMouseDown(std::function<void(void)> onClickMouseDownFunction);
     typename Button<T>::Builder& onMouseUp(std::function<void(void)> onClickMouseUpFunction);
-    typename Button<T> * build();
+    Button<T> * build();
     ~Builder();
 };
