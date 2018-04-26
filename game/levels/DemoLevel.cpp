@@ -3,6 +3,8 @@
 
 
 DemoLevel::DemoLevel() {
+    TilesetManager::addTileset("Inside_A5.png", 8, 16, TilesetType::A5);
+
     GameLevel::MapLayer* ground = new GameLevel::MapLayer(this);
     ground->mapAddRow(".........................");
     ground->mapAddRow(".........................");

@@ -4,6 +4,8 @@
 Tileset::Tileset(std::string tilesetFileName, unsigned int column, unsigned int row, TilesetType tilesetType) {
     this->tilesetFileName = tilesetFileName;
     textureID = TextureManager::getTextureID(("Graphics/Tilesets/" + tilesetFileName).c_str());
+    this->column = column;
+    this->row = row;
 }
 
 Tile * Tileset::getTile(unsigned int x, unsigned int y) {
