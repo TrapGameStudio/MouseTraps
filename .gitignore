@@ -46,3 +46,6 @@ visualc15/Graphics
 *.plist
 *.xcuserstate
 *.xcscheme
+
+# Copyrighted Materials 
+Graphics/Tilesets
