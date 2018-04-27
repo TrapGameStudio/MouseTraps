@@ -39,6 +39,16 @@ Color* Color::of(int rgb) {
     return new Color(rgb);
 }
 
+/// <summary>
+/// Change the current R, G, B, A value of the current color.
+/// </summary>
+/// <param name="r">intensity of color red (0.0f-1.0f)</param>
+/// <param name="g">intensity of color green (0.0f-1.0f)</param>
+/// <param name="b">intensity of color blue (0.0f-1.0f)</param>
+/// <param name="a">
+/// value (0.0f-1.0f) for alpha
+/// (0.0f for opaque, 1.0f for transparent)
+/// </param>
 void Color::setColor(float r, float g, float b, float a) {
     if (
         r >= 0 && r <= 1 &&
@@ -58,14 +68,30 @@ void Color::setColor(float r, float g, float b, float a) {
     }
 }
 
+/// <summary>
+/// Change the current R, G, B value of the color. Alpha will remain unchanged.
+/// </summary>
+/// <param name="r">intensity of color red (0.0f-1.0f)</param>
+/// <param name="g">intensity of color green (0.0f-1.0f)</param>
+/// <param name="b">intensity of color blue (0.0f-1.0f)</param>
 void Color::setColor(float r, float g, float b) {
-    setColor(r, g, b, 1.0);
+    setColor(r, g, b, a);
 }
 
+/// <summary>
+/// Change the current R, G, B value of the color. Alpha will remain unchanged.
+/// </summary>
+/// <param name="r">intensity of color red (0-255)</param>
+/// <param name="g">intensity of color green (0-255)</param>
+/// <param name="b">intensity of color blue (0-255)</param>
 void Color::setColor(int r, int g, int b) {
-    setColor(((float)r) / 256, ((float)g) / 256, ((float)b) / 256, 1.0);
+    setColor(((float)r) / 256, ((float)g) / 256, ((float)b) / 256);
 }
 
+/// <summary>
+/// Change the current R, G, B value of the color. Alpha will remain unchanged.
+/// </summary>
+/// <param name="rgb">a hex color value as in the form of 0xRRGGBB</param>
 void Color::setColor(int rgb) {
     int r = (rgb & 0xff0000) >> 16;
     int g = (rgb & 0x00ff00) >> 8;
@@ -73,6 +99,13 @@ void Color::setColor(int rgb) {
     setColor(r, g, b);
 }
 
+/// <summary>
+/// Change the current R, G, B, A value to the same of the specified color.
+/// </summary>
+/// <param name="c">
+/// The color to use as a reference of what this color should change to.
+/// This is not a sink parameter.
+/// </param>
 void Color::setTo(Color * c) {
     r = c->r;
     g = c->g;
@@ -80,6 +113,10 @@ void Color::setTo(Color * c) {
     a = c->a;
 }
 
+/// <summary>
+/// Make a copy of the current color.
+/// </summary>
+/// <returns>a new instance of color with values from this color.</returns>
 Color * Color::deepCopy() {
     return new Color(r, g, b, a);
 }

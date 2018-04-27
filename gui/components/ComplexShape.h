@@ -4,6 +4,11 @@
 #include "../util/Anchor.h"
 #include <deque>
 #include <initializer_list>
+
+/// <summary>
+/// ComplexShape is container to hold multiple shapes 
+/// and allow centralized management on these shapes
+/// </summary>
 class ComplexShape :
     public Drawable {
 private:

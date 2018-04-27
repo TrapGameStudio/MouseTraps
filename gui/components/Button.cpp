@@ -1,5 +1,7 @@
 #include "Button.h"
-
+/// <summary>
+/// Button is a clickable shape which responses to hover and click events
+/// </summary>
 template <typename T>
 Button<T>::Button() {}
 

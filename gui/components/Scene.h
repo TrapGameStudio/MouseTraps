@@ -17,11 +17,41 @@ private:
     std::deque<Scene::Timer* > timers;
 public:
     Scene();
+    /// <summary>
+    /// This function will be called by <see cref="Game" /> object when a key is pressed.
+    /// Useful for handling key control objects in the scene.
+    /// </summary>
+    /// <param name="key">the ASCII value of the pressed key</param>
     virtual void keyPress(unsigned char key) = 0;
+
+    /// <summary>
+    /// This function will be called by <see cref="Game" /> object
+    /// when a pressed key is released.
+    /// Useful for handling key control objects in the scene.
+    /// </summary>
+    /// <param name="key">the ASCII value of the released key</param>
     virtual void keyUp(unsigned char key) = 0;
+
+    /// <summary>
+    /// This function will be called by <see cref="Game" /> object
+    /// when the left mouse button is clicked.
+    /// <seealso cref="clickClickables" />
+    /// </summary>
+    /// <param name="x">the x window coordinate when the mouse was clicked</param>
+    /// <param name="y">the y window coordinate when the mouse was clicked</param>
     virtual void mouseDown(float x, float y) = 0;
+
+    /// <summary>
+    /// This function will be called by <see cref="Game" /> object
+    /// when the clicked left mouse button is released.
+    /// </summary>
+    /// <param name="x">the x window coordinate when the mouse was released</param>
+    /// <param name="y">the y window coordinate when the mouse was released</param>
     virtual void mouseUp(float x, float y) = 0;
+
+
     virtual void draw();
+
     void pushShapeToFront(Drawable* shape);
     void pushShapeToBack(Drawable* shape);
     void emptyShapes();
@@ -37,6 +67,10 @@ public:
     virtual ~Scene() {};
 };
 
+/// <summary>
+/// A tick based timer (instead of time base).
+/// If the updateFrame from App.cpp got slower, this will also get slower.
+/// </summary>
 class Scene::Timer {
 private:
     bool expired = false;
