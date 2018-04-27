@@ -17,13 +17,16 @@
     <ClCompile Include="..\gui\util\Game.cpp" />
     <ClCompile Include="..\util\Generator.cpp" />
     <ClCompile Include="..\gui\components\GameLevel.cpp" />
-    <ClCompile Include="..\lib\lodepng.cpp" />
     <ClCompile Include="..\gui\components\TextBlock.cpp" />
     <ClCompile Include="..\test\DemoSceen.cpp" />
     <ClCompile Include="..\gui\components\Tile.cpp" />
     <ClCompile Include="..\game\levels\DemoLevel.cpp" />
     <ClCompile Include="..\gui\util\TilesetManager.cpp" />
     <ClCompile Include="..\gui\components\Tileset.cpp" />
+    <ClCompile Include="..\lib\WindowsSOIL\image_DXT.c" />
+    <ClCompile Include="..\lib\WindowsSOIL\image_helper.c" />
+    <ClCompile Include="..\lib\WindowsSOIL\SOIL.c" />
+    <ClCompile Include="..\lib\WindowsSOIL\stb_image_aug.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\App.h" />
@@ -48,7 +51,6 @@
     <ClInclude Include="..\gui\util\Game.h" />
     <ClInclude Include="..\util\Generator.h" />
     <ClInclude Include="..\gui\components\GameLevel.h" />
-    <ClInclude Include="..\lib\lodepng.h" />
     <ClInclude Include="..\gui\components\TextBlock.h" />
     <ClInclude Include="..\test\DemoSceen.h" />
     <ClInclude Include="..\gui\components\Tile.h" />
@@ -56,5 +58,11 @@
     <ClInclude Include="..\gui\util\TilesetManager.h" />
     <ClInclude Include="..\gui\components\Tileset.h" />
     <ClInclude Include="..\gui\lang\TilesetType.h" />
+    <ClInclude Include="..\lib\WindowsSOIL\image_DXT.h" />
+    <ClInclude Include="..\lib\WindowsSOIL\image_helper.h" />
+    <ClInclude Include="..\lib\WindowsSOIL\SOIL.h" />
+    <ClInclude Include="..\lib\WindowsSOIL\stb_image_aug.h" />
+    <ClInclude Include="..\lib\WindowsSOIL\stbi_DDS_aug.h" />
+    <ClInclude Include="..\lib\WindowsSOIL\stbi_DDS_aug_c.h" />
   </ItemGroup>
 </Project>

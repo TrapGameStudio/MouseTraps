@@ -1,13 +1,16 @@
 #pragma once
 #if defined WIN32
 #include <freeglut.h>
+#include "../../lib/WindowsSOIL/SOIL.h"
 #elif defined __APPLE__
 #include <GLUT/glut.h>
+#include <SOIL.h>
 #else
 #include <GL/freeglut.h>
+#include <SOIL.h>
 #endif
 
-#include "../../lib/lodepng.h"
+
 #include <unordered_map>
 #include <iostream>
 #include <string>

@@ -4,10 +4,10 @@
 
 void TextureRect::updateTextureInfo() {
     if (textureColumn > 0 && textureRow > 0) {
-        textureTileSize->setTo(-1.0f / textureColumn, -1.0f / textureRow);
+        textureTileSize->setTo(1.0f / textureColumn, 1.0f / textureRow);
         currentTextureCoordinate->setTo(
-            1- (currentTextureColumn * textureTileSize->getX()),
-             1 - (currentTextureRow * textureTileSize->getY()));
+            currentTextureColumn * textureTileSize->getX(),
+            1 - (currentTextureRow * textureTileSize->getY()));
     }
 }
 
@@ -98,20 +98,20 @@ void TextureRect::draw() {
         color->getA()
     );
     glBegin(GL_QUADS);
-    glTexCoord2f(currentTextureCoordinate->getX() + 0.002f,
-                 currentTextureCoordinate->getY() + 0.001f);
+    glTexCoord2f(currentTextureCoordinate->getX(),
+                 currentTextureCoordinate->getY());
     glVertex2f(topLeft->getX(), topLeft->getY());
 
-    glTexCoord2f(currentTextureCoordinate->getX() - textureTileSize->getX() - 0.002f,
-                 currentTextureCoordinate->getY() + 0.001f);
+    glTexCoord2f(currentTextureCoordinate->getX() + textureTileSize->getX(),
+                 currentTextureCoordinate->getY());
     glVertex2f(topLeft->getX() + absoluteSize->getX(), topLeft->getY());
 
-    glTexCoord2f(currentTextureCoordinate->getX() - textureTileSize->getX() - 0.002f,
-                 currentTextureCoordinate->getY() - textureTileSize->getY() - 0.001f);
+    glTexCoord2f(currentTextureCoordinate->getX() + textureTileSize->getX(),
+                 currentTextureCoordinate->getY() - textureTileSize->getY());
     glVertex2f(topLeft->getX() + absoluteSize->getX(), topLeft->getY() - absoluteSize->getY());
 
-    glTexCoord2f(currentTextureCoordinate->getX() + 0.002f,
-                 currentTextureCoordinate->getY() - textureTileSize->getY() - 0.001f);
+    glTexCoord2f(currentTextureCoordinate->getX(),
+                 currentTextureCoordinate->getY() - textureTileSize->getY());
     glVertex2f(topLeft->getX(), topLeft->getY() - absoluteSize->getY());
     glEnd();
     glDisable(GL_BLEND);

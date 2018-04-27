@@ -137,7 +137,10 @@
     <ClCompile Include="..\gui\util\Game.cpp" />
     <ClCompile Include="..\gui\util\TextureManager.cpp" />
     <ClCompile Include="..\gui\util\TilesetManager.cpp" />
-    <ClCompile Include="..\lib\lodepng.cpp" />
+    <ClCompile Include="..\lib\WindowsSOIL\image_DXT.c" />
+    <ClCompile Include="..\lib\WindowsSOIL\image_helper.c" />
+    <ClCompile Include="..\lib\WindowsSOIL\SOIL.c" />
+    <ClCompile Include="..\lib\WindowsSOIL\stb_image_aug.c" />
     <ClCompile Include="..\test\DemoSceen.cpp" />
     <ClCompile Include="..\util\Generator.cpp" />
   </ItemGroup>
@@ -169,7 +172,12 @@
     <ClInclude Include="..\gui\util\TextureManager.h" />
     <ClInclude Include="..\gui\util\TilesetManager.h" />
     <ClInclude Include="..\lang\Comparable.h" />
-    <ClInclude Include="..\lib\lodepng.h" />
+    <ClInclude Include="..\lib\WindowsSOIL\image_DXT.h" />
+    <ClInclude Include="..\lib\WindowsSOIL\image_helper.h" />
+    <ClInclude Include="..\lib\WindowsSOIL\SOIL.h" />
+    <ClInclude Include="..\lib\WindowsSOIL\stbi_DDS_aug.h" />
+    <ClInclude Include="..\lib\WindowsSOIL\stbi_DDS_aug_c.h" />
+    <ClInclude Include="..\lib\WindowsSOIL\stb_image_aug.h" />
     <ClInclude Include="..\test\DemoSceen.h" />
     <ClInclude Include="..\util\Generator.h" />
   </ItemGroup>

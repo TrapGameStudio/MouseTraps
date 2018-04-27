@@ -15,6 +15,7 @@ DemoLevel::DemoLevel() {
     ground->mapAddRow("1111121111111111111111111");
     ground->mapAddRow("1111111111111111111111111");
     ground->mapAddRow("1111111111111111111111111");
+    ground->mapAddRow("1111111111111111111111111");
     ground->mapAddRow("............1............");
     ground->mapAddRow(".........................");
     ground->mapAddRow(".........................");
@@ -33,6 +34,7 @@ DemoLevel::DemoLevel() {
     wall->mapAddRow("#                       #");
     wall->mapAddRow("#             ###########");
     wall->mapAddRow("#             #---------#");
+    wall->mapAddRow("#             #         #");
     wall->mapAddRow("############ ############");
     wall->mapAddRow("------------ ------------");
     wall->mapAddRow("+++++++++++++++++++++++++");

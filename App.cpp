@@ -25,7 +25,7 @@ void App::draw() {
 
     // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+    glDepthMask(GL_FALSE);
     // Set background color to black
     glClearColor(0.0, 0.0, 0.0, 1.0);
 
