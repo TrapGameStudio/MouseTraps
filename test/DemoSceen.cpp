@@ -43,6 +43,15 @@ DemoSceen::DemoSceen() : Scene::Scene() {
     pushAnimatedShapesToBack(mushroom->getShape());
     pushClickableToBack(mushroom);
     pushShapeToBack(mushroom);
+
+	TextureRect* temp = TextureRect::builder().atLocation(-1.0, 1.0)
+		.ofShade(Color::blue())
+		.ofTexture("Graphics/Images/mushroom.png")
+		.ofSize(0.5, 0.5)
+		.build();
+
+	pushAnimatedShapesToBack(temp);
+	pushShapeToBack(temp);
 }
 
 
