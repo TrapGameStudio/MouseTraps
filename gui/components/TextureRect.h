@@ -3,8 +3,10 @@
 #include "../shapes/Rect.h"
 #include "../util/TextureManager.h"
 #include "../lang/TextureType.h"
+#include "../lang/Animatable.h"
 class TextureRect :
-    public Rect {
+    public Rect,
+    public Animatable {
 private:
     GLuint textureID = 0;
     std::string textureFileName;
@@ -35,6 +37,9 @@ public:
     void setTextureColumn(unsigned int textureColumn);
     void setTextureRow(unsigned int textureRow);
     void setColumnRow(unsigned int textureColumn, unsigned int textureRow);
+    void setCurrentColumn(unsigned int textureColumn);
+    unsigned int getCurrentColumn();
+    void setCurrentRow(unsigned int textureRow);
     void setCurrentColumnRow(unsigned int textureColumn, unsigned int textureRow);
     void updateTextureInfo();
     void draw();

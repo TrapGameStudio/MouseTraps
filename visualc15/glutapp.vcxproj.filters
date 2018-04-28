@@ -24,6 +24,8 @@
     <ClCompile Include="..\game\levels\DemoLevel.cpp" />
     <ClCompile Include="..\gui\util\TilesetManager.cpp" />
     <ClCompile Include="..\gui\components\Tileset.cpp" />
+    <ClCompile Include="..\game\components\Entity.cpp" />
+    <ClCompile Include="..\game\GameConfig.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\App.h" />
@@ -56,5 +58,9 @@
     <ClInclude Include="..\gui\util\TilesetManager.h" />
     <ClInclude Include="..\gui\components\Tileset.h" />
     <ClInclude Include="..\gui\lang\TilesetType.h" />
+    <ClInclude Include="..\game\components\Entity.h" />
+    <ClInclude Include="..\game\lang\Direction.h" />
+    <ClInclude Include="..\game\GameConfig.h" />
+    <ClInclude Include="..\gui\lang\Animatable.h" />
   </ItemGroup>
 </Project>

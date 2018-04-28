@@ -56,7 +56,7 @@ void Scene::pushClickableToBack(Clickable * clickable) {
 /// and (not implemented yet) add the shape to the front of the scene.
 /// </summary>
 /// <param name="shape">the animated object to add</param>
-void Scene::pushAnimatedShapesToFront(TextureRect * shape) {
+void Scene::pushAnimatedShapesToFront(Animatable * shape) {
     allAnimatedShapes.push_front(shape);
 }
 
@@ -65,7 +65,7 @@ void Scene::pushAnimatedShapesToFront(TextureRect * shape) {
 /// and (not implemented yet) add the shape to the back of the scene.
 /// </summary>
 /// <param name="shape">the animated object to add</param>
-void Scene::pushAnimatedShapesToBack(TextureRect * shape) {
+void Scene::pushAnimatedShapesToBack(Animatable * shape) {
     allAnimatedShapes.push_back(shape);
 }
 
@@ -88,7 +88,7 @@ void Scene::clickClickables(float x, float y) {
 /// the tick based timer.
 /// </summary>
 void Scene::tick() {
-    for (TextureRect* a : allAnimatedShapes) {
+    for (Animatable* a : allAnimatedShapes) {
         a->advance();
     }
     for (Scene::Timer* t : timers) {

@@ -1,6 +1,7 @@
 #pragma once
 #include "../gui/components/Scene.h"
 #include "../gui/components/Button.h"
+#include "../game/components/Entity.h"
 class DemoSceen :
     public Scene {
 private:

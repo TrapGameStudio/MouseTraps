@@ -119,6 +119,8 @@
   <ItemGroup>
     <ClCompile Include="..\App.cpp" />
     <ClCompile Include="..\app_main.cpp" />
+    <ClCompile Include="..\game\components\Entity.cpp" />
+    <ClCompile Include="..\game\GameConfig.cpp" />
     <ClCompile Include="..\game\levels\DemoLevel.cpp" />
     <ClCompile Include="..\GlutApp.cpp" />
     <ClCompile Include="..\gui\components\Button.cpp" />
@@ -143,6 +145,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\App.h" />
+    <ClInclude Include="..\game\components\Entity.h" />
+    <ClInclude Include="..\game\GameConfig.h" />
+    <ClInclude Include="..\game\lang\Direction.h" />
     <ClInclude Include="..\game\levels\DemoLevel.h" />
     <ClInclude Include="..\GlutApp.h" />
     <ClInclude Include="..\gui\components\Button.h" />
@@ -155,6 +160,7 @@
     <ClInclude Include="..\gui\components\Tileset.h" />
     <ClInclude Include="..\gui\geom\Point.h" />
     <ClInclude Include="..\gui\geom\Vector.h" />
+    <ClInclude Include="..\gui\lang\Animatable.h" />
     <ClInclude Include="..\gui\lang\Clickable.h" />
     <ClInclude Include="..\gui\lang\Drawable.h" />
     <ClInclude Include="..\gui\lang\Movable.h" />

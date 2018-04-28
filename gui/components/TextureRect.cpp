@@ -70,9 +70,21 @@ void TextureRect::setColumnRow(unsigned int textureColumn, unsigned int textureR
     this->textureRow = textureRow;
 }
 
-void TextureRect::setCurrentColumnRow(unsigned int textureColumn, unsigned int textureRow) {
+void TextureRect::setCurrentColumn(unsigned int textureColumn) {
     currentTextureColumn = textureColumn % this->textureColumn;
+}
+
+unsigned int TextureRect::getCurrentColumn() {
+    return this->currentTextureRow;
+}
+
+void TextureRect::setCurrentRow(unsigned int textureRow) {
     currentTextureRow = textureRow % this->textureRow;
+}
+
+void TextureRect::setCurrentColumnRow(unsigned int textureColumn, unsigned int textureRow) {
+    setCurrentColumn(textureColumn);
+    setCurrentRow(textureRow);
 }
 
 void TextureRect::draw() {
@@ -215,6 +227,7 @@ TextureRect::Builder & TextureRect::Builder::ofCurrentColumnRow(unsigned int tex
     return *this;
 }
 
+//TODO: consider for CharacterSet case
 TextureRect::Builder & TextureRect::Builder::atFrame(unsigned int frame) {
     building->currentTextureColumn = frame % building->textureColumn;
     building->currentTextureRow = frame / building->textureColumn;
