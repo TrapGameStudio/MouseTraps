@@ -5,6 +5,7 @@
 #include "../util/ScenePrototype.h"
 #include "../../test/DemoSceen.h"
 #include "../../game/levels/DemoLevel.h"
+#include "../../game/levels/Map01.h"
 #include <memory>
 #include <deque>
 #include <map>

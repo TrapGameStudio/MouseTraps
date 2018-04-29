@@ -122,6 +122,7 @@
     <ClCompile Include="..\game\components\Entity.cpp" />
     <ClCompile Include="..\game\GameConfig.cpp" />
     <ClCompile Include="..\game\levels\DemoLevel.cpp" />
+    <ClCompile Include="..\game\levels\Map01.cpp" />
     <ClCompile Include="..\GlutApp.cpp" />
     <ClCompile Include="..\gui\components\Button.cpp" />
     <ClCompile Include="..\gui\components\ComplexShape.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="..\game\GameConfig.h" />
     <ClInclude Include="..\game\lang\Direction.h" />
     <ClInclude Include="..\game\levels\DemoLevel.h" />
+    <ClInclude Include="..\game\levels\Map01.h" />
     <ClInclude Include="..\GlutApp.h" />
     <ClInclude Include="..\gui\components\Button.h" />
     <ClInclude Include="..\gui\components\ComplexShape.h" />

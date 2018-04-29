@@ -1,0 +1,68 @@
+#include "Map01.h"
+
+Map01::Map01() {
+	TilesetManager::addTileset("Inside_A5.png", 8, 16, TilesetType::A5);
+
+	GameLevel::MapLayer* ground = new GameLevel::MapLayer(this);
+	ground->mapAddRow("........................."); // Row 1
+	ground->mapAddRow("........................."); // Row 2
+	ground->mapAddRow("........................."); // Row 3
+	ground->mapAddRow("1111111111111111111111111"); // Row 4
+	ground->mapAddRow("1111111111111111111111111"); // Row 5
+	ground->mapAddRow("1111111111111111111111111"); // Row 6
+	ground->mapAddRow("1111121111111111111111111"); // Row 7
+	ground->mapAddRow("1111111111111111111111111"); // Row 8
+	ground->mapAddRow("1111111111111111111111111"); // Row 9
+	ground->mapAddRow("1111111111111111111111111"); // Row 10
+	ground->mapAddRow("............1............"); // Row 12
+	ground->mapAddRow("........................."); // Row 13
+	ground->mapAddRow("........................."); // Row 14
+	ground->mapAddRow("........................."); // Row 15
+	ground->mapAddRow("........................."); // Row 16
+	ground->mapAddRow("........................."); // Row 17
+	ground->mapAddRow("........................."); // Row 18
+	ground->mapAddRow("........................."); // Row 19
+	ground->mapAddRow("........................."); // Row 20
+	ground->mapAddRow("........................."); // Row 21
+	ground->mapAddRow("........................."); // Row 22
+	ground->mapAddRow("........................."); // Row 23
+	ground->mapAddRow("........................."); // Row 24
+	ground->mapAddRow("........................."); // Row 25
+	ground->addCharTileMapping('.', Tile("Inside_A5.png", 0, 0));
+	ground->addCharTileMapping('1', Tile("Inside_A5.png", 0, 2));
+	ground->addCharTileMapping('2', Tile("Inside_A5.png", 0, 11));
+	addMapLayer(-2, ground);
+
+	GameLevel::MapLayer* wall = new GameLevel::MapLayer(this);
+	wall->mapAddRow("#########################"); // Row 1
+	wall->mapAddRow("                         "); // Row 2
+	wall->mapAddRow("                         "); // Row 3
+	wall->mapAddRow("#########################"); // Row 4
+	wall->mapAddRow("#-----------------------#"); // Row 5
+	wall->mapAddRow("#                       #"); // Row 6
+	wall->mapAddRow("#             ###########"); // Row 7
+	wall->mapAddRow("#             #---------#"); // Row 8
+	wall->mapAddRow("#             #         #"); // Row 9
+	wall->mapAddRow("############ ############"); // Row 10
+	wall->mapAddRow("------------ ------------"); // Row 12
+	wall->mapAddRow("+++++++++++++++++++++++++"); // Row 13
+	wall->mapAddRow("                         "); // Row 14
+	wall->mapAddRow("                         "); // Row 15
+	wall->mapAddRow("                         "); // Row 16
+	wall->mapAddRow("                         "); // Row 17
+	wall->mapAddRow("                         "); // Row 18
+	wall->mapAddRow("                         "); // Row 19
+	wall->mapAddRow("                         "); // Row 20
+	wall->mapAddRow("                         "); // Row 21
+	wall->mapAddRow("                         "); // Row 22
+	wall->mapAddRow("                         "); // Row 23
+	wall->mapAddRow("                         "); // Row 24
+	wall->mapAddRow("#########################"); // Row 25
+	wall->addCharTileMapping(' ', Tile("Inside_A5.png", 0, 1)); // TODO: space should always be empty tile
+	wall->addCharTileMapping('#', Tile("Inside_A4.png", 0, 0)); // TODO: special interpreter
+	wall->addCharTileMapping('-', Tile("Inside_A4.png", 0, 4)); // TODO: special interpreter
+	wall->addCharTileMapping('+', Tile("Inside_A5.png", 0, 3));
+	addMapLayer(0, wall);
+}
+
+Map01::~Map01() {}

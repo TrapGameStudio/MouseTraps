@@ -52,30 +52,6 @@ DemoSceen::DemoSceen() : Scene::Scene() {
 
 	pushAnimatedShapesToBack(temp);
 	pushShapeToBack(temp);
-
-    //TextureRect* chara = TextureRect::builder()
-    //    .ofTexture("Graphics/Characters/mouseTrapsChar.png")
-    //    .ofTextureType(TextureType::Static)
-    //    .ofTextureColumn(3)
-    //    .ofTextureRow(4)
-    //    .atFrame(1)
-    //    .onAnchor(Anchor::Center)
-    //    .ofSize(0.3, 0.3)
-    //    .atLocation(0.8, 0.6)
-    //    .build();
-
-    //pushAnimatedShapesToBack(chara);
-    //pushShapeToBack(chara);
-
-    Entity* character = Entity::builder()
-        .ofTexture("Graphics/Characters/mouseTrapsChar.png")
-        .ofDirection(Direction::MoveDown)
-        .atLocation(-0.4, 0.4)
-        .build();
-
-    pushAnimatedShapesToBack(character);
-    pushShapeToBack(character);
 }
-
 
 DemoSceen::~DemoSceen() {}
