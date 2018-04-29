@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Tile.h"
 #include "../util/TilesetManager.h"
+#include "game/GameConfig.h"
 #include <vector>
 #include <string>
 #include <map>

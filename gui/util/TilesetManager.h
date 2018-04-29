@@ -4,6 +4,7 @@
 #include "../components/Tileset.h"
 #include "../components/Tile.h"
 #include "../components/TextureRect.h"
+#include "game/GameConfig.h"
 class TilesetManager {
 private:
     static std::unordered_map<std::string, Tileset> allTilesets;
