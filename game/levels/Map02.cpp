@@ -80,15 +80,15 @@ Map02::Map02()
     GameLevel::MapLayer* dec = new GameLevel::MapLayer(this);
     dec->mapAddRow("                         ");
     dec->mapAddRow("                    f    ");
-    dec->mapAddRow("        T  N LPR    F    ");
-    dec->mapAddRow(" sSjim  t  n lpr%wu      ");
+    dec->mapAddRow("       TT  N LPR    F    ");
+    dec->mapAddRow(" sSjim tt  n lpr%wu      ");
     dec->mapAddRow("                 WU      ");
     dec->mapAddRow(" yy               6v8    ");
     dec->mapAddRow(" yy               7C9    ");
     dec->mapAddRow("                   k     ");
-    dec->mapAddRow("                         ");
-    dec->mapAddRow("  A w e                  ");
-    dec->mapAddRow("  a   E                  ");
+    dec->mapAddRow(" E  Aa                   ");
+    dec->mapAddRow(" eH O B                  ");
+    dec->mapAddRow("  h o K                  ");
     dec->mapAddRow("                         ");
     dec->mapAddRow("   {{                    ");
     dec->mapAddRow("  >//<                   ");
@@ -142,12 +142,14 @@ Map02::Map02()
     dec->addCharTileMapping('j', Tile("Inside_B.png", 2, 14));
     dec->addCharTileMapping('i', Tile("Inside_B.png", 3, 14));
     dec->addCharTileMapping('m', Tile("Inside_B.png", 4, 14));
-    //fruit
-    dec->addCharTileMapping('A', Tile("Inside_B.png", 0, 8));
-    dec->addCharTileMapping('a', Tile("Inside_B.png", 0, 9));
-    dec->addCharTileMapping('w', Tile("Inside_B.png", 0, 15));
-    dec->addCharTileMapping('e', Tile("Inside_B.png", 1, 8));
-    dec->addCharTileMapping('E', Tile("Inside_B.png", 1, 9));
+    //painting
+    
+	dec->addCharTileMapping('A', Tile("Inside_B.png", 14, 4));
+	dec->addCharTileMapping('a', Tile("Inside_B.png", 15, 4));
+	//clock
+	dec->addCharTileMapping('e', Tile("Inside_B.png", 8, 5));
+	dec->addCharTileMapping('E', Tile("Inside_B.png", 8, 4));
+    
 
     //jar
     dec->addCharTileMapping('y', Tile("Inside_B.png", 8, 9));
@@ -232,7 +234,15 @@ Map02::Map02()
 
     // chair left
     dec->addCharTileMapping('<', Tile("SF_Inside_B.png", 11, 2));
+	//treees
+	dec->addCharTileMapping('H', Tile("SF_Inside_C.png", 6, 4));
+	dec->addCharTileMapping('h', Tile("SF_Inside_C.png", 6, 5));
 
+	dec->addCharTileMapping('O', Tile("SF_Inside_C.png", 7, 4));
+	dec->addCharTileMapping('o', Tile("SF_Inside_C.png", 7, 5));
+
+	dec->addCharTileMapping('B', Tile("SF_Inside_C.png", 5, 4));
+	dec->addCharTileMapping('K', Tile("SF_Inside_C.png", 5, 5));
 
     addMapLayer(1, dec);
 }
