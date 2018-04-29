@@ -6,6 +6,7 @@
 #include "../../test/DemoSceen.h"
 #include "../../game/levels/DemoLevel.h"
 #include "../../game/levels/Map02.h"
+#include "../../game/levels/Map01.h"
 #include <memory>
 #include <deque>
 #include <map>

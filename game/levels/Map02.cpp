@@ -65,7 +65,7 @@ Map02::Map02()
 	wall->mapAddRow("#  }        #############");
 	wall->mapAddRow("#########################");
 	
-	wall->addCharTileMapping('.', Tile("Inside_A5.png", 0, 0));
+	//wall->addCharTileMapping('.', Tile("Inside_A5.png", 0, 0));
 	wall->addCharTileMapping(' ', Tile("Inside_A5.png", 0, 1)); // TODO: space should always be empty tile
 	wall->addCharTileMapping('#', Tile("Inside_A4.png", 0, 0)); // TODO: special interpreter
 	wall->addCharTileMapping('-', Tile("Inside_A4.png", 0, 4)); // TODO: special interpreter
@@ -154,6 +154,9 @@ Map02::Map02()
 	//flower
 	wall->addCharTileMapping('G', Tile("Inside_C.png", 4, 10));
 	wall->addCharTileMapping('g', Tile("Inside_C.png", 5, 10));
+
+	//vertical wall
+	wall->addCharTileMapping('.', Tile("Inside_A4.png", 0, 4));
 
 	addMapLayer(0, wall);
 }

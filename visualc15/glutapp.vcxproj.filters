@@ -27,6 +27,7 @@
     <ClCompile Include="..\game\components\Entity.cpp" />
     <ClCompile Include="..\game\GameConfig.cpp" />
     <ClCompile Include="..\game\levels\Map02.cpp" />
+    <ClCompile Include="..\game\levels\Map01.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\App.h" />
@@ -64,5 +65,6 @@
     <ClInclude Include="..\game\GameConfig.h" />
     <ClInclude Include="..\gui\lang\Animatable.h" />
     <ClInclude Include="..\game\levels\Map02.h" />
+    <ClInclude Include="..\game\levels\Map01.h" />
   </ItemGroup>
 </Project>
