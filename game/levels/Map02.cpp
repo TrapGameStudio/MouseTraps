@@ -252,6 +252,7 @@ Map02::Map02()
 		.atLocation(-0.4, 0.4)
 		.build();
 
+	setPlayerCharacter(character);
 	pushAnimatedShapesToBack(character);
 	pushShapeToBack(character);
 }

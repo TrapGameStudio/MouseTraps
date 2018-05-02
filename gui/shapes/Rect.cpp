@@ -111,6 +111,7 @@ void Rect::draw() {
 /// <param name="dy">distance to move in the y direction</param>
 void Rect::move(float dx, float dy) {
 	anchorLocation->add(dx, dy);
+	updateAbsoluteRepresentation();
 }
 
 /// <summary>

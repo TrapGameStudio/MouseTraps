@@ -15,7 +15,9 @@ void GameLevel::addMapLayer(int layerID, GameLevel::MapLayer* gameMapLayer) {
     updateMapGraphics();  // TODO: inefficient
 }
 
-void GameLevel::setPlayerCharacter(Entity * entity) {}
+void GameLevel::setPlayerCharacter(Entity * entity) {
+	player = entity;  // TODO: fix memory leak
+}
 
 void GameLevel::keyPress(unsigned char key) {}
 
@@ -32,13 +34,21 @@ void GameLevel::updateMapGraphics() {
     }
 }
 
-void GameLevel::leftArrowDown() {}
+void GameLevel::leftArrowDown(){
+	player->move(Direction::MoveLeft);
+}
 
-void GameLevel::upArrowDown() {}
+void GameLevel::upArrowDown(){
+	player->move(Direction::MoveUp);
+}
 
-void GameLevel::rightArrowDown() {}
+void GameLevel::rightArrowDown(){
+	player->move(Direction::MoveRight);
+}
 
-void GameLevel::downArrownDown() {}
+void GameLevel::downArrownDown(){
+	player->move(Direction::MoveDown);
+}
 
 void GameLevel::leftArrowUp() {}
 
