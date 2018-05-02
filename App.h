@@ -25,6 +25,8 @@ public:
     void mouseDown(float x, float y);
     void mouseUp(float x, float y);
     void mouseDrag(float x, float y);
+    void specialKeyPress(int key);
+    void specialKeyUp(int key);
     //void idle();
 
     Game* game = new Game();

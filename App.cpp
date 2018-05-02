@@ -70,6 +70,36 @@ void App::mouseDrag(float x, float y){
     my = y;
 }
 
+void App::specialKeyPress(int key) {
+    if (key == 100) {
+        game->leftArrowDown();
+    }
+    if (key == 101) {
+        game->upArrowDown();
+    }
+    if (key == 102) {
+        game->rightArrowDown();
+    }
+    if (key == 103) {
+        game->downArrownDown();
+    }
+}
+
+void App::specialKeyUp(int key) {
+    if (key == 100) {
+        game->leftArrowUp();
+    }
+    if (key == 101) {
+        game->upArrowUp();
+    }
+    if (key == 102) {
+        game->rightArrowUp();
+    }
+    if (key == 103) {
+        game->downArrownUp();
+    }
+}
+
 //void App::idle(){
 //
 //}

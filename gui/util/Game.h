@@ -27,6 +27,16 @@ public:
     void keyUp(unsigned char key);
     void keyPress(unsigned char key);
 
+    void leftArrowDown();
+    void upArrowDown();
+    void rightArrowDown();
+    void downArrownDown();
+
+    void leftArrowUp();
+    void upArrowUp();
+    void rightArrowUp();
+    void downArrownUp();
+
     void redraw();
 
     void updateFrame();

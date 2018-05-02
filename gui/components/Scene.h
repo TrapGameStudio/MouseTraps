@@ -50,6 +50,16 @@ public:
     /// <param name="y">the y window coordinate when the mouse was released</param>
     virtual void mouseUp(float x, float y) = 0;
 
+    virtual void leftArrowDown() = 0;
+    virtual void upArrowDown() = 0;
+    virtual void rightArrowDown() = 0;
+    virtual void downArrownDown() = 0;
+
+    virtual void leftArrowUp() = 0;
+    virtual void upArrowUp() = 0;
+    virtual void rightArrowUp() = 0;
+    virtual void downArrownUp() = 0;
+
 
     virtual void draw();
 

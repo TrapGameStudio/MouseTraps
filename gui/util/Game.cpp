@@ -21,6 +21,54 @@ void Game::keyUp(unsigned char key) {}
 
 void Game::keyPress(unsigned char key) {}
 
+void Game::leftArrowDown() {
+    for (auto&& sc : currentScenes) {
+        sc->leftArrowDown();
+    }
+}
+
+void Game::upArrowDown() {
+    for (auto&& sc : currentScenes) {
+        sc->upArrowDown();
+    }
+}
+
+void Game::rightArrowDown() {
+    for (auto&& sc : currentScenes) {
+        sc->rightArrowDown();
+    }
+}
+
+void Game::downArrownDown() {
+    for (auto&& sc : currentScenes) {
+        sc->downArrownDown();
+    }
+}
+
+void Game::leftArrowUp() {
+    for (auto&& sc : currentScenes) {
+        sc->leftArrowUp();
+    }
+}
+
+void Game::upArrowUp() {
+    for (auto&& sc : currentScenes) {
+        sc->upArrowUp();
+    }
+}
+
+void Game::rightArrowUp() {
+    for (auto&& sc : currentScenes) {
+        sc->rightArrowUp();
+    }
+}
+
+void Game::downArrownUp() {
+    for (auto&& sc : currentScenes) {
+        sc->downArrownUp();
+    }
+}
+
 void Game::redraw() {
     for (unsigned int i = 0; i < currentScenes.size(); i++) {
         currentScenes[i]->draw();

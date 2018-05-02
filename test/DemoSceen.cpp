@@ -12,6 +12,22 @@ void DemoSceen::mouseDown(float x, float y) {
 
 void DemoSceen::mouseUp(float x, float y) {}
 
+void DemoSceen::leftArrowDown() {}
+
+void DemoSceen::upArrowDown() {}
+
+void DemoSceen::rightArrowDown() {}
+
+void DemoSceen::downArrownDown() {}
+
+void DemoSceen::leftArrowUp() {}
+
+void DemoSceen::upArrowUp() {}
+
+void DemoSceen::rightArrowUp() {}
+
+void DemoSceen::downArrownUp() {}
+
 
 DemoSceen::DemoSceen() : Scene::Scene() {
 

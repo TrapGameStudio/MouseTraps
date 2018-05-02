@@ -26,6 +26,17 @@ public:
     void mouseDown(float x, float y);
     void mouseUp(float x, float y);
     void updateMapGraphics();
+
+    void leftArrowDown();
+    void upArrowDown();
+    void rightArrowDown();
+    void downArrownDown();
+
+    void leftArrowUp();
+    void upArrowUp();
+    void rightArrowUp();
+    void downArrownUp();
+
     void draw();
     ~GameLevel();
 };

@@ -11,6 +11,16 @@ public:
     void keyUp(unsigned char key);
     void mouseDown(float x, float y);
     void mouseUp(float x, float y);
+
+    void leftArrowDown();
+    void upArrowDown();
+    void rightArrowDown();
+    void downArrownDown();
+
+    void leftArrowUp();
+    void upArrowUp();
+    void rightArrowUp();
+    void downArrownUp();
     DemoSceen();
     ~DemoSceen();
 };

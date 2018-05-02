@@ -32,6 +32,22 @@ void GameLevel::updateMapGraphics() {
     }
 }
 
+void GameLevel::leftArrowDown() {}
+
+void GameLevel::upArrowDown() {}
+
+void GameLevel::rightArrowDown() {}
+
+void GameLevel::downArrownDown() {}
+
+void GameLevel::leftArrowUp() {}
+
+void GameLevel::upArrowUp() {}
+
+void GameLevel::rightArrowUp() {}
+
+void GameLevel::downArrownUp() {}
+
 void GameLevel::draw() {
     Scene::draw();
 }
