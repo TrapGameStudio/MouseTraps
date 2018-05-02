@@ -95,11 +95,11 @@ Map02::Map02()
     dec->mapAddRow("   }}                    ");
     dec->mapAddRow("                         ");
     dec->mapAddRow("                     ??? ");
-    dec->mapAddRow(" NN          ***     ??? ");
+    dec->mapAddRow(" NN                  ??? ");
     dec->mapAddRow(" nn c%       ***     ??? ");
     dec->mapAddRow("    b        ***         ");
     dec->mapAddRow("       402   ***         ");
-    dec->mapAddRow("       513        ^^^^^^ ");
+    dec->mapAddRow("       513   ***  ^^^^^^ ");
     dec->mapAddRow(" gG               @@@@@@ ");
     dec->mapAddRow(" Gg                      ");
     dec->mapAddRow("                         ");
@@ -245,7 +245,18 @@ Map02::Map02()
 	dec->addCharTileMapping('K', Tile("SF_Inside_C.png", 5, 5));
 
     addMapLayer(1, dec);
+
+	Entity* character = Entity::builder()
+		.ofTexture("Graphics/Characters/Char3.png")
+		.ofDirection(Direction::MoveDown)
+		.atLocation(-0.4, 0.4)
+		.build();
+
+	pushAnimatedShapesToBack(character);
+	pushShapeToBack(character);
 }
+
+
 
 
 
