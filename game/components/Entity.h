@@ -34,11 +34,11 @@ private:
 
     TextureRect* shape = 
         TextureRect::builder()
-        .ofSize(1 / 25, 1 / 25)
-        .ofCurrentColumnRow(3, 4)
+        .ofSize(2.0f / 25, 2.0f / 25)
+        .ofTextureType(TextureType::CharacterSet)
+        .ofColumnRow(3, 4)
+        .atFrame(1)
         .build();
-
-    TextureType textureType = TextureType::CharacterSet;
 public:
     static Entity::Builder builder();
     void move(Direction movingDirection);

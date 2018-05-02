@@ -5,15 +5,17 @@
 GameLevel::GameLevel() {}
 
 void GameLevel::addMapLayer(int layerID, GameLevel::MapLayer* gameMapLayer) {
-    gameMap.insert(std::make_pair(layerID, gameMapLayer));
+    gameMap[layerID] = gameMapLayer;
     if (gameMapLayer->getColumn() > this->column) {
         this->column = gameMapLayer->getColumn();
     }
     if (gameMapLayer->getRow() > this->row) {
         this->row = gameMapLayer->getRow();
     }
-    updateMapGraphics();
+    updateMapGraphics();  // TODO: inefficient
 }
+
+void GameLevel::setPlayerCharacter(Entity * entity) {}
 
 void GameLevel::keyPress(unsigned char key) {}
 
@@ -50,7 +52,7 @@ void GameLevel::MapLayer::mapAddRow(std::string tileChars) {
 }
 
 void GameLevel::MapLayer::addCharTileMapping(char tileChar, Tile tile) {
-    tileMap.insert(std::make_pair(tileChar, tile));
+    tileMap[tileChar] = tile;
 }
 
 unsigned int GameLevel::MapLayer::getColumn() {
@@ -61,6 +63,10 @@ unsigned int GameLevel::MapLayer::getRow() {
     return row;
 }
 
+/// <summary>
+/// This method doesn't actually do the drawing; 
+/// it only push the shape to sceen and let sceen handle the rest.
+/// </summary>
 void GameLevel::MapLayer::draw() {
 
     unsigned int currentX = 0;

@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Tile.h"
 #include "../util/TilesetManager.h"
+#include "game/components/Entity.h"
 #include "game/GameConfig.h"
 #include <vector>
 #include <string>
@@ -13,11 +14,13 @@ public:
     class MapLayer;
 private:
     std::map<int, MapLayer*> gameMap;
+    Entity * player;
     unsigned int column;
     unsigned int row;
 public:
     GameLevel();
     void addMapLayer(int layerID, MapLayer* gameMapLayer);
+    void setPlayerCharacter(Entity* entity);
     void keyPress(unsigned char key);
     void keyUp(unsigned char key);
     void mouseDown(float x, float y);

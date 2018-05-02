@@ -86,11 +86,7 @@ void Entity::draw() {
 void Entity::advance() {
     if (movingDirection != Direction::Resting) {
         if (frameCounter == animationRefreshRate - 1) {
-            if (shape->getCurrentColumn() == 0) {
-                shape->setCurrentColumn(2);
-            } else if (shape->getCurrentColumn() == 2) {
-                shape->setCurrentColumn(0);
-            }
+            shape->advance();
             frameCounter = 0;
         }
         frameCounter++;
@@ -118,23 +114,20 @@ Entity::Builder & Entity::Builder::atLocation(float x, float y) {
 }
 
 Entity::Builder & Entity::Builder::ofDirection(Direction direction) {
-    if (direction == Direction::Resting) {
+    switch (direction) {
+    case Direction::MoveUp:
         building->shape->setCurrentRow(0);
-    } else {
-        switch (direction) {
-        case Direction::MoveUp:
-            building->shape->setCurrentRow(0);
-            break;
-        case Direction::MoveLeft:
-            building->shape->setCurrentRow(1);
-            break;
-        case Direction::MoveRight:
-            building->shape->setCurrentRow(2);
-            break;
-        case Direction::MoveDown:
-            building->shape->setCurrentRow(3);
-            break;
-        }
+        break;
+    case Direction::MoveLeft:
+        building->shape->setCurrentRow(1);
+        building->shape->updateTextureInfo();
+        break;
+    case Direction::MoveRight:
+        building->shape->setCurrentRow(2);
+        break;
+    case Direction::MoveDown:
+        building->shape->setCurrentRow(3);
+        break;
     }
     return *this;
 }
