@@ -34,7 +34,7 @@ private:
 
     TextureRect* shape = 
         TextureRect::builder()
-        .ofSize(2.0f / 25, 2.0f / 25)
+        .ofSize(2.3f / 25, 2.3f / 25)
         .ofTextureType(TextureType::CharacterSet)
         .ofColumnRow(3, 4)
         .atFrame(1)
