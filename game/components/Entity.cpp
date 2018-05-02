@@ -16,7 +16,7 @@ Entity::Builder Entity::builder() {
 void Entity::move(Direction movingDirection) {
     switch (movingDirection) {
     case Direction::MoveUp:
-        shape->setCurrentRow(0);
+        shape->setCurrentRow(3);
         shape->move(0.0f, speed);
         break;
     case Direction::MoveLeft:
@@ -28,10 +28,11 @@ void Entity::move(Direction movingDirection) {
         shape->move(speed, 0.0f);
         break;
     case Direction::MoveDown:
-        shape->setCurrentRow(3);
+        shape->setCurrentRow(0);
         shape->move(0.0f, -speed);
         break;
     }
+	shape->updateTextureInfo();
 }
 
 void Entity::setLocation(float x, float y) {

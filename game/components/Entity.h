@@ -1,9 +1,12 @@
 #pragma once
+
 #include "../lang/Direction.h"
+#include "game\GameConfig.h"
 #include "../../gui/components/TextureRect.h"
 #include "../../gui/lang/Drawable.h"
 #include "../../gui/lang/Animatable.h"
 #include <string>
+
 class Entity :
     public Drawable,
     public Animatable {
@@ -12,7 +15,7 @@ private:
     /// <summary>
     /// Window coordinate distance to move per tick
     /// </summary>
-    float speed = 0.04f;
+    float speed = 0.04f / GameConfig::gridColumn;
 
     /// <summary>
     /// Spacing between each refresh in tick
