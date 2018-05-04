@@ -66,6 +66,22 @@ void GameLevel::downArrownUp() {
     playerDirection = Direction::Resting;
 }
 
+bool GameLevel::collideLeft(Entity * e) {
+    return false;
+}
+
+bool GameLevel::collideUp(Entity * e) {
+    return false;
+}
+
+bool GameLevel::collideRight(Entity * e) {
+    return false;
+}
+
+bool GameLevel::collideDown(Entity * e) {
+    return false;
+}
+
 void GameLevel::draw() {
     switch (playerDirection) {
     case Direction::MoveDown:

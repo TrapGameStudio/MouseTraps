@@ -38,6 +38,11 @@ public:
     void rightArrowUp();
     void downArrownUp();
 
+    bool collideLeft(Entity* e);
+    bool collideUp(Entity* e);
+    bool collideRight(Entity* e);
+    bool collideDown(Entity* e);
+
     void draw();
     ~GameLevel();
 };
