@@ -35,30 +35,52 @@ void GameLevel::updateMapGraphics() {
 }
 
 void GameLevel::leftArrowDown(){
-	player->move(Direction::MoveLeft);
+    playerDirection = Direction::MoveLeft;
 }
 
 void GameLevel::upArrowDown(){
-	player->move(Direction::MoveUp);
+    playerDirection = Direction::MoveUp;
 }
 
 void GameLevel::rightArrowDown(){
-	player->move(Direction::MoveRight);
+    playerDirection = Direction::MoveRight;
 }
 
 void GameLevel::downArrownDown(){
-	player->move(Direction::MoveDown);
+	playerDirection = Direction::MoveDown;
 }
 
-void GameLevel::leftArrowUp() {}
+void GameLevel::leftArrowUp() {
+    playerDirection = Direction::Resting;
+}
 
-void GameLevel::upArrowUp() {}
+void GameLevel::upArrowUp() {
+    playerDirection = Direction::Resting;
+}
 
-void GameLevel::rightArrowUp() {}
+void GameLevel::rightArrowUp() {
+    playerDirection = Direction::Resting;
+}
 
-void GameLevel::downArrownUp() {}
+void GameLevel::downArrownUp() {
+    playerDirection = Direction::Resting;
+}
 
 void GameLevel::draw() {
+    switch (playerDirection) {
+    case Direction::MoveDown:
+        player->move(Direction::MoveDown);
+        break;
+    case Direction::MoveLeft:
+        player->move(Direction::MoveLeft);
+        break;
+    case Direction::MoveRight:
+        player->move(Direction::MoveRight);
+        break;
+    case Direction::MoveUp:
+        player->move(Direction::MoveUp);
+        break;
+    }
     Scene::draw();
 }
 
@@ -94,7 +116,6 @@ unsigned int GameLevel::MapLayer::getRow() {
 /// it only push the shape to sceen and let sceen handle the rest.
 /// </summary>
 void GameLevel::MapLayer::draw() {
-
     unsigned int currentX = 0;
     unsigned int currentY = 0;
     for (const auto& t : gameMapLayer) {

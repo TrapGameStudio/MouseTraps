@@ -15,6 +15,7 @@ public:
 private:
     std::map<int, MapLayer*> gameMap;
     Entity * player;
+    Direction playerDirection = Direction::Resting;
     unsigned int column;
     unsigned int row;
 public:
