@@ -39,23 +39,27 @@ private:
         TextureRect::builder()
         .ofSize(2.3f / 25, 2.3f / 25)
         .ofTextureType(TextureType::CharacterSet)
+        .onAnchor(Anchor::Bottom)
         .ofColumnRow(3, 4)
         .atFrame(1)
         .build();
 public:
     static Entity::Builder builder();
     void move(Direction movingDirection);
+    void turn(Direction movingDirection);
     void setLocation(float x, float y);
+    Point* const getLocation();
     TextureRect* getShape();
     void setTexture(std::string textureFileName);
     void setTextureType(TextureType textureType);
     void setAnimationRefreshRate(int animationRefreshRate);
     //void setStaticFrame(int frameNumber);
     void setSpeed(float speed);
-    float getSpeed(float speed);
+    float getSpeed();
     void changSpeed(float deltaSpeed);
     void draw();
     void advance();
+    void rest();
     Entity();
     ~Entity();
 };

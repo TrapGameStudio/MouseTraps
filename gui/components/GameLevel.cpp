@@ -35,6 +35,7 @@ void GameLevel::updateMapGraphics() {
 }
 
 void GameLevel::leftArrowDown(){
+    isPassable(player->getLocation()->getX(), player->getLocation()->getY());
     playerDirection = Direction::MoveLeft;
 }
 
@@ -66,36 +67,88 @@ void GameLevel::downArrownUp() {
     playerDirection = Direction::Resting;
 }
 
+bool GameLevel::isPassable(float x, float y) {
+    unsigned int tileX = GameConfig::gridColumn * (x + 1) / 2;
+    unsigned int tileY = -GameConfig::gridRow  * (y - 1) / 2;
+
+    for (auto& ml : gameMap) {
+        //printf("%u, %u: %c\n", tileX, tileY, ml.second->getTile(tileX, tileY));
+        if (ml.first > -1 && ml.first <= 10) {
+            if (ml.second->getTile(tileX, tileY) != ' ') {
+                return false;
+            }
+        } else if (ml.first > 10) {
+            return true;
+        }
+    }
+
+    return true;
+}
+
 bool GameLevel::collideLeft(Entity * e) {
-    return false;
+    return !isPassable(e->getLocation()->getX() - e->getSpeed() - 2.0f / GameConfig::gridColumn * 0.5f,
+                      e->getLocation()->getY())
+        || !isPassable(e->getLocation()->getX() - e->getSpeed() - 2.0f / GameConfig::gridColumn * 0.5f,
+                       e->getLocation()->getY() + 2.0f / GameConfig::gridRow * 0.5f);
 }
 
 bool GameLevel::collideUp(Entity * e) {
-    return false;
+    return !isPassable(e->getLocation()->getX() - 2.0f / GameConfig::gridColumn * 0.5f,
+                      e->getLocation()->getY() + e->getSpeed() + 2.0f / GameConfig::gridRow * 0.5f)
+        || !isPassable(e->getLocation()->getX() + 2.0f / GameConfig::gridColumn * 0.5f,
+                       e->getLocation()->getY() + e->getSpeed() + 2.0f / GameConfig::gridRow * 0.5f);
 }
 
 bool GameLevel::collideRight(Entity * e) {
-    return false;
+    return !isPassable(e->getLocation()->getX() + e->getSpeed() + 2.0f / GameConfig::gridColumn * 0.5f,
+                      e->getLocation()->getY())
+        || !isPassable(e->getLocation()->getX() + e->getSpeed() + 2.0f / GameConfig::gridColumn * 0.5f,
+                       e->getLocation()->getY() + 2.0f / GameConfig::gridRow * 0.5f);
 }
 
 bool GameLevel::collideDown(Entity * e) {
-    return false;
+    return !isPassable(e->getLocation()->getX() - 2.0f / GameConfig::gridColumn * 0.5f,
+                      e->getLocation()->getY() - e->getSpeed())
+        || !isPassable(e->getLocation()->getX() + 2.0f / GameConfig::gridColumn * 0.5f,
+                       e->getLocation()->getY() - e->getSpeed());
 }
 
 void GameLevel::draw() {
     switch (playerDirection) {
     case Direction::MoveDown:
-        player->move(Direction::MoveDown);
+        if (!collideDown(player)) {
+            player->move(Direction::MoveDown);
+        } else {
+            player->turn(Direction::MoveDown);
+            player->rest();
+        }
         break;
     case Direction::MoveLeft:
-        player->move(Direction::MoveLeft);
+        if (!collideLeft(player)) {
+            player->move(Direction::MoveLeft);
+        } else {
+            player->turn(Direction::MoveLeft);
+            player->rest();
+        }
         break;
     case Direction::MoveRight:
-        player->move(Direction::MoveRight);
+        if (!collideRight(player)) {
+            player->move(Direction::MoveRight);
+        } else {
+            player->turn(Direction::MoveRight);
+            player->rest();
+        }
         break;
     case Direction::MoveUp:
-        player->move(Direction::MoveUp);
+        if (!collideUp(player)) {
+            player->move(Direction::MoveUp);
+        } else {
+            player->turn(Direction::MoveUp);
+            player->rest();
+        }
         break;
+    case Direction::Resting:
+        player->rest();
     }
     Scene::draw();
 }
@@ -125,6 +178,10 @@ unsigned int GameLevel::MapLayer::getColumn() {
 
 unsigned int GameLevel::MapLayer::getRow() {
     return row;
+}
+
+char GameLevel::MapLayer::getTile(unsigned int x, unsigned int y) {
+    return gameMapLayer[y][x];
 }
 
 /// <summary>

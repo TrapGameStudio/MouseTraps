@@ -32,11 +32,38 @@ void Entity::move(Direction movingDirection) {
         shape->move(0.0f, -speed);
         break;
     }
+    if (frameCounter == animationRefreshRate - 1) {
+        shape->advance();
+        frameCounter = 0;
+    }
+    frameCounter++;
 	shape->updateTextureInfo();
+}
+
+void Entity::turn(Direction movingDirection) {
+    switch (movingDirection) {
+    case Direction::MoveUp:
+        shape->setCurrentRow(3);
+        break;
+    case Direction::MoveLeft:
+        shape->setCurrentRow(1);
+        break;
+    case Direction::MoveRight:
+        shape->setCurrentRow(2);
+        break;
+    case Direction::MoveDown:
+        shape->setCurrentRow(0);
+        break;
+    }
+    shape->updateTextureInfo();
 }
 
 void Entity::setLocation(float x, float y) {
     shape->setAnchorLocation(x, y);
+}
+
+Point* const Entity::getLocation() {
+    return shape->getAnchorLocation();
 }
 
 TextureRect * Entity::getShape() {
@@ -72,7 +99,7 @@ void Entity::setSpeed(float speed) {
     }
 }
 
-float Entity::getSpeed(float speed) {
+float Entity::getSpeed() {
     return this->speed;
 }
 
@@ -84,14 +111,11 @@ void Entity::draw() {
     shape->draw();
 }
 
-void Entity::advance() {
-    if (movingDirection != Direction::Resting) {
-        if (frameCounter == animationRefreshRate - 1) {
-            shape->advance();
-            frameCounter = 0;
-        }
-        frameCounter++;
-    }
+void Entity::advance() {}
+
+void Entity::rest() {
+    shape->setCurrentColumn(staticFrame);
+    shape->updateTextureInfo();
 }
 
 Entity::Builder & Entity::Builder::ofTexture(std::string textureFileName) {

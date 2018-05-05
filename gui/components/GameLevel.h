@@ -38,6 +38,8 @@ public:
     void rightArrowUp();
     void downArrownUp();
 
+    bool isPassable(float x, float y);
+
     bool collideLeft(Entity* e);
     bool collideUp(Entity* e);
     bool collideRight(Entity* e);
@@ -60,6 +62,7 @@ public:
     void addCharTileMapping(char, Tile);
     unsigned int getColumn();
     unsigned int getRow();
+    char getTile(unsigned int x, unsigned int y);
     void draw();
     ~MapLayer();
 };
