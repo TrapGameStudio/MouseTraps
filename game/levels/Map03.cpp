@@ -213,6 +213,7 @@ Map03::Map03()
 		.atLocation(-0.6, 0.6)
 		.build();
 
+	setPlayerCharacter(character);
 	pushAnimatedShapesToBack(character);
 	pushShapeToBack(character);
 }
