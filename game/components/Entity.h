@@ -6,6 +6,7 @@
 #include "../../gui/lang/Drawable.h"
 #include "../../gui/lang/Animatable.h"
 #include <string>
+#include <functional>
 
 class Entity :
     public Drawable,
@@ -35,6 +36,8 @@ private:
     /// </summary>
     int staticFrame = 1;
 
+    std::function<void(void)> triggerFunction = nullptr;
+
     TextureRect* shape = 
         TextureRect::builder()
         .ofSize(2.3f / 25, 2.3f / 25)
@@ -60,6 +63,8 @@ public:
     void draw();
     void advance();
     void rest();
+    void setTriggerFunction(std::function<void(void)> triggerFunction);
+    void trigger();
     Entity();
     ~Entity();
 };
@@ -74,5 +79,6 @@ public:
     Entity::Builder & atLocation(float x, float y);
     Entity::Builder & ofDirection(Direction direction);
     Entity::Builder & ofStaticFrame(int frameNumber);
+    Entity::Builder & onTrigger(std::function<void(void)> triggerFunction);
     Entity * build();
 };

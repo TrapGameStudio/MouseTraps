@@ -3,6 +3,7 @@
 #include "../lang/Clickable.h"
 #include "../lang/Animatable.h"
 #include "../components/TextureRect.h"
+#include "gui/util/SearchableQueue.h"
 #include <deque>
 #include <functional>
 #include <memory>
@@ -11,10 +12,10 @@ protected:
     class Timer;
 private:
     // TODO: use map to check duplicates
-    std::deque<Drawable*> allShapes;
-    std::deque<Clickable*> allClickables;
+    SearchableQueue<Drawable*> allShapes;
+    SearchableQueue<Clickable*> allClickables;
     // TODO: make specialized list for animated objects.
-    std::deque<Animatable*> allAnimatedShapes;
+    SearchableQueue<Animatable*> allAnimatedShapes;
     std::deque<Scene::Timer*> timers;
 public:
     Scene();
@@ -65,6 +66,7 @@ public:
 
     void pushShapeToFront(Drawable* shape);
     void pushShapeToBack(Drawable* shape);
+    void removeShape(Drawable* shape);
     void emptyShapes();
     // TODO: auto push to all shapes
     void pushClickableToFront(Clickable* clickable);

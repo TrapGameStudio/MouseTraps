@@ -5,8 +5,8 @@
 Scene::Scene() {}
 
 void Scene::draw() {
-    for (Drawable* d : allShapes) {
-        d->draw();
+    for (auto& d : allShapes.getMap()) {
+        d.second->draw();
     }
 }
 
@@ -24,6 +24,10 @@ void Scene::pushShapeToFront(Drawable * shape) {
 /// <param name="shape">the shape to add</param>
 void Scene::pushShapeToBack(Drawable * shape) {
     allShapes.push_back(shape);
+}
+
+void Scene::removeShape(Drawable * shape) {
+    allShapes.remove(shape);
 }
 
 /// <summary>
@@ -76,9 +80,9 @@ void Scene::pushAnimatedShapesToBack(Animatable * shape) {
 /// <param name="x">x window coordinate of the mouse click</param>
 /// <param name="y">y window coordinate of the mouse click</param>
 void Scene::clickClickables(float x, float y) {
-    for (Clickable* c : allClickables) {
-        if (c->contains(x, y)) {
-            c->clickMouseDown();
+    for (auto& c : allClickables.getMap()) {
+        if (c.second->contains(x, y)) {
+            c.second->clickMouseDown();
         }
     }
 }
@@ -88,11 +92,11 @@ void Scene::clickClickables(float x, float y) {
 /// the tick based timer.
 /// </summary>
 void Scene::tick() {
-    for (Animatable* a : allAnimatedShapes) {
-        a->advance();
+    for (auto& a : allAnimatedShapes.getMap()) {
+        a.second->advance();
     }
     for (Scene::Timer* t : timers) {
-        if (t) { // use other data structure so I can delete the timer.
+        if (t) { // TODO: use other data structure so I can delete the timer.
             if (!t->isExpired()) {
                 t->tick();
             } else {

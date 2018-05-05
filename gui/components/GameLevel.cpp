@@ -68,8 +68,8 @@ void GameLevel::downArrownUp() {
 }
 
 bool GameLevel::isPassable(float x, float y) {
-    unsigned int tileX = GameConfig::gridColumn * (x + 1) / 2;
-    unsigned int tileY = -GameConfig::gridRow  * (y - 1) / 2;
+    int tileX = GameConfig::gridColumn * (x + 1) / 2;
+    int tileY = -GameConfig::gridRow  * (y - 1) / 2;
 
     if (tileX < 0 || tileX >= GameConfig::gridColumn || tileY < 0 || tileY >= GameConfig::gridRow) {
         return false;

@@ -68,5 +68,6 @@
     <ClInclude Include="..\game\levels\Map02.h" />
     <ClInclude Include="..\game\levels\Map01.h" />
     <ClInclude Include="..\game\levels\Map03.h" />
+    <ClInclude Include="..\gui\util\SearchableQueue.h" />
   </ItemGroup>
 </Project>

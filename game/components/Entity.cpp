@@ -118,6 +118,16 @@ void Entity::rest() {
     shape->updateTextureInfo();
 }
 
+void Entity::setTriggerFunction(std::function<void(void)> triggerFunction) {
+    this->triggerFunction = triggerFunction;
+}
+
+void Entity::trigger() {
+    if (triggerFunction) {
+        triggerFunction();
+    }
+}
+
 Entity::Builder & Entity::Builder::ofTexture(std::string textureFileName) {
     building->setTexture(textureFileName);
     return *this;
@@ -158,6 +168,12 @@ Entity::Builder & Entity::Builder::ofDirection(Direction direction) {
 }
 
 Entity::Builder & Entity::Builder::ofStaticFrame(int frameNumber) {
+    building->staticFrame = frameNumber;
+    return *this;
+}
+
+Entity::Builder & Entity::Builder::onTrigger(std::function<void(void)> triggerFunction) {
+    building->setTriggerFunction(triggerFunction);
     return *this;
 }
 
