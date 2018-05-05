@@ -71,6 +71,10 @@ bool GameLevel::isPassable(float x, float y) {
     unsigned int tileX = GameConfig::gridColumn * (x + 1) / 2;
     unsigned int tileY = -GameConfig::gridRow  * (y - 1) / 2;
 
+    if (tileX < 0 || tileX >= GameConfig::gridColumn || tileY < 0 || tileY >= GameConfig::gridRow) {
+        return false;
+    }
+
     for (auto& ml : gameMap) {
         //printf("%u, %u: %c\n", tileX, tileY, ml.second->getTile(tileX, tileY));
         if (ml.first > -1 && ml.first <= 10) {
@@ -86,30 +90,30 @@ bool GameLevel::isPassable(float x, float y) {
 }
 
 bool GameLevel::collideLeft(Entity * e) {
-    return !isPassable(e->getLocation()->getX() - e->getSpeed() - 2.0f / GameConfig::gridColumn * 0.5f,
+    return !isPassable(e->getLocation()->getX() - e->getSpeed() - 2.0f / GameConfig::gridColumn * 0.45f,
                       e->getLocation()->getY())
-        || !isPassable(e->getLocation()->getX() - e->getSpeed() - 2.0f / GameConfig::gridColumn * 0.5f,
+        || !isPassable(e->getLocation()->getX() - e->getSpeed() - 2.0f / GameConfig::gridColumn * 0.45f,
                        e->getLocation()->getY() + 2.0f / GameConfig::gridRow * 0.5f);
 }
 
 bool GameLevel::collideUp(Entity * e) {
-    return !isPassable(e->getLocation()->getX() - 2.0f / GameConfig::gridColumn * 0.5f,
+    return !isPassable(e->getLocation()->getX() - 2.0f / GameConfig::gridColumn * 0.45f,
                       e->getLocation()->getY() + e->getSpeed() + 2.0f / GameConfig::gridRow * 0.5f)
-        || !isPassable(e->getLocation()->getX() + 2.0f / GameConfig::gridColumn * 0.5f,
+        || !isPassable(e->getLocation()->getX() + 2.0f / GameConfig::gridColumn * 0.45f,
                        e->getLocation()->getY() + e->getSpeed() + 2.0f / GameConfig::gridRow * 0.5f);
 }
 
 bool GameLevel::collideRight(Entity * e) {
-    return !isPassable(e->getLocation()->getX() + e->getSpeed() + 2.0f / GameConfig::gridColumn * 0.5f,
+    return !isPassable(e->getLocation()->getX() + e->getSpeed() + 2.0f / GameConfig::gridColumn * 0.45f,
                       e->getLocation()->getY())
-        || !isPassable(e->getLocation()->getX() + e->getSpeed() + 2.0f / GameConfig::gridColumn * 0.5f,
+        || !isPassable(e->getLocation()->getX() + e->getSpeed() + 2.0f / GameConfig::gridColumn * 0.45f,
                        e->getLocation()->getY() + 2.0f / GameConfig::gridRow * 0.5f);
 }
 
 bool GameLevel::collideDown(Entity * e) {
-    return !isPassable(e->getLocation()->getX() - 2.0f / GameConfig::gridColumn * 0.5f,
+    return !isPassable(e->getLocation()->getX() - 2.0f / GameConfig::gridColumn * 0.45f,
                       e->getLocation()->getY() - e->getSpeed())
-        || !isPassable(e->getLocation()->getX() + 2.0f / GameConfig::gridColumn * 0.5f,
+        || !isPassable(e->getLocation()->getX() + 2.0f / GameConfig::gridColumn * 0.45f,
                        e->getLocation()->getY() - e->getSpeed());
 }
 
