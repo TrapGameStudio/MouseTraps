@@ -36,6 +36,7 @@ visualc15/Debug
 visualc15/obj
 visualc15/.*
 visualc15/Graphics
+.vs
 
 # OS Meta
 .DS_Store
