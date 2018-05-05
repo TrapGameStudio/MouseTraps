@@ -4,6 +4,7 @@
 #include "../lang/Animatable.h"
 #include "../components/TextureRect.h"
 #include "gui/util/SearchableQueue.h"
+#include "game/components/Entity.h"
 #include <deque>
 #include <functional>
 #include <memory>
@@ -16,6 +17,7 @@ private:
     SearchableQueue<Clickable*> allClickables;
     // TODO: make specialized list for animated objects.
     SearchableQueue<Animatable*> allAnimatedShapes;
+    SearchableQueue<Entity*> allEntities;
     std::deque<Scene::Timer*> timers;
 public:
     Scene();
