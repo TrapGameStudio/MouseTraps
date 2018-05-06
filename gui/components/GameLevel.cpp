@@ -118,41 +118,43 @@ bool GameLevel::collideDown(Entity * e) {
 }
 
 void GameLevel::draw() {
-    switch (playerDirection) {
-    case Direction::MoveDown:
-        if (!collideDown(player)) {
-            player->move(Direction::MoveDown);
-        } else {
-            player->turn(Direction::MoveDown);
+    if (player) {
+        switch (playerDirection) {
+        case Direction::MoveDown:
+            if (!collideDown(player)) {
+                player->move(Direction::MoveDown);
+            } else {
+                player->turn(Direction::MoveDown);
+                player->rest();
+            }
+            break;
+        case Direction::MoveLeft:
+            if (!collideLeft(player)) {
+                player->move(Direction::MoveLeft);
+            } else {
+                player->turn(Direction::MoveLeft);
+                player->rest();
+            }
+            break;
+        case Direction::MoveRight:
+            if (!collideRight(player)) {
+                player->move(Direction::MoveRight);
+            } else {
+                player->turn(Direction::MoveRight);
+                player->rest();
+            }
+            break;
+        case Direction::MoveUp:
+            if (!collideUp(player)) {
+                player->move(Direction::MoveUp);
+            } else {
+                player->turn(Direction::MoveUp);
+                player->rest();
+            }
+            break;
+        case Direction::Resting:
             player->rest();
         }
-        break;
-    case Direction::MoveLeft:
-        if (!collideLeft(player)) {
-            player->move(Direction::MoveLeft);
-        } else {
-            player->turn(Direction::MoveLeft);
-            player->rest();
-        }
-        break;
-    case Direction::MoveRight:
-        if (!collideRight(player)) {
-            player->move(Direction::MoveRight);
-        } else {
-            player->turn(Direction::MoveRight);
-            player->rest();
-        }
-        break;
-    case Direction::MoveUp:
-        if (!collideUp(player)) {
-            player->move(Direction::MoveUp);
-        } else {
-            player->turn(Direction::MoveUp);
-            player->rest();
-        }
-        break;
-    case Direction::Resting:
-        player->rest();
     }
     Scene::draw();
 }
