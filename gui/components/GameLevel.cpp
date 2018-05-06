@@ -117,6 +117,11 @@ bool GameLevel::collideDown(Entity * e) {
                        e->getLocation()->getY() - e->getSpeed());
 }
 
+/// <summary>
+/// This is the only function in GameLevel that is linked to the <see cref="App#refreshDisplay"/>,
+/// so it also act as a refresh function for this class.
+/// Put anything that need to update every tick in here.
+/// </summary>
 void GameLevel::draw() {
     if (player) {
         switch (playerDirection) {
