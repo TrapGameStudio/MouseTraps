@@ -16,7 +16,7 @@ private:
     /// <summary>
     /// Window coordinate distance to move per tick
     /// </summary>
-    float speed = 0.04f / GameConfig::gridColumn;
+    float speed = 0.1f / GameConfig::gridColumn;
 
     /// <summary>
     /// Spacing between each refresh in tick
