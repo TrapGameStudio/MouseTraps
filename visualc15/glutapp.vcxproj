@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BE3DDA17-F918-42E2-B822-4C8A6EF632C9}</ProjectGuid>
     <RootNamespace>glutapp</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <ProjectName>MouseTraps</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -176,6 +176,7 @@
     <ClInclude Include="..\gui\shapes\Rect.h" />
     <ClInclude Include="..\gui\util\Anchor.h" />
     <ClInclude Include="..\gui\util\Color.h" />
+    <ClInclude Include="..\gui\util\SearchableQueue.h" />
     <ClInclude Include="..\gui\util\Game.h" />
     <ClInclude Include="..\gui\util\ScenePrototype.h" />
     <ClInclude Include="..\gui\util\TextureManager.h" />
