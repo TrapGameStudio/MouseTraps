@@ -2,6 +2,7 @@
 #include "../geom/Vector.h"
 #include "../geom/Point.h"
 #include "../components/Scene.h"
+#include "game/components/MiceGenerator.h"
 #include "../util/ScenePrototype.h"
 #include "../../test/DemoSceen.h"
 #include "../../game/levels/DemoLevel.h"
@@ -14,6 +15,7 @@
 class Game {
 private:
     // TODO: use map
+	MiceGenerator * mice = new MiceGenerator();
     std::deque<std::unique_ptr<Scene>> currentScenes;
     std::map<unsigned int, std::unique_ptr<ScenePrototype>> gameLevels;
 public:

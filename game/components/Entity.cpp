@@ -128,6 +128,8 @@ void Entity::trigger() {
     }
 }
 
+
+
 Entity::Builder & Entity::Builder::ofTexture(std::string textureFileName) {
     building->setTexture(textureFileName);
     return *this;
@@ -146,6 +148,11 @@ Entity::Builder & Entity::Builder::ofAnimationRefreshRate(int animationRefreshRa
 Entity::Builder & Entity::Builder::atLocation(float x, float y) {
     building->setLocation(x, y);
     return *this;
+}
+
+Entity::Builder & Entity::Builder::atLocation(Point* location) {
+	building->setLocation(-0.3, 0.0f);
+	return *this;
 }
 
 Entity::Builder & Entity::Builder::ofDirection(Direction direction) {

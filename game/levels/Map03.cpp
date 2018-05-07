@@ -216,6 +216,11 @@ Map03::Map03()
 	setPlayerCharacter(character);
 	pushAnimatedShapesToBack(character);
 	pushShapeToBack(character);
+
+	for (int i = 0; i < 5; i++) {
+		pushAnimatedShapesToBack(mice->accessMouse(i));
+		pushShapeToBack(mice->accessMouse(i));
+	}
 }
 
 Map03::~Map03() {}

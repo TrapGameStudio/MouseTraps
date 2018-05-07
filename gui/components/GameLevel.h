@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Tile.h"
 #include "../util/TilesetManager.h"
+#include "game/components/MiceGenerator.h"
 #include "game/components/Entity.h"
 #include "game/GameConfig.h"
 #include <vector>
@@ -22,6 +23,7 @@ public:
     GameLevel();
     void addMapLayer(int layerID, MapLayer* gameMapLayer);
     void setPlayerCharacter(Entity* entity);
+	void moveMice();
     void keyPress(unsigned char key);
     void keyUp(unsigned char key);
     void mouseDown(float x, float y);
@@ -46,6 +48,7 @@ public:
     bool collideDown(Entity* e);
 
     void draw();
+
     ~GameLevel();
 };
 
