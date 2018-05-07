@@ -3,12 +3,18 @@
 #include "../lang/Drawable.h"
 #include "TextureRect.h"
 #include <functional>
+/// <summary>
+/// A drawable that listen and response for mouse related event. T must be a Drawable.
+/// </summary>
 template <typename T>
 class Button :
     public Clickable,
     public Drawable {
     static_assert(std::is_base_of<Drawable, T>(), "Type must be Drawable.");
 private:
+    /// <summary>
+    /// The underlaying shape of this button
+    /// </summary>
     T * buttonShape = nullptr;
     class Builder;
     std::function<void(void)> onEnterFunction = nullptr;
@@ -23,7 +29,6 @@ public:
            std::function<void(void)> onClickMouseDownFunction,
            std::function<void(void)> onClickMouseUpFunction);
     void draw();
-    void scale(float x, float y);
     void entered();
     void onEnter(std::function<void(void)> onEnterFunction);
     void left();

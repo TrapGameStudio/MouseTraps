@@ -8,14 +8,52 @@ class TextureRect :
     public Rect,
     public Animatable {
 private:
+    /// <summary>
+    /// The texture id given by freeglut that this texture rectangle will be using
+    /// </summary>
     GLuint textureID = 0;
+
+    /// <summary>
+    /// The full path to the texture file
+    /// </summary>
     std::string textureFileName;
+
+    /// <summary>
+    /// The type of texture of this rectangle. <see cref="TextureType"/>
+    /// </summary>
     TextureType textureType = TextureType::Static;
+
+    /// <summary>
+    /// The size of the texture in texture coordinate this rectangle will be using.
+    /// 1.0f, 1.0f means the whole texture will be mapped onto this rectangle.
+    /// Should not be directly set. <see cref="TextureRect#updateTextureInfo" />
+    /// </summary>
     Vector * textureTileSize = new Vector(1.0f, 1.0f);
+
+    /// <summary>
+    /// The number of texture per column the texture file has.
+    /// </summary>
     unsigned int textureColumn = 1;
+
+    /// <summary>
+    /// The number of texture per row the texture file has.
+    /// </summary>
     unsigned int textureRow = 1;
+
+    /// <summary>
+    /// The index of column of the texture.
+    /// </summary>
     unsigned int currentTextureColumn = 0;
+
+    /// <summary>
+    /// The index of row of the texture.
+    /// </summary>
     unsigned int currentTextureRow = 0;
+
+    /// <summary>
+    /// The actual texture coordinate of the texture is on.
+    /// Should not be directly set. <see cref="TextureRect#updateTextureInfo" />
+    /// </summary>
     Point * currentTextureCoordinate = new Point(0.0f, 0.0f);
     TextureRect();
 public:

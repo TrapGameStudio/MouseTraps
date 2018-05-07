@@ -14,6 +14,9 @@ Button<T>::Button(T* buttonShape,
 
 }
 
+/// <summary>
+/// Draw the shape this button uses.
+/// </summary>
 template <typename T>
 void Button<T>::draw() {
     if (buttonShape) {
@@ -21,11 +24,9 @@ void Button<T>::draw() {
     }
 }
 
-template <typename T>
-void Button<T>::scale(float x, float y) {
-    buttonShape->scale(x, y);
-}
-
+/// <summary>
+/// Function to called when mouse pointer enters the button. 
+/// </summary>
 template <typename T>
 void Button<T>::entered() {
     if (onEnterFunction) {
@@ -33,11 +34,17 @@ void Button<T>::entered() {
     }
 }
 
+/// <summary>
+/// Defining what should happen when mouse pointer enters the button.
+/// </summary>
 template <typename T>
 void Button<T>::onEnter(std::function<void(void)> onEnterFunction) {
     this->onEnterFunction = onEnterFunction;
 }
 
+/// <summary>
+/// Function to called when mouse pointer leaves the button. 
+/// </summary>
 template <typename T>
 void Button<T>::left() {
     if (onLeaveFunction) {
@@ -45,11 +52,17 @@ void Button<T>::left() {
     }
 }
 
+/// <summary>
+/// Defining what should happen when mouse pointer leaves the button.
+/// </summary>
 template <typename T>
 void Button<T>::onLeave(std::function<void(void)> onLeaveFunction) {
     this->onLeaveFunction = onLeaveFunction;
 }
 
+/// <summary>
+/// Function to called when there is a left click the button. 
+/// </summary>
 template <typename T>
 void Button<T>::clickMouseDown() {
     if (onClickMouseDownFunction) {
@@ -57,11 +70,17 @@ void Button<T>::clickMouseDown() {
     }
 }
 
+/// <summary>
+/// Defining what should happen when the button is left clicked.
+/// </summary>
 template <typename T>
 void Button<T>::onClickMouseDown(std::function<void(void)> onClickMouseDownFunction) {
     this->onClickMouseDownFunction = onClickMouseDownFunction;
 }
 
+/// <summary>
+/// Function to called when the left mouse button is released on this button. 
+/// </summary>
 template <typename T>
 void Button<T>::clickMouseUp() {
     if (onClickMouseDownFunction) {
@@ -69,16 +88,25 @@ void Button<T>::clickMouseUp() {
     }
 }
 
+/// <summary>
+/// Defining what should happen when the left mouse button is released on this button.
+/// </summary>
 template <typename T>
 void Button<T>::onClickMouseUp(std::function<void(void)> onClickMouseUpFunction) {
     this->onClickMouseUpFunction = onClickMouseUpFunction;
 }
 
+/// <summary>
+/// Get the under laying shape of this button.
+/// </summary>
 template <typename T>
 T * Button<T>::getShape() {
     return buttonShape;
 }
 
+/// <summary>
+/// Check if a xy-coordinate is in this button.
+/// </summary>
 template <typename T>
 bool Button<T>::contains(float x, float y) const {
     return buttonShape->contains(x, y);
