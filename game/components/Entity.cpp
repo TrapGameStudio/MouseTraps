@@ -62,8 +62,8 @@ void Entity::setLocation(float x, float y) {
     shape->setAnchorLocation(x, y);
 }
 
-Point* const Entity::getLocation() {
-    return shape->getAnchorLocation();
+Point* Entity::getLocation() {
+    return shape->getAnchorLocation()->deepCopy();
 }
 
 TextureRect * Entity::getShape() {

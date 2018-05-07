@@ -51,7 +51,7 @@ public:
     void move(Direction movingDirection);
     void turn(Direction movingDirection);
     void setLocation(float x, float y);
-    Point* const getLocation();
+    Point* getLocation();
     TextureRect* getShape();
     void setTexture(std::string textureFileName);
     void setTextureType(TextureType textureType);

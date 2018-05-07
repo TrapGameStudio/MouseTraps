@@ -17,9 +17,45 @@ void GameLevel::addMapLayer(int layerID, GameLevel::MapLayer* gameMapLayer) {
 
 void GameLevel::setPlayerCharacter(Entity * entity) {
 	player = entity;  // TODO: fix memory leak
+    allEntities.push_back(entity);
 }
 
-void GameLevel::keyPress(unsigned char key) {}
+void GameLevel::keyPress(unsigned char key) {
+    if (key == ' ') {
+        TextureRect* bomb = TextureRect::builder()
+            .ofTexture("Graphics/Tilesets/SF_Inside_B.png")
+            .ofColumnRow(16, 16)
+            .ofCurrentColumnRow(15, 0)
+            .atLocation(player->getLocation())
+            .onAnchor(Anchor::Bottom)
+            .ofSize(2.0f / GameConfig::gridColumn, 2.0f / GameConfig::gridRow)
+            .build();
+
+        removeShape(player);    // remove and readd player to make the player on top of the bomb
+        pushShapeToBack(bomb);
+        pushShapeToBack(player);
+
+        // bomb exploding in 100 ticks. when explode, remove the bomb, 
+        // create new Animated Texture Rectangle of explosion,
+        // and after explosion, remove explosion texture rectangle.
+        addTimer(100, [this, bomb]() {
+            TextureRect* explosion = TextureRect::builder()
+                .ofTexture("Graphics/Animations/Fire2.png")
+                .ofColumnRow(7, 1)
+                .ofTextureType(TextureType::Animation)
+                .ofSize(6.0f / GameConfig::gridColumn, 6.0f / GameConfig::gridRow)
+                .atLocation(bomb->getAnchorLocation())
+                .onAnchor(Anchor::Bottom)
+                .build();
+            pushShapeToBack(explosion);
+            pushAnimatedShapesToBack(explosion);
+            removeShape(bomb);
+            addTimer(10, [this, explosion]() {
+                removeShape(explosion);
+            });
+        });
+    }
+}
 
 void GameLevel::keyUp(unsigned char key) {}
 
@@ -115,6 +151,14 @@ bool GameLevel::collideDown(Entity * e) {
                       e->getLocation()->getY() - e->getSpeed())
         || !isPassable(e->getLocation()->getX() + 2.0f / GameConfig::gridColumn * 0.45f,
                        e->getLocation()->getY() - e->getSpeed());
+}
+
+void GameLevel::addEntity(Entity * e) {
+    allEntities.push_back(e);
+}
+
+void GameLevel::removeEntity(Entity * e) {
+    allEntities.remove(e);
 }
 
 /// <summary>

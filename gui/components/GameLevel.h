@@ -15,6 +15,7 @@ public:
 private:
     std::map<int, MapLayer*> gameMap;
     Entity * player = nullptr;
+    SearchableQueue<Entity*> allEntities;
     Direction playerDirection = Direction::Resting;
     unsigned int column;
     unsigned int row;
@@ -44,6 +45,9 @@ public:
     bool collideUp(Entity* e);
     bool collideRight(Entity* e);
     bool collideDown(Entity* e);
+
+    void addEntity(Entity* e);
+    void removeEntity(Entity* e);
 
     void draw();
     ~GameLevel();

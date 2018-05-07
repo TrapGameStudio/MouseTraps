@@ -95,18 +95,20 @@ void Scene::tick() {
     for (auto& a : allAnimatedShapes.getMap()) {
         a.second->advance();
     }
-    for (Scene::Timer* t : timers) {
-        if (t) { // TODO: use other data structure so I can delete the timer.
-            if (!t->isExpired()) {
-                t->tick();
-            } else {
-                delete t;
-            }
+
+    // TODO: how to delete stuff in a list from a loop
+    for (auto& t : timers.getMap()) {
+        Scene::Timer* st = t.second;
+        if (!st->isExpired()) {
+            st->tick();
+        //} else {
+        //    timers.remove(st);
+        //    //delete st;
         }
     }
 }
 
-void Scene::addTimers(unsigned int duration, std::function<void(void)> executable, bool repeating) {
+void Scene::addTimer(unsigned int duration, std::function<void(void)> executable, bool repeating) {
     timers.push_back(new Scene::Timer(duration, executable, repeating));
 }
 
@@ -119,16 +121,18 @@ void Scene::Timer::reset() {
 Scene::Timer::Timer(unsigned int duration, std::function<void(void)> executable, bool repeating) {
     if (duration) {
         this->remainingTicks = duration;
-        this->execution = execution;
+        this->execution = executable;
     } else {
         expired = true;
     }
 }
 
 void Scene::Timer::tick() {
-    if (!expired && !--remainingTicks) {
-        if (execution) {
-            execution();
+    if (!expired) {
+        if (!--remainingTicks) {
+            if (execution) {
+                execution();
+            }
             if (repeating) {
                 reset();
             } else {
@@ -136,6 +140,16 @@ void Scene::Timer::tick() {
             }
         }
     }
+    //if (!expired && --remainingTicks) {
+    //    if (execution) {
+    //        execution();
+    //        if (repeating) {
+    //            reset();
+    //        } else {
+    //            expired = true;
+    //        }
+    //    }
+    //}
 }
 
 bool Scene::Timer::isExpired() {

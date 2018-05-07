@@ -6,8 +6,8 @@
 template <typename T>
 class SearchableQueue {
 private:
-    int headIndex = 0;
-    int tailIndex = 0;
+    int headIndex = -1;
+    int tailIndex = 1;
     std::map<int, T> forward;
     std::unordered_map<T, int> inverse;
 public:

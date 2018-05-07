@@ -17,8 +17,7 @@ private:
     SearchableQueue<Clickable*> allClickables;
     // TODO: make specialized list for animated objects.
     SearchableQueue<Animatable*> allAnimatedShapes;
-    SearchableQueue<Entity*> allEntities;
-    std::deque<Scene::Timer*> timers;
+    SearchableQueue<Scene::Timer*> timers;
 public:
     Scene();
     /// <summary>
@@ -78,7 +77,7 @@ public:
     // TODO: change to mouse down mouse up latter.
     void clickClickables(float x, float y);
     void tick();
-    void addTimers(unsigned int duration, std::function<void(void)> executable, bool repeating = false);
+    void addTimer(unsigned int duration, std::function<void(void)> executable, bool repeating = false);
     virtual ~Scene() {};
 };
 

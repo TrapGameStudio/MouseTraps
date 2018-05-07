@@ -19,7 +19,11 @@ void Game::mouseUp(float x, float y) {}
 
 void Game::keyUp(unsigned char key) {}
 
-void Game::keyPress(unsigned char key) {}
+void Game::keyPress(unsigned char key) {
+    for (auto&& sc : currentScenes) {
+        sc->keyPress(key);
+    }
+}
 
 void Game::leftArrowDown() {
     for (auto&& sc : currentScenes) {
