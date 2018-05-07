@@ -213,6 +213,10 @@ Map03::Map03()
 		.atLocation(-0.6, 0.6)
 		.build();
 
+    character->setKillFunction([this, character]() {
+        character->setTexture("Graphics/Characters/Char3-damaged.png");
+    });
+
 	setPlayerCharacter(character);
 	pushAnimatedShapesToBack(character);
 	pushShapeToBack(character);

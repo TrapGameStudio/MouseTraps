@@ -22,6 +22,8 @@ void GameLevel::setPlayerCharacter(Entity * entity) {
 
 void GameLevel::keyPress(unsigned char key) {
     if (key == ' ') {
+
+        // make a bomb
         TextureRect* bomb = TextureRect::builder()
             .ofTexture("Graphics/Tilesets/SF_Inside_B.png")
             .ofColumnRow(16, 16)
@@ -36,7 +38,7 @@ void GameLevel::keyPress(unsigned char key) {
         pushShapeToBack(player);
 
         // bomb exploding in 100 ticks. when explode, remove the bomb, 
-        // create new Animated Texture Rectangle of explosion,
+        // create a new Animated Texture Rectangle for the explosion,
         // and after explosion, remove explosion texture rectangle.
         addTimer(100, [this, bomb]() {
             TextureRect* explosion = TextureRect::builder()
@@ -47,9 +49,14 @@ void GameLevel::keyPress(unsigned char key) {
                 .atLocation(bomb->getAnchorLocation())
                 .onAnchor(Anchor::Bottom)
                 .build();
+
+            // actual logic of the explosion
+            explode(bomb->getAnchorLocation()->getX(), bomb->getAnchorLocation()->getY());
+
             pushShapeToBack(explosion);
             pushAnimatedShapesToBack(explosion);
             removeShape(bomb);
+
             addTimer(10, [this, explosion]() {
                 removeShape(explosion);
             });
@@ -159,6 +166,18 @@ void GameLevel::addEntity(Entity * e) {
 
 void GameLevel::removeEntity(Entity * e) {
     allEntities.remove(e);
+}
+
+void GameLevel::explode(float x, float y) {
+    for (auto& ep : allEntities.getMap()) {
+        Entity* e = ep.second;
+        float dx = e->getLocation()->getX() - x;
+        float dy = e->getLocation()->getY() - y;
+        float thresholdRaduisSquared = (6.0f / GameConfig::gridColumn) * (6.0f / GameConfig::gridColumn);
+        if (dx * dx + dy + dy < thresholdRaduisSquared) {
+            e->kill();
+        }
+    }
 }
 
 /// <summary>

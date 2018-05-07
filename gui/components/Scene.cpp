@@ -118,7 +118,7 @@ void Scene::Timer::reset() {
 }
 
 
-Scene::Timer::Timer(unsigned int duration, std::function<void(void)> executable, bool repeating) {
+Scene::Timer::Timer(unsigned int duration, std::function<void(void)> executable, int repeatCount) {
     if (duration) {
         this->remainingTicks = duration;
         this->execution = executable;
@@ -133,7 +133,10 @@ void Scene::Timer::tick() {
             if (execution) {
                 execution();
             }
-            if (repeating) {
+            if (repeatCount > 0) {
+                repeatCount--;
+                reset();
+            } else if (repeatCount < 0) {
                 reset();
             } else {
                 expired = true;

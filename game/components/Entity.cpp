@@ -118,13 +118,13 @@ void Entity::rest() {
     shape->updateTextureInfo();
 }
 
-void Entity::setTriggerFunction(std::function<void(void)> triggerFunction) {
-    this->triggerFunction = triggerFunction;
+void Entity::setKillFunction(std::function<void(void)> killFunction) {
+    this->killFunction = killFunction;
 }
 
-void Entity::trigger() {
-    if (triggerFunction) {
-        triggerFunction();
+void Entity::kill() {
+    if (killFunction) {
+        killFunction();
     }
 }
 
@@ -172,8 +172,8 @@ Entity::Builder & Entity::Builder::ofStaticFrame(int frameNumber) {
     return *this;
 }
 
-Entity::Builder & Entity::Builder::onTrigger(std::function<void(void)> triggerFunction) {
-    building->setTriggerFunction(triggerFunction);
+Entity::Builder & Entity::Builder::onKill(std::function<void(void)> killFunction) {
+    building->setKillFunction(killFunction);
     return *this;
 }
 

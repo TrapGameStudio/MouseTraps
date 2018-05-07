@@ -36,7 +36,7 @@ private:
     /// </summary>
     int staticFrame = 1;
 
-    std::function<void(void)> triggerFunction = nullptr;
+    std::function<void(void)> killFunction = nullptr;
 
     TextureRect* shape = 
         TextureRect::builder()
@@ -63,8 +63,8 @@ public:
     void draw();
     void advance();
     void rest();
-    void setTriggerFunction(std::function<void(void)> triggerFunction);
-    void trigger();
+    void setKillFunction(std::function<void(void)> killFunction);
+    void kill();
     Entity();
     ~Entity();
 };
@@ -79,6 +79,6 @@ public:
     Entity::Builder & atLocation(float x, float y);
     Entity::Builder & ofDirection(Direction direction);
     Entity::Builder & ofStaticFrame(int frameNumber);
-    Entity::Builder & onTrigger(std::function<void(void)> triggerFunction);
+    Entity::Builder & onKill(std::function<void(void)> killFunction);
     Entity * build();
 };

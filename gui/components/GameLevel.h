@@ -49,6 +49,8 @@ public:
     void addEntity(Entity* e);
     void removeEntity(Entity* e);
 
+    void explode(float x, float y);
+
     void draw();
     ~GameLevel();
 };

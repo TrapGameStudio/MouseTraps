@@ -88,13 +88,13 @@ public:
 class Scene::Timer {
 private:
     bool expired = false;
-    bool repeating = false;
+    int repeatCount = 0;
     unsigned int duration = 0;
     unsigned int remainingTicks = 0;
     std::function<void(void)> execution;
     void reset();
 public:
-    Timer(unsigned int duration, std::function<void(void)> executable, bool repeating = false);
+    Timer(unsigned int duration, std::function<void(void)> executable, int repeatCount = 0);
     void tick();
     bool isExpired();
 };
