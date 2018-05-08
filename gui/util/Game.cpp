@@ -23,6 +23,18 @@ void Game::keyPress(unsigned char key) {
     for (auto&& sc : currentScenes) {
         sc->keyPress(key);
     }
+    if (key == '0') {
+        currentScenes.clear();
+        currentScenes.push_back(std::make_unique<Map01>());
+    }
+    if (key == '-') {
+        currentScenes.clear();
+        currentScenes.push_back(std::make_unique<Map02>());
+    }
+    if (key == '=') {
+        currentScenes.clear();
+        currentScenes.push_back(std::make_unique<Map03>());
+    }
 }
 
 void Game::leftArrowDown() {
@@ -87,7 +99,7 @@ void Game::updateFrame() {
 }
 
 Game::Game() {
-    currentScenes.push_back(std::make_unique<Map01>());
+    currentScenes.push_back(std::make_unique<Map02>());
 }
 
 Game::~Game() {}
