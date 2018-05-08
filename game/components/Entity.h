@@ -39,6 +39,7 @@ private:
     int staticFrame = 1;
 
     std::function<void(void)> killFunction = nullptr;
+	bool killed = false;
 
     TextureRect* shape = 
         TextureRect::builder()

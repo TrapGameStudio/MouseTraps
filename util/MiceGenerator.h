@@ -17,8 +17,9 @@ private:
 	SearchableQueue<Entity*> mice;
 	std::unordered_map<Entity*, State*> states;
 	std::vector<Point*> spawnLocations;
-	const unsigned int SPAWNTIME = 200;
-	unsigned int miceCount = 0, spawnTimer = SPAWNTIME;
+	const unsigned int SPAWNTIME = 300, MAX_MICE = 5;
+	unsigned int miceCount = 0, spawnTimer = SPAWNTIME, trueCount = 0;
+	bool generate = true, control = true;
 	GameLevel* level;
 public:
 	MiceGenerator();
@@ -35,7 +36,9 @@ public:
 	void spawnMouse(Point* spawnLocation);		 // TODO
 	void spawnMouse(float x, float y);
 	void killMouse(Entity* e);
-
+	bool isGenerating();
+	void stopGenerator();
+		
 	~MiceGenerator();
 };
 

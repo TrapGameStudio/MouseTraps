@@ -138,7 +138,8 @@ void Entity::setKillFunction(std::function<void(void)> killFunction) {
 }
 
 void Entity::kill() {
-    if (killFunction) {
+    if (killFunction && !killed) {
+		killed = true;
         killFunction();
     }
 }
