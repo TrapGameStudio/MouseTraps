@@ -159,6 +159,21 @@ void MiceGenerator::killMouse(Entity* e) { // Rename
 
 void MiceGenerator::stopGenerator() {
 	std::cout << "Level Complete!" << std::endl;
+    std::string levelComplete = "Level Complete!";
+    float x = 0.08f * -7;
+    float y = 0.5f;
+    for (const char& c : levelComplete) {
+        level->pushShapeToBack(
+            TextureRect::builder()
+                .atLocation(x += 0.06f, y)
+                .ofTexture("Graphics/Fonts/Consolas.png")
+                .ofSize(0.06f, 0.12f)
+                .ofColumnRow(16, 14)
+                .atFrame((int)c - 32)
+                .ofShade(Color::black())
+                .build()
+        );
+    }
 }
 
 //bool MiceGenerator::isGenerating() {
