@@ -44,6 +44,7 @@ void MiceGenerator::spawnMouse(float x, float y) {
         level->addTimer(25, [this, mouse]() {
             level->removeShape(mouse);
             level->removeAnimatedShape(mouse);
+            miceCount--;
         });
     });
 
