@@ -59,6 +59,8 @@ public:
 
     void draw();
 
+    static Point* gridToMapCoordinate(unsigned int x, unsigned int y);
+
     ~GameLevel();
 };
 

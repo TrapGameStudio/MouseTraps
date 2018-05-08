@@ -3,6 +3,10 @@
 #include "Map01.h"
 
 Map01::Map01() {
+    spawnPoints.push_back(gridToMapCoordinate(19, 3));
+    spawnPoints.push_back(gridToMapCoordinate(5, 3));
+    spawnPoints.push_back(gridToMapCoordinate(12, 3));
+
 	TilesetManager::addTileset("Inside_A5.png", 8, 16, TilesetType::A5);
 
 	// Floor Schematic
@@ -119,6 +123,22 @@ Map01::Map01() {
 	dec->addCharTileMapping('a', Tile("Inside_B.png", 15, 12));  // Bad Wall
 
 	addMapLayer(2, dec);
+
+    Entity* character = Entity::builder()
+        .ofTexture("Graphics/Characters/Char3.png")
+        .ofDirection(Direction::MoveDown)
+        .atLocation(-0.6, 0.6)
+        .build();
+
+    character->setKillFunction([this, character]() {
+        character->setTexture("Graphics/Characters/Char3-damaged.png");
+    });
+
+    setPlayerCharacter(character);
+    pushAnimatedShapeToBack(character);
+    pushShapeToBack(character);
+
+    setMiceGenerator(this, spawnPoints);
 }
 
 Map01::~Map01() {}

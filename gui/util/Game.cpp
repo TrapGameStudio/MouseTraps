@@ -87,7 +87,7 @@ void Game::updateFrame() {
 }
 
 Game::Game() {
-    currentScenes.push_back(std::make_unique<Map03>());
+    currentScenes.push_back(std::make_unique<Map01>());
 }
 
 Game::~Game() {}

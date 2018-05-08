@@ -33,6 +33,7 @@ void MiceGenerator::spawnMouse(float x, float y) {
         .ofTexture("Graphics/Characters/whtdragon7.png")
         .ofDirection(Direction::MoveDown)
         .atLocation(x, y)
+        .ofStaticFrame(0)
         .build();
 
     // turn mice into bbq charcoal mice when bombed

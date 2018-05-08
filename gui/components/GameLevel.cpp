@@ -26,7 +26,7 @@ void GameLevel::setMiceGenerator(GameLevel*, std::vector<Point*> points) {
 
 void GameLevel::keyPress(unsigned char key) {
     if (key == 'o') {
-        generator->spawnMouse(-0.6f, 0.6f);
+        generator->spawnMouse(gridToMapCoordinate(10, 3));
 
     }
     if (key == ' ') {
@@ -239,6 +239,11 @@ void GameLevel::draw() {
     }
 	generator->moveMice();
     Scene::draw();
+}
+
+Point * GameLevel::gridToMapCoordinate(unsigned int x, unsigned int y) {
+    return Point::of(x * 2.0f / GameConfig::gridColumn - 1.0f + 1.0f / GameConfig::gridColumn,
+                     y * -2.0f / GameConfig::gridRow + 1.0f);
 }
 
 

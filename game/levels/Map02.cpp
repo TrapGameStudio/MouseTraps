@@ -4,6 +4,9 @@
 
 Map02::Map02()
 {
+    spawnPoints.push_back(gridToMapCoordinate(20, 3));
+    spawnPoints.push_back(gridToMapCoordinate(23, 12));
+
 	TilesetManager::addTileset("Inside_A5.png", 8, 16, TilesetType::A5);
 
 	GameLevel::MapLayer* ground = new GameLevel::MapLayer(this);
@@ -83,8 +86,8 @@ Map02::Map02()
     dec->mapAddRow("       TT  N LPR    F    ");
     dec->mapAddRow(" sSjim tt  n lpr%wu      ");
     dec->mapAddRow("                 WU      ");
-    dec->mapAddRow(" yy               6v8    ");
-    dec->mapAddRow(" yy               7C9    ");
+    dec->mapAddRow(" yy                      ");
+    dec->mapAddRow(" yy                      ");
     dec->mapAddRow("                   k     ");
     dec->mapAddRow(" E  Aa                   ");
     dec->mapAddRow(" eH O B                  ");
@@ -246,15 +249,21 @@ Map02::Map02()
 
     addMapLayer(1, dec);
 
-	Entity* character = Entity::builder()
-		.ofTexture("Graphics/Characters/Char3.png")
-		.ofDirection(Direction::MoveDown)
-		.atLocation(-0.4, 0.4)
-		.build();
+    Entity* character = Entity::builder()
+        .ofTexture("Graphics/Characters/Char3.png")
+        .ofDirection(Direction::MoveDown)
+        .atLocation(-0.4, 0.4)
+        .build();
 
-	setPlayerCharacter(character);
-	pushAnimatedShapeToBack(character);
-	pushShapeToBack(character);
+    character->setKillFunction([this, character]() {
+        character->setTexture("Graphics/Characters/Char3-damaged.png");
+    });
+
+    setPlayerCharacter(character);
+    pushAnimatedShapeToBack(character);
+    pushShapeToBack(character);
+
+    setMiceGenerator(this, spawnPoints);
 }
 
 
