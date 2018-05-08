@@ -76,6 +76,7 @@ TextureRect * Entity::getShape() {
 /// <param name="textureFileName">full path to the texture file</param>
 void Entity::setTexture(std::string textureFileName) {
     shape->setTexture(textureFileName.c_str()); // TODO: why const char*
+    shape->updateTextureInfo();
 }
 
 void Entity::setTextureType(TextureType textureType) {

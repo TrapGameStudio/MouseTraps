@@ -53,6 +53,8 @@ public:
     void addEntity(Entity* e);
     void removeEntity(Entity* e);
 
+    Entity* const getPlayer();
+
     void explode(float x, float y);
 
     void draw();

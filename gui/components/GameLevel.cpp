@@ -25,6 +25,10 @@ void GameLevel::setMiceGenerator(GameLevel*, std::vector<Point*> points) {
 }
 
 void GameLevel::keyPress(unsigned char key) {
+    if (key == 'o') {
+        generator->spawnMouse(-0.6f, 0.6f);
+
+    }
     if (key == ' ') {
 
         // make a bomb
@@ -88,7 +92,7 @@ void GameLevel::leftArrowDown(){
 
 void GameLevel::upArrowDown(){
     playerDirection = Direction::MoveUp;
-	generator->spawnMouse(-0.6f, 0.6f);
+	//generator->spawnMouse(-0.6f, 0.6f);
 }
 
 void GameLevel::rightArrowDown(){
@@ -173,13 +177,17 @@ void GameLevel::removeEntity(Entity * e) {
     allEntities.remove(e);
 }
 
+Entity * const GameLevel::getPlayer() {
+    return player;
+}
+
 void GameLevel::explode(float x, float y) {
     for (auto& ep : allEntities.getMap()) {
         Entity* e = ep.second;
         float dx = e->getLocation()->getX() - x;
         float dy = e->getLocation()->getY() - y;
-        float thresholdRaduisSquared = (6.0f / GameConfig::gridColumn) * (6.0f / GameConfig::gridColumn);
-        if (dx * dx + dy + dy < thresholdRaduisSquared) {
+        float thresholdRaduisSquared = (3.0f / GameConfig::gridColumn) * (3.0f / GameConfig::gridColumn);
+        if (dx * dx + dy * dy < thresholdRaduisSquared) {
             e->kill();
         }
     }
