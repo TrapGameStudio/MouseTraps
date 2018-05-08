@@ -45,8 +45,8 @@ void MiceGenerator::spawnMouse(float x, float y) {
 			level->addTimer(25, [this, mouse]() {
 				level->removeShape(mouse);
 				level->removeAnimatedShape(mouse);
+				killMouse(mouse);
 			});
-			killMouse(mouse);
 		});
 
 		level->addEntity(mouse);
@@ -66,7 +66,11 @@ void MiceGenerator::spawnMouse(float x, float y) {
 
 
 		miceCount++;
-		//std::cout << miceCount << std::endl;
+		totalSpawned++;
+		if (miceCount >= MAX_MICE || totalSpawned == 100) {
+			generate = false;
+		}
+		std::cout << miceCount << " " << generate << std::endl;
 	}
 }
 
@@ -145,11 +149,12 @@ void MiceGenerator::killMouse(Entity* e) { // Rename
     //delete e;
     miceCount--;
 	if (miceCount >= MAX_MICE) {
+		std::cout << "h\n";
 		generate = false;
 	}
-	else {
-		generate = true;
-	}
+	//else {
+	//	generate = true;
+	//}
 	if (miceCount == 0) {
 		generate = false;
 		control = false;

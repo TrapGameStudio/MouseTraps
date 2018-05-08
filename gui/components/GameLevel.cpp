@@ -28,6 +28,12 @@ void GameLevel::keyPress(unsigned char key) {
     if (key == 'o') {
         generator->spawnMouse(gridToMapCoordinate(9, 5));
     }
+	if (key == 's') {
+		player->changSpeed(0.005);
+	}
+	if (key == 'd') {
+		player->changSpeed(-0.005);
+	}
     if (key == ' ') {
 
         // make a bomb
