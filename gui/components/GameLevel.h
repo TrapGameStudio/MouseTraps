@@ -25,7 +25,7 @@ public:
     GameLevel();
     void addMapLayer(int layerID, MapLayer* gameMapLayer);
     void setPlayerCharacter(Entity* entity);
-	void setMiceGenerator(GameLevel*);
+	void setMiceGenerator(GameLevel*, std::vector<Point*>);
     void keyPress(unsigned char key);
     void keyUp(unsigned char key);
     void mouseDown(float x, float y);

@@ -19,8 +19,8 @@ void GameLevel::setPlayerCharacter(Entity * entity) {
 	player = entity;  // TODO: fix memory leak
 }
 
-void GameLevel::setMiceGenerator(GameLevel*) {
-	generator = new MiceGenerator(this);
+void GameLevel::setMiceGenerator(GameLevel*, std::vector<Point*> points) {
+	generator = new MiceGenerator(points, this);
 }
 
 void GameLevel::keyPress(unsigned char key) {

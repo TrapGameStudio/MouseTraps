@@ -3,12 +3,11 @@
 
 MiceGenerator::MiceGenerator() {}
 
-MiceGenerator::MiceGenerator(GameLevel* level) { //TODO: Accept a list of Points to use as spawn locations 
-	addSpawnLocation(-0.6f, 0.6f);
-	addSpawnLocation(0.0f, 0.0f);
-	addSpawnLocation(0.0f, 0.5f);
-	addSpawnLocation(0.4f, -0.6f);
-	
+MiceGenerator::MiceGenerator(std::vector<Point*> location, GameLevel* level) { //TODO: Accept a list of Points to use as spawn locations 
+	for (Point* p : location) {
+		addSpawnLocation(p);
+	}
+
 	for (Point* p : spawnLocations) {
 		spawnMouse(p);
 	}
@@ -19,7 +18,6 @@ MiceGenerator::MiceGenerator(GameLevel* level) { //TODO: Accept a list of Points
 	}
 
 	this->level = level;
-	std::cout << getCount() << std::endl;
 }
 
 void MiceGenerator::spawnMouse(float x, float y) {
@@ -56,8 +54,8 @@ void MiceGenerator::spawnMouse(Point * spawnLocation) {
 	mouse->getShape()->setSize(4.0f / 25, 4.0f / 25); //Size was too small
 	states.push_back(state);
 	mice.push_back(mouse);
-	//level->pushAnimatedShapesToBack(mouse);
-	//level->pushShapeToBack(mouse);
+	//level->pushAnimatedShapesToBack(mice.back());
+	//level->pushShapeToBack(mice.back());
 	miceCount++;
 }
 
@@ -107,8 +105,7 @@ void MiceGenerator::moveMice() {
 		states[i]->count--;
 	}
 
-	if (!--spawnTime) {
-		std::cout << spawnTime << std::endl;
+	if (!--spawnTimer) {
 		resetSpawnTime();
 		unsigned int i = rand() % spawnLocations.size();
 		spawnMouse(spawnLocations[i]);
@@ -118,7 +115,7 @@ void MiceGenerator::moveMice() {
 }
 
 void MiceGenerator::resetSpawnTime() {
-	spawnTime = 1000;
+	spawnTimer = SPAWNTIME;
 }
 
 void MiceGenerator::killMouse(int i) { //Dont use this

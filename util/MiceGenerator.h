@@ -15,11 +15,12 @@ private:
 	std::vector<Entity*> mice;
 	std::vector<State*> states;
 	std::vector<Point*> spawnLocations;
-	unsigned int miceCount = 0, spawnTime = 1000;
+	const unsigned int SPAWNTIME = 200;
+	unsigned int miceCount = 0, spawnTimer = SPAWNTIME;
 	GameLevel* level;
 public:
 	MiceGenerator();
-	MiceGenerator(GameLevel* level);
+	MiceGenerator(std::vector<Point*> locations, GameLevel* level);
 
 	Entity* accessMouse(int i);
 	MiceGenerator::State* accessState(int i);
