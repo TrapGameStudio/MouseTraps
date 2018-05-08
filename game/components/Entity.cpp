@@ -159,16 +159,17 @@ Entity::Builder & Entity::Builder::atLocation(Point* location) {
 Entity::Builder & Entity::Builder::ofDirection(Direction direction) {
     switch (direction) {
     case Direction::MoveUp:
-        building->shape->setCurrentRow(3);
+        building->shape->setCurrentRow(0);
         break;
     case Direction::MoveLeft:
         building->shape->setCurrentRow(1);
+        building->shape->updateTextureInfo();
         break;
     case Direction::MoveRight:
         building->shape->setCurrentRow(2);
         break;
     case Direction::MoveDown:
-        building->shape->setCurrentRow(0);
+        building->shape->setCurrentRow(3);
         break;
     }
     return *this;
