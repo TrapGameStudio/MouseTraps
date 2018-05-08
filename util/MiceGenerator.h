@@ -18,7 +18,7 @@ private:
 	std::unordered_map<Entity*, State*> states;
 	std::vector<Point*> spawnLocations;
 	const unsigned int SPAWNTIME = 300, MAX_MICE = 5;
-	unsigned int miceCount = 0, spawnTimer = SPAWNTIME, trueCount = 0;
+	unsigned int miceCount = 0, spawnTimer = SPAWNTIME;
 	bool generate = true, control = true;
 	GameLevel* level;
 public:
@@ -26,17 +26,17 @@ public:
 	MiceGenerator(std::vector<Point*> locations, GameLevel* level);
 
 	//Entity* accessMouse(int i);
-	MiceGenerator::State* accessState(Entity* e);
-	unsigned int getCount();
+	//MiceGenerator::State* accessState(Entity* e);
+	//unsigned int getCount();
 	void resetSpawnTime();
 	void moveMice();
 	void addSpawnLocation(Point* spawnLocation); // TODO: use Point
 	void addSpawnLocation(float x, float y);
-	void spawnMouse();
+	//void spawnMouse();
 	void spawnMouse(Point* spawnLocation);		 // TODO
 	void spawnMouse(float x, float y);
 	void killMouse(Entity* e);
-	bool isGenerating();
+	//bool isGenerating();
 	void stopGenerator();
 		
 	~MiceGenerator();

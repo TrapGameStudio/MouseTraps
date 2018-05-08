@@ -6,7 +6,7 @@ int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
 
     // Instantiate a new App
-    App* myApp = new App("Mini Project 4 and a Work in Progress Framework", 50, 50, 600, 600);
+    App* myApp = new App("MouseTraps (Work in Progress)", 50, 50, 600, 600);
 
     // Start the app
     myApp->run();

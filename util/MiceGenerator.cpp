@@ -138,7 +138,7 @@ void MiceGenerator::resetSpawnTime() {
     spawnTimer = SPAWNTIME;
 }
 
-void MiceGenerator::killMouse(Entity* e) { //Dont use this
+void MiceGenerator::killMouse(Entity* e) { // Rename
     //delete states[e];
 	//mice.remove(e);
     //states.erase(e);
@@ -147,32 +147,35 @@ void MiceGenerator::killMouse(Entity* e) { //Dont use this
 	if (miceCount >= MAX_MICE) {
 		generate = false;
 	}
+	else {
+		generate = true;
+	}
 	if (miceCount == 0) {
 		generate = false;
 		control = false;
-		//stopGenerator();
+		stopGenerator();
 	}
 }
 
 void MiceGenerator::stopGenerator() {
-	//Get rid of mice generator
+	std::cout << "Level Complete!" << std::endl;
 }
 
-bool MiceGenerator::isGenerating() {
-	return generate;
-}
+//bool MiceGenerator::isGenerating() {
+//	return generate;
+//}
 
 //Entity* MiceGenerator::accessMouse(int i) {
 //    return mice[i];
 //}
 
-MiceGenerator::State * MiceGenerator::accessState(Entity* e) {
-    return states[e];
-}
+//MiceGenerator::State * MiceGenerator::accessState(Entity* e) {
+//    return states[e];
+//}
 
-unsigned int MiceGenerator::getCount() {
-    return this->miceCount;
-}
+//unsigned int MiceGenerator::getCount() {
+//    return this->miceCount;
+//}
 
 void MiceGenerator::addSpawnLocation(Point* spawnLocation) {
     for (int i = 0; i <= spawnLocations.size(); i++) {
