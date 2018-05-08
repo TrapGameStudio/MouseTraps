@@ -87,36 +87,76 @@ void GameLevel::updateMapGraphics() {
 
 void GameLevel::leftArrowDown(){
     isPassable(player->getLocation()->getX(), player->getLocation()->getY());
-    playerDirection = Direction::MoveLeft;
+	if (player->getHolds().empty() || player->getHolds().size() == 1) {
+		playerDirection = Direction::MoveLeft;
+		player->setHold(Direction::MoveLeft);
+	}
 }
 
 void GameLevel::upArrowDown(){
-    playerDirection = Direction::MoveUp;
+	if (player->getHolds().empty() || player->getHolds().size() == 1) {
+		playerDirection = Direction::MoveUp;
+		player->setHold(Direction::MoveUp);
+	}
 	//generator->spawnMouse(-0.6f, 0.6f);
 }
 
 void GameLevel::rightArrowDown(){
-    playerDirection = Direction::MoveRight;
+	if (player->getHolds().empty() || player->getHolds().size() == 1) {
+		playerDirection = Direction::MoveRight;
+		player->setHold(Direction::MoveRight);
+	}
 }
 
 void GameLevel::downArrownDown(){
-	playerDirection = Direction::MoveDown;
+	if (player->getHolds().empty() || player->getHolds().size() == 1) {
+		playerDirection = Direction::MoveDown;
+		player->setHold(Direction::MoveDown);
+	}
 }
 
 void GameLevel::leftArrowUp() {
-    playerDirection = Direction::Resting;
+	if (player->getHolds().size() == 1) {
+		player->unsetHold(Direction::MoveLeft);
+		playerDirection = Direction::Resting;
+	}
+	else {
+		player->unsetHold(Direction::MoveLeft);
+		playerDirection = *player->getHolds().begin();
+	}
 }
 
 void GameLevel::upArrowUp() {
-    playerDirection = Direction::Resting;
+	if (player->getHolds().size() == 1) {
+		player->unsetHold(Direction::MoveUp);
+		playerDirection = Direction::Resting;
+	}
+	else {
+		player->unsetHold(Direction::MoveUp);
+		playerDirection = *player->getHolds().begin();
+	}
 }
 
 void GameLevel::rightArrowUp() {
-    playerDirection = Direction::Resting;
+	if (player->getHolds().size() == 1) {
+		player->unsetHold(Direction::MoveRight);
+		playerDirection = Direction::Resting;
+	}
+	else {
+		player->unsetHold(Direction::MoveRight);
+		playerDirection = *player->getHolds().begin();
+	}
 }
 
 void GameLevel::downArrownUp() {
-    playerDirection = Direction::Resting;
+	if (player->getHolds().size() == 1) {
+		player->unsetHold(Direction::MoveDown);
+		playerDirection = Direction::Resting;
+	}
+	else {
+		player->unsetHold(Direction::MoveDown);
+		playerDirection = *player->getHolds().begin();
+	}
 }
 
 bool GameLevel::isPassable(float x, float y) {

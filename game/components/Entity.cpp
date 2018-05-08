@@ -58,6 +58,20 @@ void Entity::turn(Direction movingDirection) {
     shape->updateTextureInfo();
 }
 
+void Entity::setHold(Direction direction) {
+	if (holds.size() < 2) {
+		holds.insert(direction);
+	}
+}
+
+void Entity::unsetHold(Direction direction) {
+	holds.erase(direction);
+}
+
+std::unordered_set<Direction>& Entity::getHolds() {
+	return holds;
+}
+
 void Entity::setLocation(float x, float y) {
     shape->setAnchorLocation(x, y);
 }

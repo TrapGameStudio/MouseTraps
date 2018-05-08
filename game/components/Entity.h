@@ -5,6 +5,7 @@
 #include "../../gui/components/TextureRect.h"
 #include "../../gui/lang/Drawable.h"
 #include "../../gui/lang/Animatable.h"
+#include <unordered_set>
 #include <string>
 #include <functional>
 
@@ -29,6 +30,7 @@ private:
     int frameCounter = 0;
 
     Direction movingDirection = Direction::Resting;
+	std::unordered_set<Direction> holds = std::unordered_set<Direction>();
 
     /// <summary>
     /// Frame index of which the character is standing
@@ -50,6 +52,9 @@ public:
     static Entity::Builder builder();
     void move(Direction movingDirection);
     void turn(Direction movingDirection);
+	void setHold(Direction direction);
+	void unsetHold(Direction direction);
+	std::unordered_set<Direction>& getHolds();
     void setLocation(float x, float y);
     Point* getLocation();
     TextureRect* getShape();
