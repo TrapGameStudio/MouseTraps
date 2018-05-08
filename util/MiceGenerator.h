@@ -3,6 +3,8 @@
 #include "gui/geom/Point.h"
 #include "gui/components/Scene.h"
 #include "gui/components/GameLevel.h"
+#include "gui/util/SearchableQueue.h"
+#include <unordered_map>
 #include <stdio.h>
 #include <time.h>
 
@@ -12,8 +14,8 @@ class MiceGenerator {
 public:
 	struct State;
 private:
-	std::vector<Entity*> mice;
-	std::vector<State*> states;
+	SearchableQueue<Entity*> mice;
+	std::unordered_map<Entity*, State*> states;
 	std::vector<Point*> spawnLocations;
 	const unsigned int SPAWNTIME = 200;
 	unsigned int miceCount = 0, spawnTimer = SPAWNTIME;
@@ -22,8 +24,8 @@ public:
 	MiceGenerator();
 	MiceGenerator(std::vector<Point*> locations, GameLevel* level);
 
-	Entity* accessMouse(int i);
-	MiceGenerator::State* accessState(int i);
+	//Entity* accessMouse(int i);
+	MiceGenerator::State* accessState(Entity* e);
 	unsigned int getCount();
 	void resetSpawnTime();
 	void moveMice();
@@ -32,7 +34,7 @@ public:
 	void spawnMouse();
 	void spawnMouse(Point* spawnLocation);		 // TODO
 	void spawnMouse(float x, float y);
-	void killMouse(int m);
+	void killMouse(Entity* e);
 
 	~MiceGenerator();
 };

@@ -72,8 +72,10 @@ public:
     // TODO: auto push to all shapes
     void pushClickableToFront(Clickable* clickable);
     void pushClickableToBack(Clickable* clickable);
-    void pushAnimatedShapesToFront(Animatable* shape);
-    void pushAnimatedShapesToBack(Animatable* shape);
+    void removeClickable(Clickable* clickable);
+    void pushAnimatedShapeToFront(Animatable* shape);
+    void pushAnimatedShapeToBack(Animatable* shape);
+    void removeAnimatedShape(Animatable* shape);
     // TODO: change to mouse down mouse up latter.
     void clickClickables(float x, float y);
     void tick();

@@ -56,7 +56,7 @@ DemoSceen::DemoSceen() : Scene::Scene() {
                 ->updateTextureInfo();
         });
 
-    pushAnimatedShapesToBack(mushroom->getShape());
+    pushAnimatedShapeToBack(mushroom->getShape());
     pushClickableToBack(mushroom);
     pushShapeToBack(mushroom);
 
@@ -66,7 +66,7 @@ DemoSceen::DemoSceen() : Scene::Scene() {
 		.ofSize(0.5, 0.5)
 		.build();
 
-	pushAnimatedShapesToBack(temp);
+	pushAnimatedShapeToBack(temp);
 	pushShapeToBack(temp);
 }
 

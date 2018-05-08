@@ -55,12 +55,16 @@ void Scene::pushClickableToBack(Clickable * clickable) {
     allClickables.push_back(clickable);
 }
 
+void Scene::removeClickable(Clickable * clickable) {
+    allClickables.remove(clickable);
+}
+
 /// <summary>
 /// Register a animated ojbect to listen for frame advancing event
 /// and (not implemented yet) add the shape to the front of the scene.
 /// </summary>
 /// <param name="shape">the animated object to add</param>
-void Scene::pushAnimatedShapesToFront(Animatable * shape) {
+void Scene::pushAnimatedShapeToFront(Animatable * shape) {
     allAnimatedShapes.push_front(shape);
 }
 
@@ -69,8 +73,12 @@ void Scene::pushAnimatedShapesToFront(Animatable * shape) {
 /// and (not implemented yet) add the shape to the back of the scene.
 /// </summary>
 /// <param name="shape">the animated object to add</param>
-void Scene::pushAnimatedShapesToBack(Animatable * shape) {
+void Scene::pushAnimatedShapeToBack(Animatable * shape) {
     allAnimatedShapes.push_back(shape);
+}
+
+void Scene::removeAnimatedShape(Animatable * shape) {
+    allAnimatedShapes.remove(shape);
 }
 
 // TODO: should only click on the top object

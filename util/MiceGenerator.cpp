@@ -16,7 +16,7 @@ MiceGenerator::MiceGenerator(std::vector<Point*> location, GameLevel* level) { /
 
     //for (int i = 0; i < getCount(); i++) {
     //    level->removeShape(level->getPlayer());
-    //    level->pushAnimatedShapesToBack(mice[i]);
+    //    level->pushAnimatedShapeToBack(mice[i]);
     //    level->pushShapeToBack(mice[i]);
     //    level->pushShapeToBack(level->getPlayer());
     //}
@@ -38,20 +38,26 @@ void MiceGenerator::spawnMouse(float x, float y) {
     // turn mice into bbq charcoal mice when bombed
     mouse->setKillFunction([this, mouse]() {
         mouse->setTexture("Graphics/Characters/whtdragon3.png");
+        mice.remove(mouse);
+        states.erase(mouse);
+        level->addTimer(25, [this, mouse]() {
+            level->removeShape(mouse);
+            level->removeAnimatedShape(mouse);
+        });
     });
 
     level->addEntity(mouse);
 
     mouse->getShape()->setSize(3.0f / 25, 3.0f / 25); //Size was too small
-    states.push_back(state);
+    states[mouse] = state;
     mice.push_back(mouse);
 
-    //level->pushAnimatedShapesToBack(mice.back());  // didn't understand why not pushing here
+    //level->pushAnimatedShapeToBack(mice.back());  // didn't understand why not pushing here
     //level->pushShapeToBack(mice.back());
 
     level->removeShape(level->getPlayer());
-    level->pushAnimatedShapesToBack(mice.back());
-    level->pushShapeToBack(mice.back());
+    level->pushAnimatedShapeToBack(mouse);
+    level->pushShapeToBack(mouse);
     level->pushShapeToBack(level->getPlayer());
 
 
@@ -63,49 +69,46 @@ void MiceGenerator::spawnMouse(Point * spawnLocation) {
 }
 
 void MiceGenerator::moveMice() {
-    for (unsigned int i = 0; i < mice.size(); i++) {
-        if (!states[i]->count) {
-            states[i] = states[i]->newState();
+    for (auto& ep : mice.getMap()) {
+        Entity* e = ep.second;
+        if (!states[e]->count) {
+            states[e] = states[e]->newState();
         }
-        Direction d = states[i]->direction;
+        Direction d = states[e]->direction;
         switch (d) {
         case Direction::MoveDown:
-            if (!level->collideDown(mice[i])) {
-                mice[i]->move(d);
-            }
-            else {
-                states[i] = states[i]->newState();
+            if (!level->collideDown(e)) {
+                e->move(d);
+            } else {
+                states[e] = states[e]->newState();
             }
             break;
         case Direction::MoveLeft:
-            if (!level->collideLeft(mice[i])) {
-                mice[i]->move(d);
-            }
-            else {
-                states[i] = states[i]->newState();
+            if (!level->collideLeft(e)) {
+                e->move(d);
+            } else {
+                states[e] = states[e]->newState();
             }
             break;
         case Direction::MoveRight:
-            if (!level->collideRight(mice[i])) {
-                mice[i]->move(d);
-            }
-            else {
-                states[i] = states[i]->newState();
+            if (!level->collideRight(e)) {
+                e->move(d);
+            } else {
+                states[e] = states[e]->newState();
             }
             break;
         case Direction::MoveUp:
-            if (!level->collideUp(mice[i])) {
-                mice[i]->move(d);
-            }
-            else {
-                states[i] = states[i]->newState();
+            if (!level->collideUp(e)) {
+                e->move(d);
+            } else {
+                states[e] = states[e]->newState();
             }
             break;
         default:
-            mice[i]->rest();
+            e->rest();
             break;
         }
-        states[i]->count--;
+        states[e]->count--;
     }
 
     if (!--spawnTimer) {
@@ -113,7 +116,7 @@ void MiceGenerator::moveMice() {
         unsigned int i = rand() % spawnLocations.size();
         spawnMouse(spawnLocations[i]);
         //level->removeShape(level->getPlayer());
-        //level->pushAnimatedShapesToBack(mice.back());
+        //level->pushAnimatedShapeToBack(mice.back());
         //level->pushShapeToBack(mice.back());
         //level->pushShapeToBack(level->getPlayer());
     }
@@ -123,18 +126,20 @@ void MiceGenerator::resetSpawnTime() {
     spawnTimer = SPAWNTIME;
 }
 
-void MiceGenerator::killMouse(int i) { //Dont use this
-    delete states[i];
-    delete mice[i];
+void MiceGenerator::killMouse(Entity* e) { //Dont use this
+    delete states[e];
+    states.erase(e);
+    mice.remove(e);
+    delete e;
     miceCount--;
 }
 
-Entity* MiceGenerator::accessMouse(int i) {
-    return mice[i];
-}
+//Entity* MiceGenerator::accessMouse(int i) {
+//    return mice[i];
+//}
 
-MiceGenerator::State * MiceGenerator::accessState(int i) {
-    return states[i];
+MiceGenerator::State * MiceGenerator::accessState(Entity* e) {
+    return states[e];
 }
 
 unsigned int MiceGenerator::getCount() {
@@ -166,6 +171,6 @@ void MiceGenerator::addSpawnLocation(float x, float y) {
 MiceGenerator::~MiceGenerator() {
     for (Point* p : spawnLocations)
         delete p;
-    for (Entity* e : mice)
-        delete e;
+    //for (Entity* e : mice)
+    //    delete e;
 }

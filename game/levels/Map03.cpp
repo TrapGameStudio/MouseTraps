@@ -222,7 +222,7 @@ Map03::Map03() {
     });
 
 	setPlayerCharacter(character);
-	pushAnimatedShapesToBack(character);
+	pushAnimatedShapeToBack(character);
 	pushShapeToBack(character);
 
 	setMiceGenerator(this, spawnPoints);

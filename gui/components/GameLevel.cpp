@@ -62,7 +62,7 @@ void GameLevel::keyPress(unsigned char key) {
             explode(bomb->getAnchorLocation()->getX(), bomb->getAnchorLocation()->getY());
 
             pushShapeToBack(explosion);
-            pushAnimatedShapesToBack(explosion);
+            pushAnimatedShapeToBack(explosion);
             removeShape(bomb);
 
             addTimer(10, [this, explosion]() {
