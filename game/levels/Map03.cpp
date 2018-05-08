@@ -2,8 +2,12 @@
 
 
 
-Map03::Map03()
-{
+Map03::Map03() {
+
+	spawnPoints.push_back(new Point(-0.48f, 0.65f));
+	spawnPoints.push_back(new Point(-0.8f, -0.2f));
+	spawnPoints.push_back(new Point(0.87f, -0.75f));
+
 	TilesetManager::addTileset("Inside_A5.png", 8, 16, TilesetType::A5);
 
 	GameLevel::MapLayer* ground = new GameLevel::MapLayer(this);
@@ -91,16 +95,16 @@ Map03::Map03()
 	dec->mapAddRow(" 12zZZh    g        h    ");
 	dec->mapAddRow(" 347                     ");
 	dec->mapAddRow(" L6  Y       &n&         ");
-	dec->mapAddRow(" l6                      ");
+	dec->mapAddRow(" l                       ");
 	dec->mapAddRow("                         ");
 	dec->mapAddRow("        !@      Xx p G   ");
 	dec->mapAddRow("   S    $%   JK      g   ");
 	dec->mapAddRow(" O  s u      jk          ");
 	dec->mapAddRow(" o    n      ^*          ");
-	dec->mapAddRow("      n      ^*  Y     7 ");
-	dec->mapAddRow("      n      F       125 ");
+	dec->mapAddRow("      n      ^*  Y       ");
+	dec->mapAddRow("      n      F       12  ");
 	dec->mapAddRow(" V               U   34L ");
-	dec->mapAddRow(" v y            &&nu 86l ");
+	dec->mapAddRow(" v y            &&nu786l ");
 	dec->mapAddRow("                         ");
 
 	//dec->addCharTileMapping('.', Tile("Inside_A5.png", 0, 0));
@@ -220,6 +224,8 @@ Map03::Map03()
 	setPlayerCharacter(character);
 	pushAnimatedShapesToBack(character);
 	pushShapeToBack(character);
+
+	setMiceGenerator(this, spawnPoints);
 }
 
 Map03::~Map03() {}

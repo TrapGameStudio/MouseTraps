@@ -77,6 +77,7 @@ public:
     Entity::Builder & ofTextureType(TextureType textureType);
     Entity::Builder & ofAnimationRefreshRate(int animationRefreshRate);
     Entity::Builder & atLocation(float x, float y);
+	Entity::Builder & atLocation(Point* location);
     Entity::Builder & ofDirection(Direction direction);
     Entity::Builder & ofStaticFrame(int frameNumber);
     Entity::Builder & onKill(std::function<void(void)> killFunction);

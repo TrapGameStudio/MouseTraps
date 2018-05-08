@@ -29,6 +29,7 @@
     <ClCompile Include="..\game\levels\Map02.cpp" />
     <ClCompile Include="..\game\levels\Map01.cpp" />
     <ClCompile Include="..\game\levels\Map03.cpp" />
+    <ClCompile Include="..\util\MiceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\App.h" />
@@ -69,5 +70,6 @@
     <ClInclude Include="..\game\levels\Map01.h" />
     <ClInclude Include="..\game\levels\Map03.h" />
     <ClInclude Include="..\gui\util\SearchableQueue.h" />
+    <ClInclude Include="..\util\MiceGenerator.h" />
   </ItemGroup>
 </Project>

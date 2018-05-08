@@ -145,6 +145,7 @@
     <ClCompile Include="..\lib\lodepng.cpp" />
     <ClCompile Include="..\test\DemoSceen.cpp" />
     <ClCompile Include="..\util\Generator.cpp" />
+    <ClCompile Include="..\util\MiceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\App.h" />
@@ -185,6 +186,7 @@
     <ClInclude Include="..\lib\lodepng.h" />
     <ClInclude Include="..\test\DemoSceen.h" />
     <ClInclude Include="..\util\Generator.h" />
+    <ClInclude Include="..\util\MiceGenerator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
