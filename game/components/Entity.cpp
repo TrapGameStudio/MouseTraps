@@ -16,8 +16,8 @@ Entity::Builder Entity::builder() {
 void Entity::move(Direction movingDirection) {
     switch (movingDirection) {
     case Direction::MoveUp:
-		shape->setCurrentRow(3);
-		shape->move(0.0f, speed);
+        shape->setCurrentRow(3);
+        shape->move(0.0f, speed);
         break;
     case Direction::MoveLeft:
         shape->setCurrentRow(1);
@@ -58,24 +58,12 @@ void Entity::turn(Direction movingDirection) {
     shape->updateTextureInfo();
 }
 
-void Entity::setHold(Direction direction) {
-	
-}
-
-void Entity::unsetHold(Direction direction) {
-
-}
-
-std::unordered_set<Direction> Entity::getHolds() {
-	return std::unordered_set<Direction>();
-}
-
 void Entity::setLocation(float x, float y) {
     shape->setAnchorLocation(x, y);
 }
 
-Point* const Entity::getLocation() {
-    return shape->getAnchorLocation();
+Point* Entity::getLocation() {
+    return shape->getAnchorLocation()->deepCopy();
 }
 
 TextureRect * Entity::getShape() {
@@ -88,6 +76,7 @@ TextureRect * Entity::getShape() {
 /// <param name="textureFileName">full path to the texture file</param>
 void Entity::setTexture(std::string textureFileName) {
     shape->setTexture(textureFileName.c_str()); // TODO: why const char*
+    shape->updateTextureInfo();
 }
 
 void Entity::setTextureType(TextureType textureType) {
@@ -130,13 +119,13 @@ void Entity::rest() {
     shape->updateTextureInfo();
 }
 
-void Entity::setTriggerFunction(std::function<void(void)> triggerFunction) {
-    this->triggerFunction = triggerFunction;
+void Entity::setKillFunction(std::function<void(void)> killFunction) {
+    this->killFunction = killFunction;
 }
 
-void Entity::trigger() {
-    if (triggerFunction) {
-        triggerFunction();
+void Entity::kill() {
+    if (killFunction) {
+        killFunction();
     }
 }
 
@@ -170,17 +159,16 @@ Entity::Builder & Entity::Builder::atLocation(Point* location) {
 Entity::Builder & Entity::Builder::ofDirection(Direction direction) {
     switch (direction) {
     case Direction::MoveUp:
-        building->shape->setCurrentRow(0);
+        building->shape->setCurrentRow(3);
         break;
     case Direction::MoveLeft:
         building->shape->setCurrentRow(1);
-        building->shape->updateTextureInfo();
         break;
     case Direction::MoveRight:
         building->shape->setCurrentRow(2);
         break;
     case Direction::MoveDown:
-        building->shape->setCurrentRow(3);
+        building->shape->setCurrentRow(0);
         break;
     }
     return *this;
@@ -191,8 +179,8 @@ Entity::Builder & Entity::Builder::ofStaticFrame(int frameNumber) {
     return *this;
 }
 
-Entity::Builder & Entity::Builder::onTrigger(std::function<void(void)> triggerFunction) {
-    building->setTriggerFunction(triggerFunction);
+Entity::Builder & Entity::Builder::onKill(std::function<void(void)> killFunction) {
+    building->setKillFunction(killFunction);
     return *this;
 }
 

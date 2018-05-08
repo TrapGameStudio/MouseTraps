@@ -37,7 +37,7 @@ void MiceGenerator::spawnMouse(float x, float y) {
         .build();
 
     // turn mice into bbq charcoal mice when bombed
-   /* mouse->setKillFunction([this, mouse]() {
+    mouse->setKillFunction([this, mouse]() {
         mouse->setTexture("Graphics/Characters/whtdragon3.png");
         mice.remove(mouse);
         states.erase(mouse);
@@ -47,7 +47,7 @@ void MiceGenerator::spawnMouse(float x, float y) {
             miceCount--;
         });
     });
-	*/
+
     level->addEntity(mouse);
 
     mouse->getShape()->setSize(3.0f / 25, 3.0f / 25); //Size was too small
