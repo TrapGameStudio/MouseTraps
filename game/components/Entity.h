@@ -5,6 +5,7 @@
 #include "../../gui/components/TextureRect.h"
 #include "../../gui/lang/Drawable.h"
 #include "../../gui/lang/Animatable.h"
+#include <unordered_set>
 #include <string>
 #include <functional>
 
@@ -16,7 +17,7 @@ private:
     /// <summary>
     /// Window coordinate distance to move per tick
     /// </summary>
-    float speed = 0.1f / GameConfig::gridColumn;
+    float speed = 0.04f / GameConfig::gridColumn;
 
     /// <summary>
     /// Spacing between each refresh in tick
@@ -29,6 +30,7 @@ private:
     int frameCounter = 0;
 
     Direction movingDirection = Direction::Resting;
+	std::unordered_set<Direction> holds = std::set<Direction>();
 
     /// <summary>
     /// Frame index of which the character is standing
@@ -36,7 +38,7 @@ private:
     /// </summary>
     int staticFrame = 1;
 
-    std::function<void(void)> killFunction = nullptr;
+    std::function<void(void)> triggerFunction = nullptr;
 
     TextureRect* shape = 
         TextureRect::builder()
@@ -50,8 +52,11 @@ public:
     static Entity::Builder builder();
     void move(Direction movingDirection);
     void turn(Direction movingDirection);
+	void setHold(Direction);
+	void unsetHold(Direction);
+	std::unordered_set<Direction> getHolds();
     void setLocation(float x, float y);
-    Point* getLocation();
+    Point* const getLocation();
     TextureRect* getShape();
     void setTexture(std::string textureFileName);
     void setTextureType(TextureType textureType);
@@ -63,8 +68,8 @@ public:
     void draw();
     void advance();
     void rest();
-    void setKillFunction(std::function<void(void)> killFunction);
-    void kill();
+    void setTriggerFunction(std::function<void(void)> triggerFunction);
+    void trigger();
     Entity();
     ~Entity();
 };
@@ -80,6 +85,6 @@ public:
 	Entity::Builder & atLocation(Point* location);
     Entity::Builder & ofDirection(Direction direction);
     Entity::Builder & ofStaticFrame(int frameNumber);
-    Entity::Builder & onKill(std::function<void(void)> killFunction);
+    Entity::Builder & onTrigger(std::function<void(void)> triggerFunction);
     Entity * build();
 };
