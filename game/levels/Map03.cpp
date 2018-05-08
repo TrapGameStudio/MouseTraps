@@ -218,7 +218,9 @@ Map03::Map03() {
 		.build();
 
     character->setKillFunction([this, character]() {
+		character->setSpeed(0.0f);
         character->setTexture("Graphics/Characters/Char3-damaged.png");
+
     });
 
 	setPlayerCharacter(character);
