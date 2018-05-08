@@ -2,8 +2,8 @@
 
 
 
-Map03::Map03()
-{
+Map03::Map03() {
+
 	TilesetManager::addTileset("Inside_A5.png", 8, 16, TilesetType::A5);
 
 	GameLevel::MapLayer* ground = new GameLevel::MapLayer(this);
@@ -217,10 +217,8 @@ Map03::Map03()
 	pushAnimatedShapesToBack(character);
 	pushShapeToBack(character);
 
-	for (int i = 0; i < 5; i++) {
-		pushAnimatedShapesToBack(mice->accessMouse(i));
-		pushShapeToBack(mice->accessMouse(i));
-	}
+	setMiceGenerator(this);
+
 }
 
 Map03::~Map03() {}

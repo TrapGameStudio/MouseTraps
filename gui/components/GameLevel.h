@@ -2,16 +2,18 @@
 #include "Scene.h"
 #include "Tile.h"
 #include "../util/TilesetManager.h"
-#include "game/components/MiceGenerator.h"
+#include "util/MiceGenerator.h"
 #include "game/components/Entity.h"
 #include "game/GameConfig.h"
 #include <vector>
 #include <string>
 #include <map>
+class MiceGenerator;
 
 class GameLevel :
     public Scene {
 public:
+	MiceGenerator* generator;
     class MapLayer;
 private:
     std::map<int, MapLayer*> gameMap;
@@ -23,7 +25,7 @@ public:
     GameLevel();
     void addMapLayer(int layerID, MapLayer* gameMapLayer);
     void setPlayerCharacter(Entity* entity);
-	void moveMice();
+	void setMiceGenerator(GameLevel*);
     void keyPress(unsigned char key);
     void keyUp(unsigned char key);
     void mouseDown(float x, float y);

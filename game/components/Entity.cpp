@@ -151,7 +151,7 @@ Entity::Builder & Entity::Builder::atLocation(float x, float y) {
 }
 
 Entity::Builder & Entity::Builder::atLocation(Point* location) {
-	building->setLocation(-0.3, 0.0f);
+	building->setLocation(location->getX(), location->getY());
 	return *this;
 }
 

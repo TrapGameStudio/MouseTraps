@@ -19,6 +19,10 @@ void GameLevel::setPlayerCharacter(Entity * entity) {
 	player = entity;  // TODO: fix memory leak
 }
 
+void GameLevel::setMiceGenerator(GameLevel*) {
+	generator = new MiceGenerator(this);
+}
+
 void GameLevel::keyPress(unsigned char key) {
 	if (key == ' ') {
 	}
@@ -44,6 +48,7 @@ void GameLevel::leftArrowDown(){
 
 void GameLevel::upArrowDown(){
     playerDirection = Direction::MoveUp;
+	generator->spawnMouse(-0.6f, 0.6f);
 }
 
 void GameLevel::rightArrowDown(){
@@ -157,6 +162,7 @@ void GameLevel::draw() {
     case Direction::Resting:
         player->rest();
     }
+	generator->moveMice();
     Scene::draw();
 }
 

@@ -120,7 +120,6 @@
     <ClCompile Include="..\App.cpp" />
     <ClCompile Include="..\app_main.cpp" />
     <ClCompile Include="..\game\components\Entity.cpp" />
-    <ClCompile Include="..\game\components\MiceGenerator.cpp" />
     <ClCompile Include="..\game\GameConfig.cpp" />
     <ClCompile Include="..\game\levels\DemoLevel.cpp" />
     <ClCompile Include="..\game\levels\Map02.cpp" />
@@ -146,11 +145,11 @@
     <ClCompile Include="..\lib\lodepng.cpp" />
     <ClCompile Include="..\test\DemoSceen.cpp" />
     <ClCompile Include="..\util\Generator.cpp" />
+    <ClCompile Include="..\util\MiceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\App.h" />
     <ClInclude Include="..\game\components\Entity.h" />
-    <ClInclude Include="..\game\components\MiceGenerator.h" />
     <ClInclude Include="..\game\GameConfig.h" />
     <ClInclude Include="..\game\lang\Direction.h" />
     <ClInclude Include="..\game\levels\DemoLevel.h" />
@@ -187,6 +186,7 @@
     <ClInclude Include="..\lib\lodepng.h" />
     <ClInclude Include="..\test\DemoSceen.h" />
     <ClInclude Include="..\util\Generator.h" />
+    <ClInclude Include="..\util\MiceGenerator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
