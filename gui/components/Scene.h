@@ -62,6 +62,7 @@ public:
     virtual void rightArrowUp() = 0;
     virtual void downArrownUp() = 0;
 
+	//virtual Scene* getScene() = 0;
 
     virtual void draw();
 

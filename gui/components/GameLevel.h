@@ -20,6 +20,7 @@ private:
     Entity * player = nullptr;
     SearchableQueue<Entity*> allEntities;
     Direction playerDirection = Direction::Resting;
+	bool paused = false;
     unsigned int column;
     unsigned int row;
 public:
@@ -54,6 +55,7 @@ public:
     void removeEntity(Entity* e);
 
     Entity* const getPlayer();
+	//Scene* getScene();
 
     void explode(float x, float y);
 

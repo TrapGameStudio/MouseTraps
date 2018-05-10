@@ -79,7 +79,7 @@ void MiceGenerator::spawnMouse(Point * spawnLocation) {
 }
 
 void MiceGenerator::moveMice() {
-	if (control) {
+	if (control && !paused) {
 		for (auto& ep : mice.getMap()) {
 			Entity* e = ep.second;
 			if (!states[e]->count) {
@@ -163,7 +163,7 @@ void MiceGenerator::killMouse(Entity* e) { // Rename
 }
 
 void MiceGenerator::stopGenerator() {
-	std::cout << "Level Complete!" << std::endl;
+	//std::cout << "Level Complete!" << std::endl;
     std::string levelComplete = "Level Complete!";
     float x = 0.08f * -7;
     float y = 0.5f;
@@ -179,6 +179,14 @@ void MiceGenerator::stopGenerator() {
                 .build()
         );
     }
+}
+
+void MiceGenerator::pause() {
+	paused = true;
+}
+
+void MiceGenerator::unpause() {
+	paused = false;
 }
 
 //bool MiceGenerator::isGenerating() {

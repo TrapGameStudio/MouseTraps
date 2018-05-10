@@ -80,6 +80,10 @@ Point* Entity::getLocation() {
     return shape->getAnchorLocation()->deepCopy();
 }
 
+Direction Entity::getDirection() {
+	return this->movingDirection;
+}
+
 TextureRect * Entity::getShape() {
     return shape;
 }

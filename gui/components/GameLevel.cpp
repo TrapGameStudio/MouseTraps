@@ -25,16 +25,28 @@ void GameLevel::setMiceGenerator(GameLevel*, std::vector<Point*> points) {
 }
 
 void GameLevel::keyPress(unsigned char key) {
-    if (key == 'o') {
+	if (key == 'p') {
+		if (!paused) {
+			paused = true;
+			player->setSpeed(0.0f);
+			generator->pause();
+		}
+		else {
+			paused = false;
+			player->setSpeed(0.1f / GameConfig::gridColumn);
+			generator->unpause();
+		}
+	}
+    if (key == 'o' && !paused) {
         generator->spawnMouse(gridToMapCoordinate(9, 5));
     }
-	if (key == 's') {
+	if (key == 's' && !paused) {
 		player->changSpeed(0.005);
 	}
-	if (key == 'd') {
+	if (key == 'd' && !paused) {
 		player->changSpeed(-0.005);
 	}
-    if (key == ' ') {
+    if (key == ' ' && !paused) {
 
         // make a bomb
         TextureRect* bomb = TextureRect::builder()
@@ -90,77 +102,93 @@ void GameLevel::updateMapGraphics() {
     }
 }
 
-void GameLevel::leftArrowDown(){
-    isPassable(player->getLocation()->getX(), player->getLocation()->getY());
-	if (player->getHolds().empty() || player->getHolds().size() == 1) {
-		playerDirection = Direction::MoveLeft;
-		player->setHold(Direction::MoveLeft);
+void GameLevel::leftArrowDown() {
+	isPassable(player->getLocation()->getX(), player->getLocation()->getY());
+	if (!paused) {
+		if (player->getHolds().empty() || player->getHolds().size() == 1) {
+			playerDirection = Direction::MoveLeft;
+			player->setHold(Direction::MoveLeft);
+		}
 	}
 }
 
 void GameLevel::upArrowDown(){
-	if (player->getHolds().empty() || player->getHolds().size() == 1) {
-		playerDirection = Direction::MoveUp;
-		player->setHold(Direction::MoveUp);
+	if (!paused) {
+		if (player->getHolds().empty() || player->getHolds().size() == 1) {
+			playerDirection = Direction::MoveUp;
+			player->setHold(Direction::MoveUp);
+		}
+		//generator->spawnMouse(-0.6f, 0.6f);
 	}
-	//generator->spawnMouse(-0.6f, 0.6f);
 }
 
 void GameLevel::rightArrowDown(){
-	if (player->getHolds().empty() || player->getHolds().size() == 1) {
-		playerDirection = Direction::MoveRight;
-		player->setHold(Direction::MoveRight);
+	if (!paused) {
+		if (player->getHolds().empty() || player->getHolds().size() == 1) {
+			playerDirection = Direction::MoveRight;
+			player->setHold(Direction::MoveRight);
+		}
 	}
 }
 
 void GameLevel::downArrownDown(){
-	if (player->getHolds().empty() || player->getHolds().size() == 1) {
-		playerDirection = Direction::MoveDown;
-		player->setHold(Direction::MoveDown);
+	if (!paused) {
+		if (player->getHolds().empty() || player->getHolds().size() == 1) {
+			playerDirection = Direction::MoveDown;
+			player->setHold(Direction::MoveDown);
+		}
 	}
 }
 
 void GameLevel::leftArrowUp() {
-	if (player->getHolds().size() == 1) {
-		player->unsetHold(Direction::MoveLeft);
-		playerDirection = Direction::Resting;
-	}
-	else {
-		player->unsetHold(Direction::MoveLeft);
-		playerDirection = *player->getHolds().begin();
+	if (!paused) {
+		if (player->getHolds().size() == 1) {
+			player->unsetHold(Direction::MoveLeft);
+			playerDirection = Direction::Resting;
+		}
+		else {
+			player->unsetHold(Direction::MoveLeft);
+			playerDirection = *player->getHolds().begin();
+		}
 	}
 }
 
 void GameLevel::upArrowUp() {
-	if (player->getHolds().size() == 1) {
-		player->unsetHold(Direction::MoveUp);
-		playerDirection = Direction::Resting;
-	}
-	else {
-		player->unsetHold(Direction::MoveUp);
-		playerDirection = *player->getHolds().begin();
+	if (!paused) {
+		if (player->getHolds().size() == 1) {
+			player->unsetHold(Direction::MoveUp);
+			playerDirection = Direction::Resting;
+		}
+		else {
+			player->unsetHold(Direction::MoveUp);
+			playerDirection = *player->getHolds().begin();
+		}
 	}
 }
 
 void GameLevel::rightArrowUp() {
-	if (player->getHolds().size() == 1) {
-		player->unsetHold(Direction::MoveRight);
-		playerDirection = Direction::Resting;
-	}
-	else {
-		player->unsetHold(Direction::MoveRight);
-		playerDirection = *player->getHolds().begin();
+	if (!paused) {
+		if (player->getHolds().size() == 1) {
+			player->unsetHold(Direction::MoveRight);
+			playerDirection = Direction::Resting;
+		}
+		else {
+			player->unsetHold(Direction::MoveRight);
+			playerDirection = *player->getHolds().begin();
+		}
 	}
 }
 
 void GameLevel::downArrownUp() {
-	if (player->getHolds().size() == 1) {
-		player->unsetHold(Direction::MoveDown);
-		playerDirection = Direction::Resting;
-	}
-	else {
-		player->unsetHold(Direction::MoveDown);
-		playerDirection = *player->getHolds().begin();
+	if (!paused) {
+		if (player->getHolds().size() == 1) {
+			player->unsetHold(Direction::MoveDown);
+			playerDirection = Direction::Resting;
+		}
+		else {
+			player->unsetHold(Direction::MoveDown);
+			playerDirection = *player->getHolds().begin();
+		}
 	}
 }
 
@@ -226,6 +254,10 @@ Entity * const GameLevel::getPlayer() {
     return player;
 }
 
+//Scene* GameLevel::getScene() {
+//	 return this;
+//}
+
 void GameLevel::explode(float x, float y) {
     for (auto& ep : allEntities.getMap()) {
         Entity* e = ep.second;
@@ -244,7 +276,7 @@ void GameLevel::explode(float x, float y) {
 /// Put anything that need to update every tick in here.
 /// </summary>
 void GameLevel::draw() {
-	if (player) {
+	if (player && !paused) {
 		switch (playerDirection) {
 		case Direction::MoveDown:
 			if (!collideDown(player)) {
