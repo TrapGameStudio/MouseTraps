@@ -32,7 +32,7 @@ public:
 	void moveMice();
 	void addSpawnLocation(Point* spawnLocation); // TODO: use Point
 	void addSpawnLocation(float x, float y);
-	//void spawnMouse();
+	void spawnMouse();
 	void spawnMouse(Point* spawnLocation);		 // TODO
 	void spawnMouse(float x, float y);
 	void killMouse(Entity* e);

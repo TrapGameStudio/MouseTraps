@@ -37,56 +37,58 @@ void GameLevel::keyPress(unsigned char key) {
 			generator->unpause();
 		}
 	}
-    if (key == 'o' && !paused) {
-        generator->spawnMouse(gridToMapCoordinate(9, 5));
-    }
-	if (key == 's' && !paused) {
-		player->changSpeed(0.005);
+	if (!paused) {
+		if (key == 'o') {
+			generator->spawnMouse();
+		}
+		if (key == 's') {
+			player->changSpeed(0.005);
+		}
+		if (key == 'd') {
+			player->changSpeed(-0.005);
+		}
+		if (key == ' ') {
+
+			// make a bomb
+			TextureRect* bomb = TextureRect::builder()
+				.ofTexture("Graphics/Tilesets/SF_Inside_B.png")
+				.ofColumnRow(16, 16)
+				.ofCurrentColumnRow(15, 0)
+				.atLocation(player->getLocation())
+				.onAnchor(Anchor::Bottom)
+				.ofSize(2.0f / GameConfig::gridColumn, 2.0f / GameConfig::gridRow)
+				.build();
+
+			removeShape(player);    // remove and readd player to make the player on top of the bomb
+			pushShapeToBack(bomb);
+			pushShapeToBack(player);
+
+			// bomb exploding in 100 ticks. when explode, remove the bomb, 
+			// create a new Animated Texture Rectangle for the explosion,
+			// and after explosion, remove explosion texture rectangle.
+			addTimer(100, [this, bomb]() {
+				TextureRect* explosion = TextureRect::builder()
+					.ofTexture("Graphics/Animations/Fire2.png")
+					.ofColumnRow(7, 1)
+					.ofTextureType(TextureType::Animation)
+					.ofSize(6.0f / GameConfig::gridColumn, 6.0f / GameConfig::gridRow)
+					.atLocation(bomb->getAnchorLocation())
+					.onAnchor(Anchor::Bottom)
+					.build();
+
+				// actual logic of the explosion
+				explode(bomb->getAnchorLocation()->getX(), bomb->getAnchorLocation()->getY());
+
+				pushShapeToBack(explosion);
+				pushAnimatedShapeToBack(explosion);
+				removeShape(bomb);
+
+				addTimer(10, [this, explosion]() {
+					removeShape(explosion);
+				});
+			});
+		}
 	}
-	if (key == 'd' && !paused) {
-		player->changSpeed(-0.005);
-	}
-    if (key == ' ' && !paused) {
-
-        // make a bomb
-        TextureRect* bomb = TextureRect::builder()
-            .ofTexture("Graphics/Tilesets/SF_Inside_B.png")
-            .ofColumnRow(16, 16)
-            .ofCurrentColumnRow(15, 0)
-            .atLocation(player->getLocation())
-            .onAnchor(Anchor::Bottom)
-            .ofSize(2.0f / GameConfig::gridColumn, 2.0f / GameConfig::gridRow)
-            .build();
-
-        removeShape(player);    // remove and readd player to make the player on top of the bomb
-        pushShapeToBack(bomb);
-        pushShapeToBack(player);
-
-        // bomb exploding in 100 ticks. when explode, remove the bomb, 
-        // create a new Animated Texture Rectangle for the explosion,
-        // and after explosion, remove explosion texture rectangle.
-        addTimer(100, [this, bomb]() {
-            TextureRect* explosion = TextureRect::builder()
-                .ofTexture("Graphics/Animations/Fire2.png")
-                .ofColumnRow(7, 1)
-                .ofTextureType(TextureType::Animation)
-                .ofSize(6.0f / GameConfig::gridColumn, 6.0f / GameConfig::gridRow)
-                .atLocation(bomb->getAnchorLocation())
-                .onAnchor(Anchor::Bottom)
-                .build();
-
-            // actual logic of the explosion
-            explode(bomb->getAnchorLocation()->getX(), bomb->getAnchorLocation()->getY());
-
-            pushShapeToBack(explosion);
-            pushAnimatedShapeToBack(explosion);
-            removeShape(bomb);
-
-            addTimer(10, [this, explosion]() {
-                removeShape(explosion);
-            });
-        });
-    }
 }
 
 void GameLevel::keyUp(unsigned char key) {}
@@ -276,7 +278,7 @@ void GameLevel::explode(float x, float y) {
 /// Put anything that need to update every tick in here.
 /// </summary>
 void GameLevel::draw() {
-	if (player && !paused) {
+	if (player) {
 		switch (playerDirection) {
 		case Direction::MoveDown:
 			if (!collideDown(player)) {

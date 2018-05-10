@@ -78,6 +78,11 @@ void MiceGenerator::spawnMouse(Point * spawnLocation) {
     spawnMouse(spawnLocation->getX(), spawnLocation->getY());
 }
 
+void MiceGenerator::spawnMouse() {
+	int i = rand() % spawnLocations.size();
+	spawnMouse(spawnLocations[i]);
+}
+
 void MiceGenerator::moveMice() {
 	if (control && !paused) {
 		for (auto& ep : mice.getMap()) {
