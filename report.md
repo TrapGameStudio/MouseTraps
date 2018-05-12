@@ -25,12 +25,12 @@ Beside one single refresh loop, calls from listeners to member functions of `Gam
 
 Game listens for screen refresh, key press, and mouse click events from `GlutApp`. However, beside some debugging hotkeys, the Game does not actually have any logic on handling these events; instead, it calls the member functions of `Scene`s, objects holding all shapes and logics associated with those shapes which we will discuss more in the next session, to  do the actual logic.
 
-The Game object has a list to keep track of what scenes it is displaying. The reason it needs to hold multiple scenes is to allow multiple scene, such as a game level scene and a game over overlay scene to be able to stack on top of  another. This allows a more distributed work load and less downtime on resolving conflicts, since the work of designing, for example, a game over scene is now totally independent from the designing of the game level, even though these scenes needs to be displayed at the same time. For now, the default scene (we don't have a title scene, so it is the actual game level, and `GameLevel` is a child of `Scene`) is being pushed in the constructor of Game.
-```c
+The Game object has a list to keep track of what scenes it is displaying. The reason we use a list is to allow multiple scene to stack on top of another, such as a game level scene and a game-over overlay scene. This allows a more distributed work load and less downtime on resolving conflicts, since the work of designing, for example, a game-over scene is now totally independent from the designing of the game level. For now, the default scene (we don't have a title scene, so it is the actual game level, and `GameLevel` is a child of `Scene`) is being pushed in the constructor of Game.
+```c++
     currentScenes.push_back(std::make_unique<Map02>());
 ```
 When map switching debug hotkey `0`, `-`, `=` is being pressed, the scene queue will be cleared and new scene will be pushed. In the example of `0` hot key, the map will be changed to Map01.
-```c
+```c++
 if (key == '0') {
     currentScenes.clear();
     currentScenes.push_back(std::make_unique<Map01>());
@@ -40,7 +40,7 @@ Since the scene is being newly constructed, this also works as the reset mechani
 
 ### Scene
 
-As mentioned above, Scene is a abstract class that stores all shapes of the scene and offers the interface to handles event from Game. It provides an interface for derived class to listen for key press and mouse click events, but Scene starts handling frame update event, which is drawing shapes and animating shapes. So, beside keeping track of all shapes, Scene also keep track of all `Clickable` and `Animatable` objects in separated lists to allow easier management and better performance when there is a need to update those interactive objects. Game objects are required to maintain in a certain order to be drawn correctly, but also required to have random access when there is a need to update or delete them. The most used example is a killed enemy that needs to be remove from the drawing queue. These objects are stored in a custom made queue called `SearchableQueue`. SearchableQueue is a data structure similar to a BiMap. In our implementation, it contains a forward map of "z-index" to Drawable object, and a inverse hash table of Drawable object to index. When a removal of an object is called, the SearchableQueue will go to the hash table to find the key, use the key to remove the object from the forward indexed map, and remove the element also from the inverse hash table. With thousands of objects on screen at a time, the O(log(n)) time complexity should help improve the performance of game logics.
+As mentioned above, Scene is a abstract class that stores all shapes of the scene and offers the interface to handles event from Game. It provides an interface for derived class to listen for key press and mouse click events, but Scene starts handling frame update event, which is drawing shapes and animating shapes. So, beside keeping track of all shapes, Scene also keeps track of all `Clickable` and `Animatable` objects in separated lists to allow easier management and better performance when there is a need to update those interactive objects. Game objects are required to maintain in a certain order to be drawn correctly, but also required to have random access when there is a need to update or delete them. The most used example is a killed enemy that needs to be remove from the drawing queue. These objects are stored in a custom made queue called `SearchableQueue`. SearchableQueue is a data structure similar to a BiMap. In our implementation, it contains a forward map of "z-index" to Drawable object, and a inverse hash table of Drawable object to index. When a removal of an object is called, the SearchableQueue will go to the hash table to find the key, use the key to remove the object from the forward indexed map, and remove the element also from the inverse hash table. With thousands of objects on screen at a time, the O(log(n)) time complexity should help improve the performance of game logics.
 
 Scene also offer a timer utility that depends on game tick (screen refresh) that calls a call back function when the set time is reached.
 
@@ -76,12 +76,12 @@ This map layer has 3 tiles, `.` is a black tile to make a black background, `1` 
 
 #### Collision Detection
 
-Collision detection checks if the next step of the entity will become not passible. Passibility is defined by if a given coordinate contains a non empty tile. An empty tile is now hard coded as the Tile with the char `<space>`. If the collision detection detects a non empty tile, that position becomes not passible. The movement control will prevents future movement to that direction of that entity.
+Collision detection checks whether the next step of the entity can walk through or not. Whether an entity can walk through a tile or not is defined by if a given coordinate contains a non empty tile. An empty tile is now hard coded as a Tile with the space char. If the collision detection detects a non empty tile, that position becomes not passible. The movement control will prevents future movement to that direction of that entity.
 
 #### Player
 
 Currently, the player character has to be constructed on each map. Here is how a player is constructed.
-```c
+```c++
 Entity* character = Entity::builder()
     .ofTexture("Graphics/Characters/Char3.png")
     .ofDirection(Direction::MoveDown)
@@ -97,7 +97,7 @@ setPlayerCharacter(character);
 pushAnimatedShapeToBack(character);
 pushShapeToBack(character);
 ```
-We used the fluent builder design pattern instead of using constructor directly to further improve the readable of the code. However, this made the object less maintainable and extendable, due to the return type problem of fluent design. Back to the topic. The first part of this code is building the appearance of the player character. The character is defined to have the texture `"Graphics/Characters/Char3-damaged.png"`. The row and column of a character is hard coded to take only a 3 * 4 texture, so there is no need to specify in this case. It also defines the character to have a initial direction of down. The `MoveDown` is there instead of `Down` only because of name conflict and we did not have time to deal with namespace. And the location of the character will be at -0.6, 0.6 of window coordinate. Next, we set the call back function on when the player dies. For now, it set the character movement speed to 0, and change the picture to a character laying on the ground. It will be called by the explode function in gameLevel.
+We used the fluent builder design pattern instead of using constructor directly to further improve the readability of the code. However, this made the object less maintainable and extendable due to the return type problem of fluent design. Back to the topic, the first part of this code is building the appearance of the player character. The character is defined to have the texture `"Graphics/Characters/Char3.png"`. The row and column of a character texture is hard coded to take only a 3 * 4 texture, so there is no need to specify in this case. It also defines the character to have a initial direction of down. The `MoveDown` is there instead of `Down` only because of name conflict and we did not have time to deal with namespace. And the location of the character will be at -0.6, 0.6 of window coordinate. Next, we set the call back function on when the player dies. For now, it set the character movement speed to 0, and change the picture to a character laying on the ground. It will be called by the explode function in gameLevel.
 
 #### Mice
 Mouse is created by the generator. Each mouse is created by the following code:
@@ -122,7 +122,7 @@ mouse->setKillFunction([this, mouse]() {
 });
 ```
 
-The building process is similar to the player, but the kill function is a little bit different. The mouse will first have its texture changed into a "charcoal" mouse, which is just a mouse with a darker color, and remove it from the mice list so it will no longer response to movement control. 25 game ticks later, the mouse will be remove from the shape list, and some counter and state will be adjusted for that kill.
+The building process is similar to the player, but the kill function is a little bit different. The mouse first has its texture changed into a "charcoal" mouse, which is just a mouse with a darker color, and we remove it from the mice list so it will no longer response to movement control. 25 game ticks later, the mouse will be remove from the shape list, and some counter and state will be adjusted for that kill.
 
 The mouse movement is control by its state. Beside direction, we also need to define how many steps the mouse is going to move in that direction. If the mouse is always taking one step to a random direction, it will almost always stay in the same position.
 
