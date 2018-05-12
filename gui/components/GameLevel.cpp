@@ -25,56 +25,70 @@ void GameLevel::setMiceGenerator(GameLevel*, std::vector<Point*> points) {
 }
 
 void GameLevel::keyPress(unsigned char key) {
-    if (key == 'o') {
-        generator->spawnMouse(gridToMapCoordinate(9, 5));
-    }
-	if (key == 's') {
-		player->changSpeed(0.005);
+	if (key == 'p') {
+		if (!paused) {
+			paused = true;
+			player->setSpeed(0.0f);
+			generator->pause();
+		}
+		else {
+			paused = false;
+			player->setSpeed(0.1f / GameConfig::gridColumn);
+			generator->unpause();
+		}
 	}
-	if (key == 'd') {
-		player->changSpeed(-0.005);
+	if (!paused) {
+		if (key == 'o') {
+			generator->spawnMouse();
+		}
+		if (key == 's') {
+			player->changSpeed(0.005);
+		}
+		if (key == 'd') {
+			player->changSpeed(-0.005);
+		}
+		if (key == ' ') {
+
+			// make a bomb
+			TextureRect* bomb = TextureRect::builder()
+				.ofTexture("Graphics/Tilesets/SF_Inside_B.png")
+				.ofColumnRow(16, 16)
+				.ofCurrentColumnRow(15, 0)
+				.atLocation(player->getLocation())
+				.onAnchor(Anchor::Bottom)
+				.ofSize(2.0f / GameConfig::gridColumn, 2.0f / GameConfig::gridRow)
+				.build();
+
+			removeShape(player);    // remove and readd player to make the player on top of the bomb
+			pushShapeToBack(bomb);
+			pushShapeToBack(player);
+
+			// bomb exploding in 100 ticks. when explode, remove the bomb, 
+			// create a new Animated Texture Rectangle for the explosion,
+			// and after explosion, remove explosion texture rectangle.
+			addTimer(100, [this, bomb]() {
+				TextureRect* explosion = TextureRect::builder()
+					.ofTexture("Graphics/Animations/Fire2.png")
+					.ofColumnRow(7, 1)
+					.ofTextureType(TextureType::Animation)
+					.ofSize(6.0f / GameConfig::gridColumn, 6.0f / GameConfig::gridRow)
+					.atLocation(bomb->getAnchorLocation())
+					.onAnchor(Anchor::Bottom)
+					.build();
+
+				// actual logic of the explosion
+				explode(bomb->getAnchorLocation()->getX(), bomb->getAnchorLocation()->getY());
+
+				pushShapeToBack(explosion);
+				pushAnimatedShapeToBack(explosion);
+				removeShape(bomb);
+
+				addTimer(10, [this, explosion]() {
+					removeShape(explosion);
+				});
+			});
+		}
 	}
-    if (key == ' ') {
-
-        // make a bomb
-        TextureRect* bomb = TextureRect::builder()
-            .ofTexture("Graphics/Tilesets/SF_Inside_B.png")
-            .ofColumnRow(16, 16)
-            .ofCurrentColumnRow(15, 0)
-            .atLocation(player->getLocation())
-            .onAnchor(Anchor::Bottom)
-            .ofSize(2.0f / GameConfig::gridColumn, 2.0f / GameConfig::gridRow)
-            .build();
-
-        removeShape(player);    // remove and readd player to make the player on top of the bomb
-        pushShapeToBack(bomb);
-        pushShapeToBack(player);
-
-        // bomb exploding in 100 ticks. when explode, remove the bomb, 
-        // create a new Animated Texture Rectangle for the explosion,
-        // and after explosion, remove explosion texture rectangle.
-        addTimer(100, [this, bomb]() {
-            TextureRect* explosion = TextureRect::builder()
-                .ofTexture("Graphics/Animations/Fire2.png")
-                .ofColumnRow(7, 1)
-                .ofTextureType(TextureType::Animation)
-                .ofSize(6.0f / GameConfig::gridColumn, 6.0f / GameConfig::gridRow)
-                .atLocation(bomb->getAnchorLocation())
-                .onAnchor(Anchor::Bottom)
-                .build();
-
-            // actual logic of the explosion
-            explode(bomb->getAnchorLocation()->getX(), bomb->getAnchorLocation()->getY());
-
-            pushShapeToBack(explosion);
-            pushAnimatedShapeToBack(explosion);
-            removeShape(bomb);
-
-            addTimer(10, [this, explosion]() {
-                removeShape(explosion);
-            });
-        });
-    }
 }
 
 void GameLevel::keyUp(unsigned char key) {}
@@ -90,77 +104,93 @@ void GameLevel::updateMapGraphics() {
     }
 }
 
-void GameLevel::leftArrowDown(){
-    isPassable(player->getLocation()->getX(), player->getLocation()->getY());
-	if (player->getHolds().empty() || player->getHolds().size() == 1) {
-		playerDirection = Direction::MoveLeft;
-		player->setHold(Direction::MoveLeft);
+void GameLevel::leftArrowDown() {
+	isPassable(player->getLocation()->getX(), player->getLocation()->getY());
+	if (!paused) {
+		if (player->getHolds().empty() || player->getHolds().size() == 1) {
+			playerDirection = Direction::MoveLeft;
+			player->setHold(Direction::MoveLeft);
+		}
 	}
 }
 
 void GameLevel::upArrowDown(){
-	if (player->getHolds().empty() || player->getHolds().size() == 1) {
-		playerDirection = Direction::MoveUp;
-		player->setHold(Direction::MoveUp);
+	if (!paused) {
+		if (player->getHolds().empty() || player->getHolds().size() == 1) {
+			playerDirection = Direction::MoveUp;
+			player->setHold(Direction::MoveUp);
+		}
+		//generator->spawnMouse(-0.6f, 0.6f);
 	}
-	//generator->spawnMouse(-0.6f, 0.6f);
 }
 
 void GameLevel::rightArrowDown(){
-	if (player->getHolds().empty() || player->getHolds().size() == 1) {
-		playerDirection = Direction::MoveRight;
-		player->setHold(Direction::MoveRight);
+	if (!paused) {
+		if (player->getHolds().empty() || player->getHolds().size() == 1) {
+			playerDirection = Direction::MoveRight;
+			player->setHold(Direction::MoveRight);
+		}
 	}
 }
 
 void GameLevel::downArrownDown(){
-	if (player->getHolds().empty() || player->getHolds().size() == 1) {
-		playerDirection = Direction::MoveDown;
-		player->setHold(Direction::MoveDown);
+	if (!paused) {
+		if (player->getHolds().empty() || player->getHolds().size() == 1) {
+			playerDirection = Direction::MoveDown;
+			player->setHold(Direction::MoveDown);
+		}
 	}
 }
 
 void GameLevel::leftArrowUp() {
-	if (player->getHolds().size() == 1) {
-		player->unsetHold(Direction::MoveLeft);
-		playerDirection = Direction::Resting;
-	}
-	else {
-		player->unsetHold(Direction::MoveLeft);
-		playerDirection = *player->getHolds().begin();
+	if (!paused) {
+		if (player->getHolds().size() == 1) {
+			player->unsetHold(Direction::MoveLeft);
+			playerDirection = Direction::Resting;
+		}
+		else {
+			player->unsetHold(Direction::MoveLeft);
+			playerDirection = *player->getHolds().begin();
+		}
 	}
 }
 
 void GameLevel::upArrowUp() {
-	if (player->getHolds().size() == 1) {
-		player->unsetHold(Direction::MoveUp);
-		playerDirection = Direction::Resting;
-	}
-	else {
-		player->unsetHold(Direction::MoveUp);
-		playerDirection = *player->getHolds().begin();
+	if (!paused) {
+		if (player->getHolds().size() == 1) {
+			player->unsetHold(Direction::MoveUp);
+			playerDirection = Direction::Resting;
+		}
+		else {
+			player->unsetHold(Direction::MoveUp);
+			playerDirection = *player->getHolds().begin();
+		}
 	}
 }
 
 void GameLevel::rightArrowUp() {
-	if (player->getHolds().size() == 1) {
-		player->unsetHold(Direction::MoveRight);
-		playerDirection = Direction::Resting;
-	}
-	else {
-		player->unsetHold(Direction::MoveRight);
-		playerDirection = *player->getHolds().begin();
+	if (!paused) {
+		if (player->getHolds().size() == 1) {
+			player->unsetHold(Direction::MoveRight);
+			playerDirection = Direction::Resting;
+		}
+		else {
+			player->unsetHold(Direction::MoveRight);
+			playerDirection = *player->getHolds().begin();
+		}
 	}
 }
 
 void GameLevel::downArrownUp() {
-	if (player->getHolds().size() == 1) {
-		player->unsetHold(Direction::MoveDown);
-		playerDirection = Direction::Resting;
-	}
-	else {
-		player->unsetHold(Direction::MoveDown);
-		playerDirection = *player->getHolds().begin();
+	if (!paused) {
+		if (player->getHolds().size() == 1) {
+			player->unsetHold(Direction::MoveDown);
+			playerDirection = Direction::Resting;
+		}
+		else {
+			player->unsetHold(Direction::MoveDown);
+			playerDirection = *player->getHolds().begin();
+		}
 	}
 }
 
@@ -225,6 +255,10 @@ void GameLevel::removeEntity(Entity * e) {
 Entity * const GameLevel::getPlayer() {
     return player;
 }
+
+//Scene* GameLevel::getScene() {
+//	 return this;
+//}
 
 void GameLevel::explode(float x, float y) {
     for (auto& ep : allEntities.getMap()) {

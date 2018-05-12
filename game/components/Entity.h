@@ -58,6 +58,7 @@ public:
 	std::unordered_set<Direction>& getHolds();
     void setLocation(float x, float y);
     Point* getLocation();
+	Direction getDirection();
     TextureRect* getShape();
     void setTexture(std::string textureFileName);
     void setTextureType(TextureType textureType);

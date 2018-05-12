@@ -19,7 +19,7 @@ private:
 	std::vector<Point*> spawnLocations;
 	const unsigned int SPAWNTIME = 300, MAX_MICE = 25;
 	unsigned int miceCount = 0, totalSpawned = 0, spawnTimer = SPAWNTIME;
-	bool generate = true, control = true;
+	bool generate = true, control = true, paused = false;
 	GameLevel* level;
 public:
 	MiceGenerator();
@@ -32,11 +32,13 @@ public:
 	void moveMice();
 	void addSpawnLocation(Point* spawnLocation); // TODO: use Point
 	void addSpawnLocation(float x, float y);
-	//void spawnMouse();
+	void spawnMouse();
 	void spawnMouse(Point* spawnLocation);		 // TODO
 	void spawnMouse(float x, float y);
 	void killMouse(Entity* e);
 	//bool isGenerating();
+	void pause();
+	void unpause();
 	void stopGenerator();
 		
 	~MiceGenerator();

@@ -17,6 +17,7 @@ private:
     std::deque<std::unique_ptr<Scene>> currentScenes;
     std::map<unsigned int, std::unique_ptr<ScenePrototype>> gameLevels;
 public:
+	struct GameState;
     static const int GridColumn;
     static const int GridRow;
     static void gridCoordinatesToWindowCoordinates(float& x, float& y);
@@ -38,6 +39,8 @@ public:
     void rightArrowUp();
     void downArrownUp();
 
+	Scene* grabScene(int i);
+
     void redraw();
 
     void updateFrame();
@@ -47,3 +50,30 @@ public:
     ~Game();
 };
 
+struct Game::GameState {
+	struct PlayerState;
+	struct MiceState;
+	int currentMap;
+
+	GameState();
+	void saveGameState();
+	void loadGameState();
+};
+
+struct Game::GameState::PlayerState {
+	Point* playerLocation;
+	Direction playerDirection;
+
+	PlayerState(Entity* e);
+	void savePlayerState();
+	void loadPlayerState();
+};
+
+struct Game::GameState::MiceState {
+	std::vector<Point*> miceLocations;
+	std::vector<Direction*> miceDirections;
+
+	MiceState();
+	void saveMiceState();
+	void loadMiceState();
+};

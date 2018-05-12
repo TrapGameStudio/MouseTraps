@@ -85,6 +85,15 @@ void Game::downArrownUp() {
     }
 }
 
+Scene* Game::grabScene(int scene) {
+	int i = 0;
+	for (auto&& sc : currentScenes) {
+		if (i = scene)
+			return currentScenes[i].get();
+	}
+	return nullptr;
+}
+
 void Game::redraw() {
     for (unsigned int i = 0; i < currentScenes.size(); i++) {
         currentScenes[i]->draw();
@@ -103,3 +112,41 @@ Game::Game() {
 }
 
 Game::~Game() {}
+
+Game::GameState::GameState() {
+
+}
+
+void Game::GameState::loadGameState() {
+
+}
+
+void Game::GameState::saveGameState() {
+
+}
+
+Game::GameState::PlayerState::PlayerState(Entity* player) {
+	this->playerLocation = player->getLocation();
+	this->playerDirection = player->getDirection();
+	
+}
+
+void Game::GameState::PlayerState::loadPlayerState() {
+
+}
+
+void Game::GameState::PlayerState::savePlayerState() {
+
+}
+
+Game::GameState::MiceState::MiceState() {
+
+}
+
+void Game::GameState::MiceState::loadMiceState() {
+
+}
+
+void Game::GameState::MiceState::saveMiceState() {
+
+}
