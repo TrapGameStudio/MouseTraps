@@ -21,7 +21,7 @@ Beside one single refresh loop, calls from listeners to member functions of `Gam
 ## Demonstration / ANIMATION
  <a><img src="https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map01.png"></a> 
  
- <a><img src="https://web.telegram.org/#/im?p=@LeoYulinLi"></a> 
+ <a><img src="level1.png"></a> 
  
   <a><img src="https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map03.png"></a> 
  
