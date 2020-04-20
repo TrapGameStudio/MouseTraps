@@ -20,9 +20,9 @@ Beside one single refresh loop, calls from listeners to member functions of `Gam
 
 ## VISUAL / ANIMATION
 
-![Level1] (https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map01.png) <br>
-![Level2] (https://https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map02.png) <br>
-![Level3] (https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map03.png) <br>
+https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map01.png
+https://https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map02.png
+https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map03.png
 
 
 ### Game
