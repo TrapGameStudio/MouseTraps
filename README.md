@@ -23,7 +23,7 @@ Beside one single refresh loop, calls from listeners to member functions of `Gam
 ### Image
 
 #### Level1 <br>
- <a><img src="https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map01.png" height = "400" weight = "400"></a>  <br>
+ <a><img src="https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map01.png" height = "450" weight = "450"></a>  <br>
  #### Level2 <br>
  <a><img src="level1.png"></a>   <br>
  #### Level3 <br>
