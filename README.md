@@ -18,6 +18,13 @@ Rendered version of this markdown: [[https://github.com/TrapGameStudio/MouseTrap
 
 Beside one single refresh loop, calls from listeners to member functions of `Game`, a small improvement to let the game scene maintain its aspect ratio when the window is resized, there is no logic implemented in App or GlutApp, which provides a clean entrance for the program.
 
+## VISUAL / ANIMATION
+
+![Level1] (https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map01.png) <br>
+![Level2] (https://https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map02.png) <br>
+![Level3] (https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map03.png) <br>
+
+
 ### Game
 
 Game listens for screen refresh, key press, and mouse click events from `GlutApp`. However, beside some debugging hotkeys, the Game does not actually have any logic on handling these events; instead, it calls the member functions of `Scene`s, objects holding all shapes and logics associated with those shapes which we will discuss more in the next session, to  do the actual logic.
