@@ -19,6 +19,10 @@ Rendered version of this markdown: [[https://github.com/TrapGameStudio/MouseTrap
 Beside one single refresh loop, calls from listeners to member functions of `Game`, a small improvement to let the game scene maintain its aspect ratio when the window is resized, there is no logic implemented in App or GlutApp, which provides a clean entrance for the program.
 
 ## Demonstration
+ 
+## Animation
+<a><img src="https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map02.webp"></a>  <br>
+
 
 ### Image
 
@@ -29,11 +33,6 @@ Beside one single refresh loop, calls from listeners to member functions of `Gam
  #### Level3 <br>
   <a><img src="https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map03.png"></a> <br>
  
- 
-## Animation
-<a><img src="https://mousetrap.sfo2.cdn.digitaloceanspaces.com/Map02.webp"></a>  <br>
-
-
 
 
 ### Game
